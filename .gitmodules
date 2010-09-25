@@ -4,3 +4,6 @@
 [submodule "plugins/debug_kit"]
 	path = plugins/debug_kit
 	url = git://github.com/cakephp/debug_kit.git
+[submodule "/trash/app/vendors/SG-iCalendar"]
+	path = /trash/app/vendors/SG-iCalendar
+	url = git@github.com:karolijn/SG-iCalendar.git
