@@ -40,3 +40,5 @@
 		
 	Router::connect('/admin', array('controller' => 'admins',
 		'action' => 'index', 'admin' => true));
+
+Router::parseExtensions();

@@ -1,10 +1,10 @@
 <?php
-    App::import('Vendor', 'SG-iCal', array('file' => 'SG-iCalendar/SG_iCal.php'));
 
-class Schedule extends AppModel {
+App::import('Vendor', 'SG-iCal', array('file' => 'SG-iCalendar/SG_iCal.php'));
 
-    var $useTable = false;
-
+class SchedulesController extends AppController
+{
+    
     public function get_calendar()
     {
 
@@ -14,5 +14,6 @@ class Schedule extends AppModel {
      }
 
      $this->set('greeting', 'Hello there');
-}
+    }
 };
+?>

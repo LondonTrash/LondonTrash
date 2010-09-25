@@ -1,6 +1,7 @@
 <?php
 class AppController extends Controller {
-	var $components = array('DebugKit.Toolbar', 'Auth', 'Session');
+
+	var $components = array('DebugKit.Toolbar', 'Auth', 'Session', 'RequestHandler');
 	var $scaffold = 'admin';
 	
 	function beforeFilter() {
