@@ -1,6 +1,5 @@
 <?php
-$this->Session->flash('auth');
-echo $this->Form->create('admins', array('action' => 'login'));
+echo $this->Form->create('Admin', array('action' => 'login', 'admin' => true));
 echo $this->Form->inputs(array(
 	'legend' => __('Login', true),
 	'email',

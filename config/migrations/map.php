@@ -7,6 +7,8 @@ $map = array(
 	3 => array(
 		'003_add_ical_url_to_zone' => 'M4c9e4414024c48be864b03b23201ca43'),
 	4 => array(
-		'content_table' => 'M4c9e675fdd384307957b52413201ca43'),
+		'004_add_zone_table_data' => 'M4c9e6729dbc04c19bc68093b3201ca43'),
+        5 => array(
+		'005_adding_content_table' => 'M4c9e675fdd384307957b52413201ca43'),
 );
 ?>

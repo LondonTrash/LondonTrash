@@ -1,18 +1,23 @@
 <?php
     App::import('Vendor', 'SG-iCal', array('file' => 'SG-iCalendar/SG_iCal.php'));
-
+    
 class Schedule extends AppModel {
 
     var $useTable = false;
 
-    public function get_calendar()
-    {
 
-     $ical = new SG_iCal("http://www.google.com/calendar/ical/nlkc39jt4p0nbc4pk9pj7p5fh0%40group.calendar.google.com/public/basic.ics");
+    public function get_schedule($zone)
+    {
+        
+     $url = $zone['Zone']['ical_url'];
+     
+
+     $ical = new SG_iCal($url);
+     $schedule = array();
      foreach( $ical->getEvents() As $event ) {
-        var_dump($event);
+         $schedule[] = array('type' => $event->getSummary(), 'start_date' => $event->getStart(), 'end_date' => $event->getEnd(), 'description' => $event->getDescription());
      }
 
-     $this->set('greeting', 'Hello there');
+     return $schedule;
 }
 };
