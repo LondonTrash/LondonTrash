@@ -20,5 +20,20 @@ class AdminsController extends AppController {
 		$this->Session->setFlash('You have been logged out.');
 		$this->redirect($this->Auth->logout());
 	}
+	
+	function admin_add_account() {
+		if($this->data) {
+			$this->Admin->create();
+			
+			if($this->Admin->save($this->data))
+				$this->Session->setFlash("New administrator added.");
+			else
+				$this->Session->setFlash("Unable to add administrator.");
+		}
+	}
+	
+	function admin_change_password() {
+		
+	}
 }
 ?>
