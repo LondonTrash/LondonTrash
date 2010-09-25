@@ -1,0 +1,5 @@
+.DS_Store
+config/schema/schema.php
+config/bootstrap.local.php
+config/database.php
+tmp/
