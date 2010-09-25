@@ -6,5 +6,8 @@ class Zone extends AppModel {
 		'Subscriber'
 	);
 
+      #  var $hasOne = array( 'Schedule' => array('foreignKey' => false) );
+        
+
 }
 ?>
