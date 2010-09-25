@@ -40,5 +40,11 @@
 		
 	Router::connect('/admin', array('controller' => 'admins',
 		'action' => 'index', 'admin' => true));
+		
+	Router::connect('/admin/content/add', array('controller' => 'contents',
+		'action' => 'add', 'admin' => true));
+		
+	Router::connect('/admin/content/edit', array('controller' => 'contents',
+		'action' => 'edit', 'admin' => true));
 
 Router::parseExtensions();
