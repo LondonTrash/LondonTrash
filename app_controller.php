@@ -8,22 +8,30 @@ class AppController extends Controller {
 	
 		$this->Auth->userModel = 'Admin';
 		
-        $this->Auth->fields = array(
-            'username' => 'email', 
-            'password' => 'password'
-        );
-        
+    $this->Auth->fields = array(
+        'username' => 'email', 
+        'password' => 'password'
+    );    
 
-		$this->Auth->loginAction = array('controller' => 'admins',
-			'action' => 'login', 'admin' => true);
-		$this->Auth->logoutRedirect = array('controller' => 'admins',
-			'action' => 'login', 'admin' => true);
+		$this->Auth->loginAction = array(
+			'controller' => 'admins',
+			'action' => 'login',
+			'admin' => true
+		);
+		$this->Auth->logoutRedirect = array(
+			'controller' => 'admins',
+			'action' => 'login',
+			'admin' => true
+		);
 			
-		$this->Auth->loginRedirect = array('controller' => 'admins',
-			'action' => 'index', 'admin' => true);
+		$this->Auth->loginRedirect = array(
+			'controller' => 'admins',
+			'action' => 'index',
+			'admin' => true
+		);
 			
 		$this->Auth->authorize = 'controller';
-		$this->Auth->allow(array('display'));
+		$this->Auth->allow(array('*'));
 	}
 	
 	function isAuthorized() {
@@ -32,6 +40,7 @@ class AppController extends Controller {
 		  		return true;
 		  	}
 		  	else
+		  		$this->Auth->deny(array('*'));
 		  		return false;
 	  	}
 	  	return true;	  	
