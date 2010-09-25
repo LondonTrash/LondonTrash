@@ -1,0 +1,6 @@
+[submodule "plugins/migrations"]
+	path = plugins/migrations
+	url = git://github.com/CakeDC/migrations.git
+[submodule "plugins/debug_kit"]
+	path = plugins/debug_kit
+	url = git://github.com/cakephp/debug_kit.git
