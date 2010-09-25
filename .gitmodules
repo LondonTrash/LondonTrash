@@ -7,3 +7,6 @@
 [submodule "/trash/app/vendors/SG-iCalendar"]
 	path = /trash/app/vendors/SG-iCalendar
 	url = git://github.com/karolijn/SG-iCalendar.git
+[submodule "plugins/syrup"]
+	path = plugins/syrup
+	url = git://github.com/mariano/syrup.git
