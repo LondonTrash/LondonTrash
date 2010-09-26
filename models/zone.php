@@ -20,7 +20,7 @@ class Zone extends AppModel {
 	}
 	
 	private function _do_zone_lookup($address) {
-		App::import('Lib', 'lookup', array('file' => 'lookup/Zonelookup.php'));
+		App::import('Lib', 'lookup', array('file' => 'lookup/ZoneLookup.php'));
 		$zone_lookup = new ZoneLookup();
 		
 		$data = $zone_lookup->get_latlng_by_address($address);
