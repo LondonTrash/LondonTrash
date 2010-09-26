@@ -10,8 +10,8 @@
 </head>
 
 <body class="result">
-	
-	<div class="grid_5 ">
+	<div class="container_16">
+		<div class="grid_5 ">
 			<h1 id="site-title">London Trash</h1>
 			
 			<?php if ($page != 'home'): /*
@@ -22,33 +22,34 @@
 			<div class="dyk "><h3>Did You Know?</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis sed nisi rutrum suscipit. Maecenas id quam sit amet augue sollicitudin porta. Nulla ac volutpat libero. Mauris lacus metus, tincidunt vitae semper ac, consectetur et eros. Donec et laoreet lacus. Nulla urna velit, tristique at sodales varius, rhoncus ut augue. </p>
 			</div>
-			<?php endif; ?>
-
-			<?php if ($page == 'schedule'): ?>
 			<a href="" class="report"> Report an Error</a>
-			<?php endif; ?>
-	</div>
-	
-	<div class="grid_11 ">
-	<div class="glass ">
-	
-	<?php echo $this->Session->flash(); ?>
-	<?php echo $this->Session->flash('auth'); ?>
+		</div>
+		<?php endif; ?>
 
-	<?php echo $content_for_layout; ?>
-	</div>
-	
-	<ul id="lh-nav">
-	<li><a href="">Secondary Links</a></li>
-	<li><a href="">Secondary Links</a></li>
-	<li><a href="">Secondary Links</a></li>
-	<li><a href="">Secondary Links</a></li>
-	</ul>
+		<?php if ($page == 'schedule'): ?>
+			<a href="" class="report"> Report an Error</a>
+		<?php endif; ?>
+		
+		</div>
+			<div class="grid_11 ">
+				<div class="glass ">
+				
+					<?php echo $this->Session->flash(); ?>
+					<?php echo $this->Session->flash('auth'); ?>
 
-	</div>
+					<?php echo $content_for_layout; ?>
+				</div>
+				
+				<ul id="lh-nav">
+					<li><a href="/contents/view/terms-of-service">TOS</a></li>
+					<li><a href="/contents/view/privacy-policy">Privacy Policy</a></li>
+					<li><a href="/contents/view/about">About</a></li>
+					<li><a href="" id="odl">Open Data London</a></li>
+				</ul>
+			</div>
 
-	</div>
-
+			</div>
+		</div>
 	</div>
 
 	</body>
