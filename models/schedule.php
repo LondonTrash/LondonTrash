@@ -16,8 +16,6 @@ class Schedule extends AppModel {
          $schedule = array();
          $events = $ical->getEvents();
          if( is_array($events) ) {
-            // Commented out by Aaron McGowan.
-            // foreach( $ical->getEvents() As $event ) {
             foreach( $events as $event ) {
                 $schedule[] = array('type' => $event->getSummary(), 'start_date' => $event->getStart(), 'end_date' => $event->getEnd(), 'description' => $event->getDescription());
             }

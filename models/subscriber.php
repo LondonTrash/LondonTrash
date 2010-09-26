@@ -6,6 +6,7 @@ class Subscriber extends AppModel {
 		'Provider',
 		'Zone'
              	);
+        var $hasMany = array( 'Notification' );
 
         public function add($email, $mobile, $zone)
         {

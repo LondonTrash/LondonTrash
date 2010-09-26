@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* App schema generated on: 2010-09-25 19:09:23 : 1285457363*/
+/* App schema generated on: 2010-09-26 16:09:28 : 1285532908*/
 class AppSchema extends CakeSchema {
 	var $name = 'App';
 
@@ -26,6 +26,13 @@ class AppSchema extends CakeSchema {
 		'body' => array('type' => 'text', 'null' => false, 'default' => NULL),
 		'created' => array('type' => 'date', 'null' => false, 'default' => NULL),
 		'modified' => array('type' => 'date', 'null' => false, 'default' => NULL),
+		'category' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 20),
+		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+	);
+	var $notifications = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
+		'subscriber_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+		'delay' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 	);
 	var $protocols = array(

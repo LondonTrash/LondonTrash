@@ -60,9 +60,7 @@ class Zone extends AppModel {
 		//find the schedule for said zone
 		$this->Schedule = ClassRegistry::init('Schedule');
 		$zone_schedule = $this->Schedule->get_schedule($zone_id);
-
 		usort($zone_schedule, array($this, "compare_date"));
-
 		return $zone_schedule;
 	}
 
