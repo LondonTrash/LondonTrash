@@ -7,7 +7,7 @@ class SearchesController extends Controller {
     {
         if($this->data)
         {
-			$searchAddress = $this->data['Search']['Address'];
+			$searchAddress = ucwords($this->data['Search']['Address']);
             $zone = $this->Zone->get_zone($searchAddress);
             
             //if zone is empty, try to append city
@@ -25,6 +25,8 @@ class SearchesController extends Controller {
             
             if(!empty($zone))
             {
+				$this->Session->write("address", $searchAddress);
+				$this->Session->write("zone", $zone);
                 $this->redirect(array("controller"=>"zones", "action"=>"view", $zone));
             }
             else
