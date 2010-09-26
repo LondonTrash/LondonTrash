@@ -2,7 +2,6 @@
     
     echo $form->create('Search', array('type' => 'post'));
     echo $form->input('Address');
-    echo $form->end('Go go gadget trash!');
+    echo $form->submit('Go', array('class' => 'sbutton'));
+    echo $form->end();
 ?>
-
-OH HAI!
