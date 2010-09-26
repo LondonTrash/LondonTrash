@@ -14,10 +14,15 @@ class Schedule extends AppModel {
 
          $ical = new SG_iCal($url);
          $schedule = array();
-         foreach( $ical->getEvents() As $event ) {
-             $schedule[] = array('type' => $event->getSummary(), 'start_date' => $event->getStart(), 'end_date' => $event->getEnd(), 'description' => $event->getDescription());
+         $events = $ical->getEvents();
+         if( is_array($events) ) {
+            // Commented out by Aaron McGowan.
+            // foreach( $ical->getEvents() As $event ) {
+            foreach( $events as $event ) {
+                $schedule[] = array('type' => $event->getSummary(), 'start_date' => $event->getStart(), 'end_date' => $event->getEnd(), 'description' => $event->getDescription());
+            }
          }
-
+         
          return $schedule;
     }
 };
