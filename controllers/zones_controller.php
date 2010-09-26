@@ -39,7 +39,21 @@ class ZonesController extends AppController
 		
         public function view($zone = null) #zone letter
         {
+
+
             $schedule = null;
+            
+            if($this->data)
+             {
+                    $zone = $this->data['Zone']['zone'];
+
+                    //TODO: Add some error processing here
+
+                    var_dump($this->data['Zone']);
+                    $this->Zone->Subscriber->set('contact', $this->data['Zone']['Email']);
+                    $this->Zone->Subscriber->save();
+             }
+
             if(!empty($zone))
             {
                 $schedule = $this->Zone->get_schedule($zone);
@@ -58,7 +72,6 @@ class ZonesController extends AppController
 				$calendar[$curr_date]['class'] = $this->get_CalClass($curr_date);
 				$curr_date = mktime(0,0,0,date('m',$curr_date),date('d',$curr_date)+1,date('Y',$curr_date));
 			}
-			
 			foreach ($schedule as $event){
 				if (!isset($calendar[$event['start_date']])){
 					break;
@@ -69,7 +82,9 @@ class ZonesController extends AppController
 			$this->set("calendar", $calendar);
 			
             $this->set("schedule", $schedule);
+            $this->set("zone", $zone);
         }
+
 }
 
 ?>
