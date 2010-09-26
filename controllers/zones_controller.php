@@ -52,7 +52,10 @@ class ZonesController extends AppController
 			
 			//set up the calendar vars
 			//Sunday of this week
-			$sunday = mktime(0,0,0, date('m'),date('d')-date('N'), date('Y'));
+			if (date('N') != 7)
+				$sunday = mktime(0,0,0, date('m'),date('d')-date('N'), date('Y'));
+			else
+				$sunday = mktime();
 			$curr_date = $sunday;
 			for ($i=0;$i<35;$i++){
 				$calendar[$curr_date]['class'] = $this->get_CalClass($curr_date);
