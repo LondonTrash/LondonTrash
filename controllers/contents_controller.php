@@ -11,6 +11,10 @@ class ContentsController extends AppController {
 		$this->set('content', $this->Content->findBySlug($slug));
 	}
 
+	function tips() {
+		$this->set('tips', $this->Content->find('all', array('category' => 'tips')));
+	}
+
 	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid content', true));
