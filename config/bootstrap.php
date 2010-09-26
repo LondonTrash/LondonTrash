@@ -48,3 +48,7 @@
  * Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
  *
  */
+
+if (file_exists(CONFIGS . 'bootstrap.local.php')) {
+	include('bootstrap.local.php');
+}
