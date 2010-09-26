@@ -1,6 +1,11 @@
 <?php
 App::import('Vendor', 'SG-iCal', array('file' => 'SG-iCalendar/SG_iCal.php'));
 
+/**
+ * @property Zone $Zone
+ * @property Auth $Auth
+ * @property Session $Session
+ */
 class ZonesController extends AppController
 {
 	
