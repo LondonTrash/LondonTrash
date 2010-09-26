@@ -49,10 +49,13 @@
 	</table>
 	</div>
 <?
-    echo $form->create('Zone', array('type' => 'post'));
-    echo $form->input('Email');
-    echo $form->input('Phone');
-    echo $form->hidden('zone', array('value' => $zone));
-    echo $form->end('Send me the info!');
+    echo $this->Form->create('Zone', array('type' => 'post'));
+    echo $this->Form->input('Subscriber.email');
+    echo $this->Form->input('Subscriber.phone');
+    echo $this->Form->hidden('Subscriber.zone_id', array('value' => $zone));
+		echo $this->Form->input('Notification.0.delay_time');
+		echo $this->Form->input('Notification.0.delay_unit', array('type' => 'select', 'options' => $delay_unit)); // hours, days
+		echo $this->Form->input('Notification.0.notification_type', array('type' => 'select', 'options' => $notification_type)); // regular, special, both
+    echo $this->Form->end('Send me the info!');
 ?>
 <?php debug($schedule); ?>
