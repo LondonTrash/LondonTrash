@@ -1,6 +1,11 @@
 <?php
 App::import('Vendor', 'SG-iCal', array('file' => 'SG-iCalendar/SG_iCal.php'));
 
+/**
+ * @property Zone $Zone
+ * @property Auth $Auth
+ * @property Session $Session
+ */
 class ZonesController extends AppController
 {
 	
@@ -66,17 +71,22 @@ class ZonesController extends AppController
 			
 			//set up the calendar vars
 			//Sunday of this week
-			$sunday = mktime(0,0,0, date('m'),date('d')-date('N'), date('Y'));
+			if (date('N') != 7)
+				$sunday = mktime(0,0,0, date('m'),date('d')-date('N'), date('Y'));
+			else
+				$sunday = mktime();
 			$curr_date = $sunday;
 			for ($i=0;$i<35;$i++){
 				$calendar[$curr_date]['class'] = $this->get_CalClass($curr_date);
 				$curr_date = mktime(0,0,0,date('m',$curr_date),date('d',$curr_date)+1,date('Y',$curr_date));
 			}
+
 			foreach ($schedule as $event){
 				if (!isset($calendar[$event['start_date']])){
 					break;
 				}	
 				$calendar[$event['start_date']]['class'] .= ' '.$event['type'];
+				$calendar[$event['start_date']]['event'] = $event;
 			}
 			
 			$this->set("calendar", $calendar);
