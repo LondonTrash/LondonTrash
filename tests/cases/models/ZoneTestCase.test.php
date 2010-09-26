@@ -20,6 +20,11 @@ class ZoneTestCase extends CakeTestCase {
         $this->assertEqual("D", $model->get_zone("1183 Highbury Ave N, London, ON"));
         
         $this->assertEqual("CORE", $model->get_zone("366 Dundas St, London, ON")); // downtown
+        
+        $this->assertEqual("F", $model->get_zone("70 Outer Dr, London, ON"));
+        $this->assertEqual("F", $model->get_zone("76 Broadway Ave, London, ON"));
+        
+        $this->assertEqual("D", $model->get_zone("6402 Hamlyn St, London, ON"));
     }
     
     public function testGetSchedule() {
@@ -42,7 +47,7 @@ class ZoneTestCase extends CakeTestCase {
         $this->assertEqual(false, $this->_scheduleCheck("25-04-2011", $schedule));
         $this->assertEqual(true, $this->_scheduleCheck("26-04-2011", $schedule));
         
-        $this->assertEqual(false, $this->_scheduleCheck("7-09-2011", $schedule)); // past the current schedule/calendar
+        $this->assertEqual(false, $this->_scheduleCheck("7-09-2011", $schedule)); // past the current available schedule/calendar
         
         // 5-10-2010 -                                               29-09-2011      
         // print date("j-m-Y", $schedule[0]['start_date']) . ' - ' . date("j-m-Y", $schedule[count($schedule) - 1]['start_date']);
