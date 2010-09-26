@@ -14,5 +14,7 @@ $map = array(
 		'006_daaaaang' => 'M4c9e7fa1581441bbad5564213201ca43'),
 	7 => array(
 		'007_adding_category_to_content' => 'M4c9e9aed9ac04366899a29143201ca43'),
+	8 => array(
+		'008_adding_notifications_table' => 'M4c9f75da878c4ebdb42e3c843201ca43'),
 );
 ?>
