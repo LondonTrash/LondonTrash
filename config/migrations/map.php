@@ -16,7 +16,5 @@ $map = array(
 		'007_adding_category_to_content' => 'M4c9e9aed9ac04366899a29143201ca43'),
 	8 => array(
 		'008_adding_notifications_table' => 'M4c9f75da878c4ebdb42e3c843201ca43'),
-	9 => array(
-		'009_utf8_collations_encodings' => 'M4c9f8fe23ee44ef5b0120b283201ca43'),
 );
 ?>
