@@ -8,16 +8,16 @@ class Schedule extends AppModel {
 
     public function get_schedule($zone)
     {
-        
-     $url = $zone['Zone']['ical_url'];
-     
 
-     $ical = new SG_iCal($url);
-     $schedule = array();
-     foreach( $ical->getEvents() As $event ) {
-         $schedule[] = array('type' => $event->getSummary(), 'start_date' => $event->getStart(), 'end_date' => $event->getEnd(), 'description' => $event->getDescription());
-     }
+         $url = $zone['Zone']['ical_url'];
 
-     return $schedule;
-}
+
+         $ical = new SG_iCal($url);
+         $schedule = array();
+         foreach( $ical->getEvents() As $event ) {
+             $schedule[] = array('type' => $event->getSummary(), 'start_date' => $event->getStart(), 'end_date' => $event->getEnd(), 'description' => $event->getDescription());
+         }
+
+         return $schedule;
+    }
 };
