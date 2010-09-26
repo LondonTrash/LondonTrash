@@ -15,9 +15,26 @@ class Zone extends AppModel {
 	public function get_zone($address) {
 		//if we haven't got the zone locally, get it from the openhalton database
 		if (!$zone_name = $this->getZoneLocal($address)) {
-			$zone_name = $this->getZoneOpenhalton($address);
+			$zone_name = $this->_do_zone_lookup($address);
 		}
 		return $zone_name;
+	}
+	
+	private function _do_zone_lookup($address) {
+		App::import('Lib', 'Zonelookup');
+		$zone_lookup = new ZoneLookup();
+		
+		$data = $zone_lookup->get_latlng_by_address($address);
+		$data_size = count($data);
+		
+		if( 1 == $data_size ) {
+			$zone_id = $zone_lookup->get_zone_by_latlng($data[0]->geometry->location->lat, $data[0]->geometry->location->lng);
+			if( false !== $zone_id ) {
+				return $zone_id;
+			}
+		}
+		
+		return false;
 	}
 
 	/**
@@ -25,7 +42,7 @@ class Zone extends AppModel {
 	 * @param string $address The user entered address
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
-	private function getZoneOpenhalton($address) {
+	/* private function getZoneOpenhalton($address) {
 		//find the zone
 		$contents = file_get_contents("http://openhalton.ca/londontrash/LondonTrash.svc/GetZone?address=" . urlencode($address) . "&mapprovider=bing");
 		$contents = json_decode($contents);
@@ -36,7 +53,7 @@ class Zone extends AppModel {
 		//TODO: save zone so we don't have to make a call to a service that may or may not be up all the time
 
 		return $zone_name;
-	}
+	} */
 
 	/**
 	 * Retrieve the zone information from the database
