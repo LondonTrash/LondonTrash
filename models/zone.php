@@ -1,7 +1,6 @@
 <?php
 
 class Zone extends AppModel {
-
 	var $name = 'Zone';
 	var $hasMany = array(
 		'Subscriber'
@@ -27,11 +26,10 @@ class Zone extends AppModel {
 		$data = $zone_lookup->get_latlng_by_address($address);
 		$data_size = count($data);
 		
-		if( 1 == $data_size ) {
+		if( 0 < $data_size ) {
 			$zone_id = $zone_lookup->get_zone_by_latlng($data[0]->geometry->location->lat, $data[0]->geometry->location->lng);
-			if( false !== $zone_id ) {
-				return $zone_id;
-			}
+			$zone_id = (string) $zone_id;
+			return $zone_id;
 		}
 		
 		return false;
