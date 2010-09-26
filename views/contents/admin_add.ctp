@@ -3,7 +3,8 @@
 	<fieldset>
  		<legend><?php __('Admin Add Content'); ?></legend>
 	<?php
-		echo $this->Form->input('slug');
+		$category_options = array('page'=>'page', 'tips'=>'tips');
+		echo $this->Form->select('category', $category_options, array('tips'), array(), false);
 		echo $this->Form->input('title');
 		echo $this->Form->input('body');
 	?>
