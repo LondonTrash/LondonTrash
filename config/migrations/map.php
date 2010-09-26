@@ -12,7 +12,5 @@ $map = array(
 		'005_adding_content_table' => 'M4c9e675fdd384307957b52413201ca43'),
 	6 => array(
 		'006_daaaaang' => 'M4c9e7fa1581441bbad5564213201ca43'),
-	7 => array(
-		'007_content_category_column' => 'M4c9e8634ee604c748d4e1e153201ca43'),
 );
 ?>
