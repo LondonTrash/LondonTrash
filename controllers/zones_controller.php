@@ -3,8 +3,10 @@ App::import('Vendor', 'SG-iCal', array('file' => 'SG-iCalendar/SG_iCal.php'));
 
 class ZonesController extends AppController
 {
-
-    	function beforeFilter() {
+	
+	var $helpers = array('Time');
+		
+    function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow();
 	}
