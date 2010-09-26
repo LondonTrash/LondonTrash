@@ -50,13 +50,21 @@ class ZonesController extends AppController {
 	 */
 	public function view($zone = null) {
 		$schedule = null;
-
+		
+		// if we don't have a zone, redirect to search page
+		if (!$zone && empty($this->data)) {
+			$this->redirect(array('controller' => 'searches', 'action' => 'index'));
+		}
+		
 		if ($this->data) {
-			$zone = $this->data['Zone']['zone'];
-
 			//TODO: Add some error processing here
-			$this->Zone->Subscriber->set('contact', $this->data['Zone']['Email']);
-			$this->Zone->Subscriber->save();
+			//$this->Zone->Subscriber->set('contact', $this->data['Zone']['Email']);
+			if ($this->Zone->Subscriber->save($this->data)) {
+				//success
+			} else {
+				//failure
+			}
+			
 		 }
 
 		if (!empty($zone)) {

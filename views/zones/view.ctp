@@ -50,10 +50,12 @@
 	</div>
 <?php
     echo $this->Form->create('Zone', array('type' => 'post'));
-    echo $this->Form->input('Subscriber.email');
-    echo $this->Form->input('Subscriber.phone');
+
+    echo $this->Form->input('Subscriber.contact', array('name' => 'email', 'label' => 'Email'));
+		echo $this->Form->input('Subscriber.provider_id');
     echo $this->Form->hidden('Subscriber.zone_id', array('value' => $zone));
-		echo $this->Form->input('Notification.0.delay_time');
+
+		echo $this->Form->input('Notification.0.delay_time', array('maxlength' => 2));
 		echo $this->Form->input('Notification.0.delay_unit', array('type' => 'select', 'options' => $delay_unit)); // hours, days
 		echo $this->Form->input('Notification.0.notification_type', array('type' => 'select', 'options' => $notification_type)); // regular, special, both
     echo $this->Form->end('Send me the info!');
