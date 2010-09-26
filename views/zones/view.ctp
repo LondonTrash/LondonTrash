@@ -1,5 +1,7 @@
 <?php
-?><h1>Your pickup day is <?php 
+?>
+
+<h1>Your pickup day is <?php 
 
 	$timestamp = $schedule[0]['start_date'];
 
@@ -46,5 +48,11 @@
 			</tr>
 	</table>
 	</div>
-
+<?
+    echo $form->create('Zone', array('type' => 'post'));
+    echo $form->input('Email');
+    echo $form->input('Phone');
+    echo $form->hidden('zone', array('value' => $zone));
+    echo $form->end('Send me the info!');
+?>
 <?php debug($schedule); ?>
