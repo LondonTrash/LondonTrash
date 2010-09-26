@@ -13,10 +13,9 @@ class Zone extends AppModel {
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
 	public function get_zone($address) {
-		App::import();
 		//if we haven't got the zone locally, get it from the openhalton database
-		if (!$zone_name = $this->__get_zone_local($address)) {
-			$zone_name = $this->__get_zone_openhalton($address);
+		if (!$zone_name = $this->getZoneLocal($address)) {
+			$zone_name = $this->getZoneOpenhalton($address);
 		}
 		return $zone_name;
 	}
@@ -26,7 +25,7 @@ class Zone extends AppModel {
 	 * @param string $address The user entered address
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
-	private function __get_zone_openhalton($address) {
+	private function getZoneOpenhalton($address) {
 		//find the zone
 		$contents = file_get_contents("http://openhalton.ca/londontrash/LondonTrash.svc/GetZone?address=" . urlencode($address) . "&mapprovider=bing");
 		$contents = json_decode($contents);
@@ -44,7 +43,7 @@ class Zone extends AppModel {
 	 * @param string $address The user entered address
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
-	private function __get_zone_local($address) {
+	private function getZoneLocal($address) {
 		//parse out postal code
 		//get the zone based on the postal code
 		//if zones can change: make sure that the zone retrieval date is not greater than x
