@@ -18,5 +18,7 @@ $map = array(
 		'008_adding_notifications_table' => 'M4c9f75da878c4ebdb42e3c843201ca43'),
 	9 => array(
 		'009_adding_type_and_last_created_to_notifications' => 'M4c9faf22e7b04f38af8732123201ca43'),
+	10 => array(
+		'010_adding_address_caches_table' => 'M4c9fc7db9c5042529c7653813201ca43'),
 );
 ?>
