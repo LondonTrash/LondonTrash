@@ -1,6 +1,3 @@
-<?php
-?>
-
 <h1>Your pickup day is <?php 
 
 	$timestamp = $schedule[0]['start_date'];
