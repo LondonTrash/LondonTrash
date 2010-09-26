@@ -30,9 +30,12 @@
 		<tr>
 			<?php 
 				$i = 0;
-				foreach($calendar as $day=>$class){
-					echo '<td class="'.$class['class'].'">';
+				foreach($calendar as $day=>$date){
+					echo '<td class="'.$date['class'].'">';
 					echo date('j',$day); 
+					if (isset($date['event'])){
+						echo ': '.$date['event']['type'];	
+					}	
 					print "</td>\n\t\t\t";
 					$i++;
 					if(is_int($i/7)){
