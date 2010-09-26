@@ -17,6 +17,6 @@ $map = array(
 	8 => array(
 		'008_adding_notifications_table' => 'M4c9f75da878c4ebdb42e3c843201ca43'),
 	9 => array(
-		'009_utf8_collations_encodings' => 'M4c9f8fe23ee44ef5b0120b283201ca43'),
+		'009_adding_type_and_last_created_to_notifications' => 'M4c9faf22e7b04f38af8732123201ca43'),
 );
 ?>
