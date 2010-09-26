@@ -48,7 +48,7 @@
 			</tr>
 	</table>
 	</div>
-<?
+<?php
     echo $this->Form->create('Zone', array('type' => 'post'));
     echo $this->Form->input('Subscriber.email');
     echo $this->Form->input('Subscriber.phone');
