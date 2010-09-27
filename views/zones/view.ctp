@@ -114,7 +114,7 @@ $address = $this->Session->read('address');
 		$i++;
 
 	}
-?>			<br style="clear:both" /></div><!-- #cal_inner -->
+?>			<br style="clear:both" /></div>
+<!-- #cal_inner -->
 		</div>
-//-->
 </div>
