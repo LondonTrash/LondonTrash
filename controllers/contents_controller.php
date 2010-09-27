@@ -12,7 +12,7 @@ class ContentsController extends AppController {
 	}
 
 	function tips() {
-		$this->set('tips', $this->Content->find('all', array('category' => 'tips')));
+		$this->set('tips', $this->Content->find('all', array('conditions' => array('category' => 'tips'))));
 	}
 
 	function admin_view($id = null) {
