@@ -66,6 +66,7 @@ class Zone extends AppModel {
 				if( !$zone_name ) {
 					$this->zone_data[$i] = new stdClass;
 					$this->zone_data[$i]->zone_name = $zone_name;
+					$this->zone_data[$i]->address = $data[$i]->formatted_address;
 					
 					++$this->zone_data_size;
 					
@@ -101,6 +102,7 @@ class Zone extends AppModel {
 			$this->zone_data = array();
 			$this->zone_data[0] = new stdClass;
 			$this->zone_data[0]->zone_name = $data['AddressCache']['zone'];
+			$this->zone_data[0]->address = $data['AddressCache']['address'];
 			
 			$this->zone_data_size = 1;
 			
