@@ -19,19 +19,16 @@
 			<h1 id="site-title">London Trash</h1>
 			
 			<?php if ($this->params['controller'] != 'searches'): ?>
-			<div class="clear"></div>
-			<div class="dyk "><h3>Did You Know?</h3>
-				<p><?php echo $tip; ?></p>
-			</div>
-
+				<div class="clear"></div>
+				<div class="dyk "><h3>Did You Know?</h3>
+					<p><?php echo $tip; ?></p>
+				</div>
+			<?php endif; ?>	
 			<?php if ($this->params['controller'] == 'zones' && $this->action == 'view'): ?>
 				<a href="" class="report"> Report an Error</a>
 			<?php endif; ?>
-			
 		</div>
-		<?php endif; ?>
-				
-		</div>
+		
 			<div class="grid_11 ">
 				<div class="glass ">
 				
