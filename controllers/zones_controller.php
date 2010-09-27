@@ -44,9 +44,12 @@ class ZonesController extends AppController {
 		if (!empty($zone)) {
 			$schedule = $this->Zone->get_schedule($zone);
 		}
-		//print_r($schedule);
+
 		if (empty($schedule)) {
-			$this->Session->setFlash("BOO FAIL!!!");
+			/*
+				TODO: This should probably fire off an email to an admin, saying it needs to be fixed
+			*/
+			$this->Session->setFlash("Sorry, we weren't able to find a schedule for this zone.");
 		}
 			
 		//set up the calendar vars

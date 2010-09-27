@@ -701,7 +701,7 @@ border-radius: 5px;
 }
 
 
-  .message {
+  .error, .message {
 	color:#fff;
 	background:  url('../img/message.png') 10px 5px no-repeat #5D92B1!important;
 }
