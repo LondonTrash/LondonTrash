@@ -4,7 +4,8 @@
  		<legend><?php __('Admin Edit Content'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('slug');
+		$category_options = array('page'=>'page', 'tips'=>'tips');
+		echo $this->Form->select('category', $category_options, null, array(), false);
 		echo $this->Form->input('title');
 		echo $this->Form->input('body');
 	?>

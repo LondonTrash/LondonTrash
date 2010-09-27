@@ -1,36 +1,39 @@
-<?php
-		//print_r($this->Session);
+<?php 
+$address = $this->Session->read('address');
 ?>
 
-<div class="mod results">
-	<div class="address">
-	<?php
-		if ($this->Session->read('zone') != '')
-		{
-			echo $this->Session->read('address');
-			echo ' (Zone ' . $this->Session->read('zone') . ')';
-		}
-	?>
-	<a href="/">Change</a></div>
+<div class="results mod">
+	<div class="address"><?php echo $address; ?> (Zone <?php echo $zone;?>)<a href="">Change</a></div>
 	<div class="clear"></div>
 	<small>Your Next Pickup is:</small>
-	<?php 
-
-		$timestamp = $schedule[0]['start_date'];
-
-		if ($this->Time->isToday($timestamp)){
-			echo "<h2>TODAY</h2>"; 
-			echo '<span id="r-date">' . date('l, F jS',$schedule[1]['start_date']) . '</span>';
-		}else if ($this->Time->isTomorrow($timestamp)){
-				echo "<h2>TOMORROW!</h2>";
-				echo '<span id="r-date">' . date('l, F jS',$schedule[1]['start_date']) . '</span>';
-		}else if(date('z', $timestamp) - date('z') < 7){
-			echo "<h2>" . date('next l',$timestamp) . "</h2>";
-		}else {
-			echo "<h2>" . date('l, F jS',$timestamp) . "</h2>";	
-		}
-		?>
-
+<h2>
+<?php 
+	 //real date
+	//$timestamp = $schedule[0]['start_date'];
+	
+	//today
+	$timestamp = mktime();
+	
+	//tomorrow:
+	//$timestamp = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
+	
+	if ($this->Time->isToday($timestamp)){
+		echo "7:00am Today!</h2>";// if you missed it, try again on ".date('l, F jS',$schedule[1]['start_date']); 
+		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
+	}else if ($this->Time->isTomorrow($timestamp)){
+			echo "Tomorrow!</h2>";
+			echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
+	}else if(date('z', $timestamp) - date('z') < 7){
+		echo date('next l',$timestamp);
+		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
+	}else {
+		echo "<h2'>".date('F j<\s\u\p\>S\<\/\s\u\p\>', $timestamp)."</h2>";	
+	}
+	
+?>
+	</h2>
+	
+</div>
 		<div id="calendar">
 		<table>
 			<tr>
