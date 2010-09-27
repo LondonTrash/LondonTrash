@@ -37,21 +37,25 @@ class SearchesController extends Controller {
 			$this->redirect(array('action' => 'index'));
 		}
 
-    public function index($searchTerm = null) {
+    public function index($address = null) {
 			
-			if ($this->data) {
+			if ($this->data || !empty($address)) {
+				if ($this->data) {
+					$address = $this->data['Search']['address'];
+				}
+
 				// clear any ambiguous address we have in the session
 				$this->Session->delete('addressChoices');
 				
 				// Check to make sure they've entered an address before we do a lookup
-				$rawSearchAddress = trim($this->data['Search']['address']);				
+				$rawSearchAddress = trim($address);
 	
 				if ($rawSearchAddress == 'Enter address' || empty($rawSearchAddress)) {
 					$this->Session->setFlash("Please enter an address in the search box.");
 					$this->redirect(array('action' => 'index'));
 				}
 				
-				$searchAddress = ucwords($this->data['Search']['address']);
+				$searchAddress = ucwords($address);
 				$zone = $this->Zone->get_zone($searchAddress);
 			
 			// quickly hacked so that people like Cottser would stop complaining
