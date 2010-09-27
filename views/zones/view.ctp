@@ -1,7 +1,5 @@
-<?php 
-
+<?php
 echo $this->Html->script('calendar');
-
 $address = $this->Session->read('address');
 ?>
 
@@ -34,14 +32,14 @@ $address = $this->Session->read('address');
 		echo date('next l',$timestamp);
 		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
 	}else {
-		echo "<h2'>".date('F j<\s\u\p\>S\<\/\s\u\p\>', $timestamp)."</h2>";	
+		echo "<h2>".date('F j<\s\u\p\>S\<\/\s\u\p\>', $timestamp)."</h2>";	
 	}
 	
 ?>
 	</h2>
 	
-</div>
-<!--div id="calendar"> 
+<!--
+	<div id="calendar"> 
 	<div id="head" > 
 		<div class="arrow"><a href="" id="left">&lt;</a></div>  <h4><?php echo date('F Y', $timestamp); ?> </h4> <div class="arrow"><a href="" id="right">&gt;</a></div>
 	</div>
@@ -117,5 +115,6 @@ $address = $this->Session->read('address');
 
 	}
 ?>			<br style="clear:both" /></div><!-- #cal_inner -->
-		</div -->
+		</div>
+//-->
 </div>
