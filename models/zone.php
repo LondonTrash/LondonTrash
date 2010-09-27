@@ -59,8 +59,8 @@ class Zone extends AppModel {
 			return false;
 		}
 
-		$lat = $data[0]->geometry->location->lat;
-		$lng = $data[0]->geometry->location->lng;
+		/* $lat = $data[0]->geometry->location->lat;
+		$lng = $data[0]->geometry->location->lng; */
 
 		// hacky, but we're trying to catch someone entering gibberish,
 		// because it's matching up to a spot on the road on horton st. near richmond
@@ -68,9 +68,9 @@ class Zone extends AppModel {
 			TODO: Actually make this return false. For some reason it's not working,
 			* even if the condition matches.
 		*/
-		if ($lat == '42.979398' && $lng == '-81.246138') {
+		/* if ($lat == '42.979398' && $lng == '-81.246138') {
 			return false;
-		}
+		} */
 
 		$data_size = count($data);
 		
