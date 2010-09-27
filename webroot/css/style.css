@@ -78,6 +78,7 @@ img { -ms-interpolation-mode: bicubic }
  background: #fff;
  background: -moz-linear-gradient(    left bottom,     rgba(256,256,256, .8) 58%,     rgba(250,250,250, .75) 35%,  rgba(250,250,250, 0.9) 72%,  rgba(250,250,250, .8) 96%);
  background: -webkit-gradient( linear,     left bottom,     right top, color-stop(0.32,   rgba(256,256,256, .9) ), color-stop(0.53, rgba(250,250,250, .85)), color-stop(0.86, rgba(250,250,250, 1)), color-stop(0.54, rgba(250,250,250, .9)) );
+  background: -khtml-gradient( linear,     left bottom,     right top, color-stop(0.32,   rgba(256,256,256, .9) ), color-stop(0.53, rgba(250,250,250, .85)), color-stop(0.86, rgba(250,250,250, 1)), color-stop(0.54, rgba(250,250,250, .9)) );
 }
 
 #lh-nav {
@@ -128,7 +129,7 @@ img { -ms-interpolation-mode: bicubic }
 
 .home {
  margin-top: 150px;
- background: url(../img/trash-bg-seamless.jpg) bottom center repeat-x fixed #344e75
+ background: url(../img/trash-bg-seamless.JPG) bottom center repeat-x fixed #344e75
 }
 
  .home #lh-nav li a {
@@ -152,7 +153,7 @@ img { -ms-interpolation-mode: bicubic }
 #search-box .sbutton {
  position: relative; display: inline-block;
  top: -2px;
- margin: 0px 0 0 10px; padding: 0px 10px 0px 4px;
+ margin: 0px 0 0 10px; padding: 0px 10px 0px 11px;
  color: #FAFAFA!important;
  font-size: 3em; font-weight: 600;
  text-align: center; text-decoration: none; text-transform: uppercase;
@@ -214,7 +215,7 @@ input[type="button"]::-moz-focus-inner { border : 0px }
 
 .result {
  margin-top: 50px;
- background: url(../img/trash-bg-seamless2.jpg) bottom center repeat-x fixed #344e75
+ background: url(../img/trash-bg-seamless2.JPG) bottom center repeat-x fixed #344e75
 }
 
  .result .glass {
@@ -253,9 +254,7 @@ input[type="button"]::-moz-focus-inner { border : 0px }
  }
 
  .results h2 {
-  width: 480px;
   display: inline-block;
-  white-space: normal;
   margin: -10px 0 0 0; padding: 0;
   color: #222;
   font-size: 5em; font-weight: 600;
@@ -485,6 +484,7 @@ border-bottom:2px solid #003F87!important;
  border-radius: 5px;
  background: -moz-linear-gradient(    center bottom,     rgba(0,0,0, .3) 46%,     rgba(0,0,0, .4) 49%);
  background: -webkit-gradient( linear,    left bottom,    left top, color-stop(0.46,  rgba(0,0,0, .3) ), color-stop(0.49,  rgba(0,0,0, .4)) );
+
 }
 
 .report:hover { color: #fff }
@@ -570,7 +570,7 @@ border-bottom:2px solid #003F87!important;
 
 .privacy {
  margin-top: 50px;
- background: url(../img/trash-bg-seamless2.jpg) bottom center repeat-x fixed #344e75
+ background: url(../img/trash-bg-seamless2.JPG) bottom center repeat-x fixed #344e75
 }
 
  .privacy .glass {
@@ -579,7 +579,7 @@ border-bottom:2px solid #003F87!important;
  }
 
  
- .privacy h2 {
+  .privacy .glass h2 {
 
 
   margin: 0; padding: 0;
@@ -590,14 +590,37 @@ border-bottom:2px solid #003F87!important;
    text-shadow: 0px 1px 0px rgba(256,256,256, 1)
  }
  
+  .privacy .glass h3{
+ margin: 0 0 5px 0; padding: 0;
+  color: #333;
+  font-family: 'TeXGyreAdventorBold', Arial, sans-serif;
+   text-shadow: 0px 1px 0px rgba(256,256,256, 1)
+ }
+  .privacy .glass h4{
+ margin: 0; padding: 0;
+  color: #333;
+  font-family: 'TeXGyreAdventorBold', Arial, sans-serif;
+   text-shadow: 0px 1px 0px rgba(256,256,256, 1)
+ }
+  .privacy .glass h5{
+ margin: 0 0 10px 0; padding: 0;
+  color: #333;
+font-weight:500;
+   text-shadow: 0px 1px 0px rgba(256,256,256, 1)
+ }
  
+  .privacy .glassstrong{
+
+  color: #444;
+
+ }
   /* * About
 ------------------------------------------------------------------
  */
 
 .about {
  margin-top: 50px;
- background: url(../img/trash-bg-seamless2.jpg) bottom center repeat-x fixed #344e75
+ background: url(../img/trash-bg-seamless2.JPG) bottom center repeat-x fixed #344e75
 }
 
  .about .glass {
@@ -616,10 +639,10 @@ border-bottom:2px solid #003F87!important;
  
  
 .about .profile  h3 {
-  margin: 5px 5px 10px 0; padding: 0;
+  margin: 5px 5px 10px 5px; padding: 0;
   color: #333;
-  font-size: 1.1em;
-  font-family: 'TeXGyreAdventorBold', Arial, sans-serif;
+  font-size: 1em;
+
    text-shadow: 0px 1px 0px rgba(256,256,256, 1);
    display:inline-block;
 }
@@ -641,11 +664,44 @@ margin:10px 0 0 0px; padding:0;
   border-top: 1px solid rgba(256,256,256, 1);
  -moz-box-shadow: 0px -1px 0px rgba(0,0,0,  0.1);
  -webkit-box-shadow: 0px -1px 0px rgba(0,0,0,  0.1);
- margin:0 5px;
+ margin:0 9px 0 0;
  width:110px;
- height:200px;
+ height:160px;
+}
+.contributer{
+	float: left;
+	width: 75px;
+	padding: 5px;
+	margin: 0 5px;
 }
  
-.contents.view {
-	padding: 15px 15px 0 15px;
+ 
+
+#flashMessage { font-size:0.9em;  margin-bottom:10px; position:absolute; top:10px; width:560px;
+	padding: 5px 20px 5px 55px!important;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px; 
+ -moz-box-shadow: 0px 1px 2px rgba(0,0,0, .3), inset 0px 0px 1px rgba(0,0,0, .3);
+ -webkit-box-shadow: 0px 1px 2px rgba(0,0,0, .3), inset 0px 0px 1px rgba(0,0,0, .3);
+	border: 2px solid #fff!important;
+} 
+#flashMessage p{  margin-bottom:5px; }
+#flashMessage ul { margin:0 0 10px 30px; padding:0;}
+#flashMessage li a {font-size:1.3em; color:#fff; font-weight:600;    text-shadow: 1px 1px 0px rgba(0,0,0, .2);}
+ 
+  .notice {
+	color:#fff;
+	background:  url('../img/warning-large.png') 10px 5px no-repeat #FF9912!important;
+}
+
+  .success {
+	color:#fff;
+	background:  url('../img/sent-okay.png') 10px 5px no-repeat #458B00!important;
+}
+
+
+  .message {
+	color:#fff;
+	background:  url('../img/message.png') 10px 5px no-repeat #5D92B1!important;
 }
