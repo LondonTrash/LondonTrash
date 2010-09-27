@@ -117,12 +117,12 @@ class Zone extends AppModel {
 				'AddressCache.address' => $address
 			)
 		));
-		
-		if( isset($data['AddressCache']['zone']) ) {
+		$data_size = count($data);
+		if( 0 < $data_size ) {
 			$this->zone_data = array();
 			$this->zone_data_size = 0;
 			
-			for( $i = 0, $size = count($data); $i < $size; ++$i ) {
+			for( $i = 0; $i < $data_size; ++$i ) {
 				$o = new stdClass;
 				$o->zone_name = $data[$i]['AddressCache']['zone'];
 				$o->address = $data[$i]['AddressCache']['address'];
