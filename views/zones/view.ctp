@@ -100,8 +100,7 @@ $address = $this->Session->read('address');
 				if ($date['event']['end_date'] != $date['event']['end_date'] && $date['event']['start_date'] == $timestamp){
 					for ($i=$timestamp; $i<=$date['event']['end_date']; $i=strtotime ('+1 day',$i )){
 						$calendar[$i]['event'] = $date['event'];
-					}
-				}
+					}				}
 			}*/
 		}
 		

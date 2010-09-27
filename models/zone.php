@@ -62,6 +62,11 @@ class Zone extends AppModel {
 			$this->zone_data_size = 0;
 			
 			for( $i = 0; $i < $data_size; ++$i ) {
+				// test to assure that resolved addresses are actually in London Ontario
+				if( isset($data[$i]->address_components[2]->long_name) && $data[$i]->address_components[2]->long_name == "London" &&
+				   isset($data[$i]->address_components[4]->long_name) && $data[$i]->address_components[4]->long_name == "Ontario" &&
+				   isset($data[$i]->address_components[5]->long_name) && $data[$i]->address_components[5]->long_name == "Canada" ) {
+				
 				$zone_name = $zone_lookup->get_zone_by_latlng($data[$i]->geometry->location->lat, $data[$i]->geometry->location->lng);
 				if( $zone_name ) {
 					$this->zone_data[$i] = new stdClass;
@@ -77,6 +82,8 @@ class Zone extends AppModel {
 					));
 					$this->AddressCache->set($addy_cache_data);
 					$this->AddressCache->save();
+				}
+				
 				}
 			}
 			
