@@ -17,7 +17,7 @@
 <?php endif; ?>
 	<div class="container_16">
 		<div class="grid_5 ">
-			<h1 id="site-title">London Trash</h1>
+			<h1 id="site-title"><?php echo $this->Html->link("London Trash", "/"); ?></h1>
 			
 			<?php if ($this->params['controller'] != 'searches'): ?>
 				<div class="clear"></div>
