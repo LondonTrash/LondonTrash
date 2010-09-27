@@ -80,14 +80,16 @@ class ZonesController extends AppController {
 			$curr_date = mktime(0,0,0,date('m',$curr_date),date('d',$curr_date)+1,date('Y',$curr_date));
 		}
 
-		foreach ($schedule as $event) {
-			if (!isset($calendar[$event['start_date']])) {
-				break;
-			}	
-			$calendar[$event['start_date']]['class'] .= ' ' . $event['type'];
-			$calendar[$event['start_date']]['event'] = $event;
+		if( !empty($schedule) ) {
+			foreach ($schedule as $event) {
+				if (!isset($calendar[$event['start_date']])) {
+					break;
+				}	
+				$calendar[$event['start_date']]['class'] .= ' ' . $event['type'];
+				$calendar[$event['start_date']]['event'] = $event;
+			}
 		}
-	
+		
 		$this->set("calendar", $calendar);
 	
 		$this->set("schedule", $schedule);
