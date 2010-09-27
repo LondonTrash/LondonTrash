@@ -19,28 +19,6 @@ class ZonesController extends AppController {
 	public function ThisMonth($date){
 		return (date('Ymd')-date('Ymd', $date))+1;	
 	}
-	public function get_CalClass($date){
-		$class = '';
-		if(date('dmY',$date) < date('dmY')){
-			$class .= ' before-today';
-		}
-		if(date('dmY',$date) == date('dmY')){
-			$class .= ' today';
-		}
-		if(date('dmY',$date) > date('dmY')){
-			$class .= ' after-today';
-		}
-		if ($this->ThisMonth($date) < 1){
-			$class .= ' last-month';
-		}
-		if ($this->ThisMonth($date) == 1){
-			$class .= ' this-month';
-		}
-		if ($this->ThisMonth($date) > 1){
-			$class .= ' next-month';
-		}
-		return $class;
-	}	
 		
 	/**
 	 * view
@@ -62,7 +40,7 @@ class ZonesController extends AppController {
 		if (!empty($zone)) {
 			$schedule = $this->Zone->get_schedule($zone);
 		}
-
+		//print_r($schedule);
 		if (empty($schedule)) {
 			$this->Session->setFlash("BOO FAIL!!!");
 		}
