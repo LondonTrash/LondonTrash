@@ -24,15 +24,15 @@ $address = $this->Session->read('address');
 	$timestamp = $schedule[0]['start_date'];
 	if ($this->Time->isToday($timestamp)){
 		echo "7:00am Today!</h2>";// if you missed it, try again on ".date('l, F jS',$schedule[1]['start_date']); 
-		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
+		echo "<span id='r-date'>".date('F j\<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
 	}else if ($this->Time->isTomorrow($timestamp)){
 			echo "Tomorrow!</h2>";
-			echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
+			echo "<span id='r-date'>".date('F j\<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
 	}else if(date('z', $timestamp) - date('z') < 7){
-		echo date('next l',$timestamp);
+		echo "next ".date('l',$timestamp);
 		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
 	}else {
-		echo "<h2>".date('F j<\s\u\p\>S\<\/\s\u\p\>', $timestamp)."</h2>";	
+		echo "<h2>".date('F j\<\s\u\p\>S\<\/\s\u\p\>', $timestamp)."</h2>";	
 	}
 	
 ?>
