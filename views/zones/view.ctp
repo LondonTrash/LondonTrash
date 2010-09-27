@@ -40,7 +40,7 @@ $address = $this->Session->read('address');
 	</h2>
 	
 </div>
-<div id="calendar"> 
+<!--div id="calendar"> 
 	<div id="head" > 
 		<div class="arrow"><a href="" id="left">&lt;</a></div>  <h4><?php echo date('F Y', $timestamp); ?> </h4> <div class="arrow"><a href="" id="right">&gt;</a></div>
 	</div>
@@ -116,16 +116,15 @@ $address = $this->Session->read('address');
 
 	}
 ?>			<br style="clear:both" /></div><!-- #cal_inner -->
-		</div>
+		</div -->
 		<div id="subscribe">
-	<?php
+	<?php/*
 		echo $form->create('Zone', array('type' => 'post'));
 		echo $form->input('Email');
 		echo $form->input('Phone');
 		echo $form->hidden('zone', array('value' => $zone));
-		echo $form->end('Send me the info!');
+		echo $form->end('Send me the info!');*/
 	?>
-	Some words.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 	</div>
 <?php /*
     echo $this->Form->create('Zone', array('type' => 'post'));
