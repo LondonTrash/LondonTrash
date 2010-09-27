@@ -1,4 +1,7 @@
 <?php 
+
+echo $this->Html->script('calendar');
+
 $address = $this->Session->read('address');
 ?>
 
@@ -48,6 +51,7 @@ $address = $this->Session->read('address');
 	<span class="dotw">T</span> 
 	<span class="dotw">F</span> 
 	<span class="dotw">S</span>
+	<div id="cal_inner">
 <?php 
 	$i = 0;
 	foreach($calendar as $day=>$date){
@@ -78,7 +82,9 @@ $address = $this->Session->read('address');
 		
 		if(date('m',$timestamp) != date('m',$day)){
 			echo "precal ";
-		}		
+		}	
+		
+		echo  date('F',$day)." ";	
 		
 		/**
 		 * Now let's deal with special events
@@ -109,7 +115,7 @@ $address = $this->Session->read('address');
 		$i++;
 
 	}
-?>	
+?>			<br style="clear:both" /></div><!-- #cal_inner -->
 		</div>
 		<div id="subscribe">
 	<?php
