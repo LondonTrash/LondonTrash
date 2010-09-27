@@ -8,7 +8,7 @@ class SearchesController extends Controller {
         if($this->data)
         {
 			$searchAddress = ucwords($this->data['Search']['Address']);
-            $zone = $this->Zone->get_zone($searchAddress);
+			$zone = $this->Zone->get_zone($searchAddress);
 			
 			// quickly hacked so that people like Cottser would stop complaining
 			// since people like Gav haven't updated this yet with the "select your N or S or E or W"
