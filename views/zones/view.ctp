@@ -64,5 +64,4 @@ $address = $this->Session->read('address');
 				</tr>
 		</table>
 		</div>
-<?php debug($schedule); ?>
 </div>
