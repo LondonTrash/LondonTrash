@@ -36,6 +36,7 @@
 								
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Session->flash('auth'); ?>
+			<?php echo $this->element('address_choices'); ?>
 			
 			<div class="glass ">
 				<?php echo $content_for_layout; ?>

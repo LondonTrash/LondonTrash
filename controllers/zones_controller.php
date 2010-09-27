@@ -26,7 +26,7 @@ class ZonesController extends AppController {
 	 * @param string $zone (zone letter)
 	 * @return void
 	 */
-	public function view($zone = null) {
+	public function view($zone = null) {		
 		// if no zone is passed, redirect to search
 		if (!$zone) {
 			$this->redirect(array('controller' => 'searches', 'action' => 'index'));
