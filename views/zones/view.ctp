@@ -1,4 +1,7 @@
 <?php 
+
+echo $this->Html->script('calendar');
+
 $address = $this->Session->read('address');
 ?>
 
@@ -8,8 +11,11 @@ $address = $this->Session->read('address');
 	<small>Your Next Pickup is:</small>
 <h2>
 <?php 
+	//$timestamp is what we're looking at
+	//by default it's today
+	
 	 //real date
-	//$timestamp = $schedule[0]['start_date'];
+	$timestamp = $schedule[0]['start_date'];
 	
 	//today
 	// $timestamp = mktime();
@@ -35,34 +41,81 @@ $address = $this->Session->read('address');
 	</h2>
 	
 </div>
-		<div id="calendar">
-		<table>
-			<tr>
-				<th>S</th>
-				<th>M</th>
-				<th>T</th>
-				<th>W</th>
-				<th>T</th>
-				<th>F</th>
-				<th>S</th>
-			<tr>
-			<tr>
-				<?php 
-					$i = 0;
-					foreach($calendar as $day=>$date){
-						echo '<td class="'.$date['class'].'">';
-						echo date('j',$day); 
-						if (isset($date['event'])){
-							echo ': '.$date['event']['type'];	
-						}	
-						print "</td>\n\t\t\t";
-						$i++;
-						if(is_int($i/7)){
-							print "</tr>\n\t\t<tr>\n\t\t\t";
-						}
+<div id="calendar"> 
+	<div id="head" > 
+		<div class="arrow"><a href="" id="left">&lt;</a></div>  <h4><?php echo date('F Y', $timestamp); ?> </h4> <div class="arrow"><a href="" id="right">&gt;</a></div>
+	</div>
+	<span class="dotw">S</span>
+	<span class="dotw">M</span> 
+	<span class="dotw">T</span> 
+	<span class="dotw">W</span> 
+	<span class="dotw">T</span> 
+	<span class="dotw">F</span> 
+	<span class="dotw">S</span>
+	<div id="cal_inner">
+<?php 
+	$i = 0;
+	foreach($calendar as $day=>$date){
+		echo '<span class="';
+		
+		switch($i%7) {
+			case 0:
+				echo "sun ";
+				break;
+			case 1:
+				echo "mon ";
+				break;
+			case 2:
+				echo "tue ";
+				break;
+			case 3:
+				echo "wed ";
+				break;
+			case 4:
+				echo "thu ";
+				break;
+			case 5:
+				echo "fri ";
+				break;
+			case 6:
+				echo "sat ";
+		}
+		
+		if(date('m',$timestamp) != date('m',$day)){
+			echo "precal ";
+		}	
+		
+		echo  date('F',$day)." ";	
+		
+		/**
+		 * Now let's deal with special events
+		 */
+		if(isset($date['event']) && is_array($date['event'])){
+			if ($date['event']['type'] == 'pickup'){
+				echo "pickup {$date['event']['type']} ";
+			}
+			
+			/*
+			if ($date['event']['type'] != 'oldpickup' && $date['event']['type'] != 'pickup'){
+				echo "special ";
+				if ($date['event']['end_date'] != $date['event']['end_date'] && $date['event']['start_date'] == $timestamp){
+					for ($i=$timestamp; $i<=$date['event']['end_date']; $i=strtotime ('+1 day',$i )){
+						$calendar[$i]['event'] = $date['event'];
 					}
-				?>	
-				</tr>
-		</table>
+				}
+			}*/
+		}
+		
+		echo '">';
+		//'.$date['class'].'">';
+		echo date('j',$day); 
+		if (isset($date['event'])){
+		//	echo ': '.$date['event']['type'];	
+		}	
+		print "</span>\n\t\t\t";
+		$i++;
+
+	}
+?>			<br style="clear:both" /></div><!-- #cal_inner -->
 		</div>
 </div>

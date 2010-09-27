@@ -19,28 +19,6 @@ class ZonesController extends AppController {
 	public function ThisMonth($date){
 		return (date('Ymd')-date('Ymd', $date))+1;	
 	}
-	public function get_CalClass($date){
-		$class = '';
-		if(date('dmY',$date) < date('dmY')){
-			$class .= ' before-today';
-		}
-		if(date('dmY',$date) == date('dmY')){
-			$class .= ' today';
-		}
-		if(date('dmY',$date) > date('dmY')){
-			$class .= ' after-today';
-		}
-		if ($this->ThisMonth($date) < 1){
-			$class .= ' last-month';
-		}
-		if ($this->ThisMonth($date) == 1){
-			$class .= ' this-month';
-		}
-		if ($this->ThisMonth($date) > 1){
-			$class .= ' next-month';
-		}
-		return $class;
-	}	
 		
 	/**
 	 * view
@@ -62,7 +40,7 @@ class ZonesController extends AppController {
 		if (!empty($zone)) {
 			$schedule = $this->Zone->get_schedule($zone);
 		}
-
+		//print_r($schedule);
 		if (empty($schedule)) {
 			$this->Session->setFlash("BOO FAIL!!!");
 		}
@@ -74,9 +52,11 @@ class ZonesController extends AppController {
 		} else {
 			$sunday = mktime();
 		}
+		
 		$curr_date = $sunday;
-		for ($i=0;$i<35;$i++) {
-			$calendar[$curr_date]['class'] = $this->get_CalClass($curr_date);
+		
+		for ($i=0;$i<375;$i++) {
+			$calendar[$curr_date]['date'] = date('d-m-Y', $curr_date);
 			$curr_date = mktime(0,0,0,date('m',$curr_date),date('d',$curr_date)+1,date('Y',$curr_date));
 		}
 
@@ -85,6 +65,9 @@ class ZonesController extends AppController {
 				if (!isset($calendar[$event['start_date']])) {
 					break;
 				}	
+				/*
+					TODO: Fix undefined index: 'class' error here.
+				*/
 				$calendar[$event['start_date']]['class'] .= ' ' . $event['type'];
 				$calendar[$event['start_date']]['event'] = $event;
 			}
