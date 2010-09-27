@@ -7,6 +7,7 @@
 <?php echo $this->Html->css('lib/ie', null, array('media' => 'screen, projection')); ?>
 <![endif]-->
 <title><?php echo $title_for_layout; ?> - LondonTrash.ca</title>
+<?php echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');?>
 <?php echo $scripts_for_layout; ?>
 </head>
 <!-- <body id="<?php echo $this->params['controller'] . '-' . $this->action; ?>"> -->
