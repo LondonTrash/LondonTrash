@@ -42,8 +42,8 @@
 				</div>
 				
 				<ul id="lh-nav">
-					<li><a href="/contents/view/privacy-policy">Privacy Policy</a></li>
-					<li><a href="/contents/view/about">About</a></li>
+					<li><a href="<?php echo $this->Html->webroot; ?>/contents/view/privacy-policy">Privacy Policy</a></li>
+					<li><a href="<?php echo $this->Html->webroot; ?>/contents/view/about">About</a></li>
 					<li><?php echo $this->Html->link('Open Data London', 'http://www.opendatalondon.ca/', array('id' => 'odl')); ?></li>
 				</ul>
 			</div>
