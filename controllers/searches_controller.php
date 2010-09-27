@@ -40,16 +40,16 @@ class SearchesController extends Controller {
     public function index($searchTerm = null) {
 			
 			if ($this->data) {
+				// clear any ambiguous address we have in the session
+				$this->Session->delete('addressChoices');
+				
 				// Check to make sure they've entered an address before we do a lookup
 				$rawSearchAddress = trim($this->data['Search']['address']);				
 	
 				if ($rawSearchAddress == 'Enter address' || empty($rawSearchAddress)) {
 					$this->Session->setFlash("Please enter an address in the search box.");
-					$this->redirect($this->here);
+					$this->redirect(array('action' => 'index'));
 				}
-				
-				// clear any ambiguous address we have in the session
-				$this->Session->delete('addressChoices');
 				
 				$searchAddress = ucwords($this->data['Search']['address']);
 				$zone = $this->Zone->get_zone($searchAddress);
@@ -92,7 +92,7 @@ class SearchesController extends Controller {
 				$this->Session->write('addressChoices', $zone);
 
 				// redirect them back to search page with their search filled in
-				$this->redirect($this->here . '?a=' . $rawSearchAddress);
+				$this->redirect(array('action' => 'index', '?' => array('a' => $rawSearchAddress)));
 			}
             
             if(!empty($zone_name)) {
