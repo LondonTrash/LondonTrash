@@ -22,5 +22,7 @@ $map = array(
 		'010_adding_address_caches_table' => 'M4c9fc7db9c5042529c7653813201ca43'),
 	11 => array(
 		'011_adding_dte_dtw_zones' => 'M4ca0b665571845f19b26827b3201ca43'),
+	12 => array(
+		'012_added_formatted_address_to_address_caches_table' => 'M4ca0e60d2f304523a06d25293201ca43'),
 );
 ?>

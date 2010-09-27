@@ -12,7 +12,7 @@ class Zone extends AppModel {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->AddressCache = ClassRegistry::init('AddressCache');
+		ClassRegistry::init('AddressCache');
 	}
 
 	/**
@@ -79,17 +79,21 @@ class Zone extends AppModel {
 				if( $zone_name ) {
 					$this->zone_data[$i] = new stdClass;
 					$this->zone_data[$i]->zone_name = (string) $zone_name;
-					$this->zone_data[$i]->address = $data[$i]->formatted_address;
+					$this->zone_data[$i]->address = $address;
+					$this->zone_data[$i]->formatted_address = $data[$i]->formatted_address;
 					
 					++$this->zone_data_size;
 					
 					$addy_cache_data = array(
 						'AddressCache' => array(
 							'address' => $address,
+							'formatted_address' => $data[$i]->formatted_address,
 							'zone' => $zone_name
 					));
+					
+					$this->AddressCache = new AddressCache();
 					$this->AddressCache->set($addy_cache_data);
-					// $this->AddressCache->save();
+					$this->AddressCache->save();
 				}
 				
 				}
@@ -107,7 +111,8 @@ class Zone extends AppModel {
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
 	private function getZoneLocal($address) {
-		$data = $this->AddressCache->find('first', array(
+		$this->AddressCache = ClassRegistry::init('AddressCache');
+		$data = $this->AddressCache->find('all', array(
 			'conditions' => array(
 				'AddressCache.address' => $address
 			)
@@ -115,11 +120,17 @@ class Zone extends AppModel {
 		
 		if( isset($data['AddressCache']['zone']) ) {
 			$this->zone_data = array();
-			$this->zone_data[0] = new stdClass;
-			$this->zone_data[0]->zone_name = $data['AddressCache']['zone'];
-			$this->zone_data[0]->address = $data['AddressCache']['address'];
+			$this->zone_data_size = 0;
 			
-			$this->zone_data_size = 1;
+			for( $i = 0, $size = count($data); $i < $size; ++$i ) {
+				$o = new stdClass;
+				$o->zone_name = $data[$i]['AddressCache']['zone'];
+				$o->address = $data[$i]['AddressCache']['address'];
+				$o->formatted_address = $data[$i]['AddressCache']['formatted_address'];
+				
+				$this->zone_data[] = $o;
+				++$this->zone_data_size;
+			}
 			
 			return true;
 		}
