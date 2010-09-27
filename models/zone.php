@@ -24,7 +24,7 @@ class Zone extends AppModel {
 		if( $lookup ) {
 			$this->lookup_zone($address);
 		}
-		
+				
 		if( 0 < $this->zone_data_size ) {
 			return $this->zone_data;
 		}
@@ -53,8 +53,25 @@ class Zone extends AppModel {
 	private function _do_zone_lookup($address) {
 		App::import('Lib', 'lookup', array('file' => 'lookup/ZoneLookup.php'));
 		$zone_lookup = new ZoneLookup();
-		
-		$data = $zone_lookup->get_latlng_by_address($address);
+
+		// if we don't get a lat long from the address, return false
+		if (!$data = $zone_lookup->get_latlng_by_address($address)) {
+			return false;
+		}
+
+		$lat = $data[0]->geometry->location->lat;
+		$lng = $data[0]->geometry->location->lng;
+
+		// hacky, but we're trying to catch someone entering gibberish,
+		// because it's matching up to a spot on the road on horton st. near richmond
+		/*
+			TODO: Actually make this return false. For some reason it's not working,
+			* even if the condition matches.
+		*/
+		if ($lat == '42.979398' && $lng == '-81.246138') {
+			return false;
+		}
+
 		$data_size = count($data);
 		
 		if( 0 < $data_size ) {
