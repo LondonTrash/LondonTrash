@@ -89,7 +89,7 @@ class Zone extends AppModel {
 							'zone' => $zone_name
 					));
 					$this->AddressCache->set($addy_cache_data);
-					$this->AddressCache->save();
+					// $this->AddressCache->save();
 				}
 				
 				}

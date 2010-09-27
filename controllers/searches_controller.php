@@ -19,23 +19,23 @@ class SearchesController extends Controller {
 			}
 			
 			if( !$zone_name ) {
-            //if zone is empty, try to append city
-			$zone_name = null;
-            $cities = array('London', 'Byron', 'Lambeth', 'Hyde Park');
-            foreach($cities as $city) {
-							if (empty($zone)) {
-								$searchAddress = $searchAddress .= ', ' . $city . ', ON';
-								$zone = $this->Zone->get_zone($searchAddress);
-								
-								$zone_name = null;
-								if( isset($zone[0]) ) {
-									$zone_name = $zone[0]->zone_name;
-									$searchAddress = $zone[0]->address;
+				//if zone is empty, try to append city
+				$zone_name = null;
+				$cities = array('London', 'Byron', 'Lambeth', 'Hyde Park');
+				foreach($cities as $city) {
+								if (empty($zone)) {
+									$searchAddress = $searchAddress .= ', ' . $city . ', ON';
+									$zone = $this->Zone->get_zone($searchAddress);
 									
-									break;
+									$zone_name = null;
+									if( isset($zone[0]) ) {
+										$zone_name = $zone[0]->zone_name;
+										$searchAddress = $zone[0]->address;
+										
+										break;
+									}
 								}
 							}
-						}
 			}
             
             if(!empty($zone_name))
