@@ -8,10 +8,10 @@ class AppController extends Controller {
 	
 		$this->Auth->userModel = 'Admin';
 		
-    $this->Auth->fields = array(
-        'username' => 'email', 
-        'password' => 'password'
-    );    
+        $this->Auth->fields = array(
+			'username' => 'email', 
+			'password' => 'password'
+		);    
 
 		$this->Auth->loginAction = array(
 			'controller' => 'admins',
