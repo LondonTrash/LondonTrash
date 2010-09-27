@@ -74,18 +74,19 @@ class ZonesController extends AppController {
 		} else {
 			$sunday = mktime();
 		}
+		
 		$curr_date = $sunday;
-		for ($i=0;$i<35;$i++) {
-			$calendar[$curr_date]['class'] = $this->get_CalClass($curr_date);
+		
+		for ($i=0;$i<375;$i++) {
+			$calendar[$curr_date]['date'] = date('d-m-Y', $curr_date);
 			$curr_date = mktime(0,0,0,date('m',$curr_date),date('d',$curr_date)+1,date('Y',$curr_date));
 		}
-
+		//print_r($calendar);
 		foreach ($schedule as $event) {
-			if (!isset($calendar[$event['start_date']])) {
-				break;
+			if (isset($calendar[$event['start_date']])) {
+			//	echo $calendar[$event['start_date']];
+				$calendar[$event['start_date']]['event'] = $event;
 			}	
-			$calendar[$event['start_date']]['class'] .= ' ' . $event['type'];
-			$calendar[$event['start_date']]['event'] = $event;
 		}
 	
 		$this->set("calendar", $calendar);
