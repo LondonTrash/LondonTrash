@@ -91,7 +91,7 @@ class ZoneLookup {
     
     final protected function _build_url(array $params) {
         $params['sensor'] = 'false';
-        $params['region'] = 'London Ontario Canada';
+        // $params['region'] = 'London Ontario Canada';
         
         $url = self::$_service_url;
         $url .= '?' . http_build_query($params);
