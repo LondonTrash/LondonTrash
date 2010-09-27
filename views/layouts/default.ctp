@@ -46,7 +46,6 @@
 			</ul>
 
 			</div>
-		</div>
 	</div>
 
 	</body>
