@@ -7,6 +7,15 @@ class AppController extends Controller {
 	function beforeFilter() {
 	
 		$this->Auth->userModel = 'Admin';
+		$this->loadModel('Content');
+		$tips = $this->Content->find('first', array(
+			'conditions' => array(
+				'category' => 'tips'
+			),
+			'order' => 'RAND()'
+		));
+		$tip = $tips['Content']['body'];
+		$this->set('tip', $tip);
 		
     $this->Auth->fields = array(
         'username' => 'email', 
