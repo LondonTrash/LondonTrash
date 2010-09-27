@@ -5,6 +5,12 @@ class Zone extends AppModel {
 	var $hasMany = array(
 		'Subscriber'
 	);
+	
+	public function __construct() {
+		parent::__construct();
+		
+		$this->AddressCache = ClassRegistry::init('AddressCache');
+	}
 
 	/**
 	 * Retrieve the zone information from http://openhalton.ca
@@ -12,10 +18,20 @@ class Zone extends AppModel {
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
 	public function get_zone($address) {
-		//if we haven't got the zone locally, get it from the openhalton database
-		if (!$zone_name = $this->getZoneLocal($address)) {
+		$zone_name = $this->getZoneLocal($address);
+		if( !$zone_name ) {
 			$zone_name = $this->_do_zone_lookup($address);
+			if( false !== $zone_name ) {
+				$addy_cache_data = array(
+					'AddressCache' => array(
+						'address' => $address,
+						'zone' => $zone_name
+				));
+				$this->AddressCache->set($addy_cache_data);
+				$this->AddressCache->save();
+			}
 		}
+		
 		return $zone_name;
 	}
 	
@@ -59,9 +75,16 @@ class Zone extends AppModel {
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
 	private function getZoneLocal($address) {
-		//parse out postal code
-		//get the zone based on the postal code
-		//if zones can change: make sure that the zone retrieval date is not greater than x
+		$data = $this->AddressCache->find('first', array(
+			'conditions' => array(
+				'AddressCache.address' => $address
+			)
+		));
+		
+		if( isset($data['AddressCache']['zone']) ) {
+			return $data['AddressCache']['zone'];
+		}
+		
 		return false;
 	}
 
