@@ -26,7 +26,7 @@
 			<?php endif; ?>
 			
 			<?php if ($this->params['controller'] == 'zones' && $this->action == 'view'): ?>
-				<a href="" class="report"> Report an Error</a>
+				<!--a href="" class="report"> Report an Error</a-->
 			<?php endif; ?>
 		</div>
 		
