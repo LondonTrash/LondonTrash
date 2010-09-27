@@ -12,11 +12,12 @@ $address = $this->Session->read('address');
 	//$timestamp = $schedule[0]['start_date'];
 	
 	//today
-	$timestamp = mktime();
+	// $timestamp = mktime();
 	
 	//tomorrow:
 	//$timestamp = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
 	
+	$timestamp = $schedule[0]['start_date'];
 	if ($this->Time->isToday($timestamp)){
 		echo "7:00am Today!</h2>";// if you missed it, try again on ".date('l, F jS',$schedule[1]['start_date']); 
 		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
