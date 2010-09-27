@@ -12,10 +12,10 @@ $address = $this->Session->read('address');
 	//by default it's today
 	
 	 //real date
-	//$timestamp = $schedule[0]['start_date'];
+	$timestamp = $schedule[0]['start_date'];
 	
 	//today
-	$timestamp = mktime();
+	//$timestamp = mktime();
 	
 	//tomorrow:
 	//$timestamp = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
@@ -84,8 +84,19 @@ $address = $this->Session->read('address');
 		 * Now let's deal with special events
 		 */
 		if(isset($date['event']) && is_array($date['event'])){
-			if ($date['event']['type'] == 'pickup');
-			echo "pickup ";
+			if ($date['event']['type'] == 'pickup'){
+				echo "pickup {$date['event']['type']} ";
+			}
+			
+			/*
+			if ($date['event']['type'] != 'oldpickup' && $date['event']['type'] != 'pickup'){
+				echo "special ";
+				if ($date['event']['end_date'] != $date['event']['end_date'] && $date['event']['start_date'] == $timestamp){
+					for ($i=$timestamp; $i<=$date['event']['end_date']; $i=strtotime ('+1 day',$i )){
+						$calendar[$i]['event'] = $date['event'];
+					}
+				}
+			}*/
 		}
 		
 		echo '">';
@@ -123,6 +134,6 @@ $address = $this->Session->read('address');
 <pre>
 <?php
  //print_r($schedule);
- print_r($calendar); ?>
+ //print_r($calendar); ?>
  </pre>
 </div>
