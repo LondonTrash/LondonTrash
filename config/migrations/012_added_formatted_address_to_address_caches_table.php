@@ -1,5 +1,5 @@
 <?php
-class M4ca0e60d2f304523a06d25293201ca43 extends CakeMigration {
+class M4ca0f13d67444b6fa8dc9fe43201ca43 extends CakeMigration {
 
 /**
  * Migration description
@@ -17,8 +17,16 @@ class M4ca0e60d2f304523a06d25293201ca43 extends CakeMigration {
  */
 	public $migration = array(
 		'up' => array(
+			'create_field' => array(
+				'address_caches' => array(
+					'formatted_address' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 500, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+				),
+			),
 		),
 		'down' => array(
+			'drop_field' => array(
+				'address_caches' => array('formatted_address',),
+			),
 		),
 	);
 
