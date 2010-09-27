@@ -128,7 +128,7 @@ img { -ms-interpolation-mode: bicubic }
 
 .home {
  margin-top: 150px;
- background: url(../img/trash-bg-seamless.JPG) bottom center repeat-x fixed #344e75
+ background: url(../img/trash-bg-seamless.jpg) bottom center repeat-x fixed #344e75
 }
 
  .home #lh-nav li a {
@@ -214,7 +214,7 @@ input[type="button"]::-moz-focus-inner { border : 0px }
 
 .result {
  margin-top: 50px;
- background: url(../img/trash-bg-seamless2.JPG) bottom center repeat-x fixed #344e75
+ background: url(../img/trash-bg-seamless2.jpg) bottom center repeat-x fixed #344e75
 }
 
  .result .glass {
@@ -570,7 +570,7 @@ border-bottom:2px solid #003F87!important;
 
 .privacy {
  margin-top: 50px;
- background: url(../img/trash-bg-seamless2.JPG) bottom center repeat-x fixed #344e75
+ background: url(../img/trash-bg-seamless2.jpg) bottom center repeat-x fixed #344e75
 }
 
  .privacy .glass {
@@ -597,7 +597,7 @@ border-bottom:2px solid #003F87!important;
 
 .about {
  margin-top: 50px;
- background: url(../img/trash-bg-seamless2.JPG) bottom center repeat-x fixed #344e75
+ background: url(../img/trash-bg-seamless2.jpg) bottom center repeat-x fixed #344e75
 }
 
  .about .glass {
