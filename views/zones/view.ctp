@@ -29,7 +29,7 @@ $address = $this->Session->read('address');
 			echo "Tomorrow!</h2>";
 			echo "<span id='r-date'>".date('F j\<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
 	}else if(date('z', $timestamp) - date('z') < 7){
-		echo "next ".date('l',$timestamp);
+		echo "Next " . date('l',$timestamp) . '</h2>';
 		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
 	}else {
 		echo "<h2>".date('F j\<\s\u\p\>S\<\/\s\u\p\>', $timestamp)."</h2>";	
