@@ -23,27 +23,27 @@
 				<div class="dyk "><h3>Did You Know?</h3>
 					<p><?php echo $tip; ?></p>
 				</div>
-			<?php endif; ?>	
+			<?php endif; ?>
+			
 			<?php if ($this->params['controller'] == 'zones' && $this->action == 'view'): ?>
 				<a href="" class="report"> Report an Error</a>
 			<?php endif; ?>
 		</div>
 		
 			<div class="grid_11 ">
-				<div class="glass ">
+								
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->Session->flash('auth'); ?>
 				
-					<?php echo $this->Session->flash(); ?>
-					<?php echo $this->Session->flash('auth'); ?>
-
+				<div class="glass ">
 					<?php echo $content_for_layout; ?>
 				</div>
-				
-				<ul id="lh-nav">
-					<li><a href="/contents/view/privacy-policy">Privacy Policy</a></li>
-					<li><a href="/contents/view/about">About</a></li>
-					<li><?php echo $this->Html->link('Open Data London', 'http://www.opendatalondon.ca/', array('id' => 'odl')); ?></li>
-				</ul>
-			</div>
+			
+			<ul id="lh-nav">
+				<li><a href="/contents/view/privacy-policy">Privacy Policy</a></li>
+				<li><a href="/contents/view/about">About</a></li>
+				<li><?php echo $this->Html->link('Open Data London', 'http://www.opendatalondon.ca/', array('id' => 'odl')); ?></li>
+			</ul>
 
 			</div>
 		</div>
