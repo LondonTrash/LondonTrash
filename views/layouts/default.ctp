@@ -21,7 +21,7 @@
 			<?php if ($this->params['controller'] != 'searches'): ?>
 			<div class="clear"></div>
 			<div class="dyk "><h3>Did You Know?</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis sed nisi rutrum suscipit. Maecenas id quam sit amet augue sollicitudin porta. Nulla ac volutpat libero. Mauris lacus metus, tincidunt vitae semper ac, consectetur et eros. Donec et laoreet lacus. Nulla urna velit, tristique at sodales varius, rhoncus ut augue. </p>
+				<p><?php echo $tip; ?></p>
 			</div>
 
 			<?php if ($this->params['controller'] == 'zones' && $this->action == 'view'): ?>
