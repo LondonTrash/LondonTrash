@@ -7,24 +7,22 @@ class SearchesController extends Controller {
     {
         if($this->data)
         {
-			$searchAddress = $this->data['Search']['Address'];
+			$searchAddress = ucwords($this->data['Search']['Address']);
             $zone = $this->Zone->get_zone($searchAddress);
             
             //if zone is empty, try to append city
             $cities = array('London', 'Byron', 'Lambeth', 'Hyde Park');
-            foreach($cities as $city)
-            {
-				if (empty($zone))
-				{
-					$searchAddress = $searchAddress .= ', ' . $city . ', ON';
-					$zone = $this->Zone->get_zone($searchAddress);
-				} else {
-					continue;
-				}
-			}
+            foreach($cities as $city) {
+							if (empty($zone)) {
+								$searchAddress = $searchAddress .= ', ' . $city . ', ON';
+								$zone = $this->Zone->get_zone($searchAddress);
+							}
+						}
             
             if(!empty($zone))
             {
+				$this->Session->write("address", $searchAddress);
+				$this->Session->write("zone", $zone);
                 $this->redirect(array("controller"=>"zones", "action"=>"view", $zone));
             }
             else

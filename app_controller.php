@@ -7,6 +7,13 @@ class AppController extends Controller {
 	function beforeFilter() {
 	
 		$this->Auth->userModel = 'Admin';
+		$this->loadModel('Content');
+		$tips = $this->Content->find('all', array(
+			'conditions' => array(
+				'category' => 'tips'
+			)
+		));
+		$this->set('tips', $tips);
 		
         $this->Auth->fields = array(
 			'username' => 'email', 
@@ -45,4 +52,5 @@ class AppController extends Controller {
 	  	}
 	  	return true;	  	
 	}
+	
 }
