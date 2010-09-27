@@ -50,6 +50,10 @@ class Zone extends AppModel {
 		return $this->zone_data_size;
 	}
 	
+	public function are_results_ambiguous() {
+		return 1 < $this->zone_data_size ? true : false;
+	}
+	
 	private function _do_zone_lookup($address) {
 		App::import('Lib', 'lookup', array('file' => 'lookup/ZoneLookup.php'));
 		$zone_lookup = new ZoneLookup();
