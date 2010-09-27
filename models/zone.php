@@ -33,11 +33,11 @@ class Zone extends AppModel {
 	}
 	
 	public function lookup_zone($address) {
-		$zone_name = $this->getZoneLocal($address);
-		if( !$zone_name ) {
-			$found = $this->_do_zone_lookup($address);
-			if( $zone_data ) {
-				return true;
+		if( !$this->getZoneLocal($address) ) {
+			if( $this->_do_zone_lookup($address) ) {
+				if( 0 < $this->zone_data_size ) {
+					return true;
+				}
 			}
 		} else {
 			return true;
@@ -63,9 +63,9 @@ class Zone extends AppModel {
 			
 			for( $i = 0; $i < $data_size; ++$i ) {
 				$zone_name = $zone_lookup->get_zone_by_latlng($data[$i]->geometry->location->lat, $data[$i]->geometry->location->lng);
-				if( !$zone_name ) {
+				if( $zone_name ) {
 					$this->zone_data[$i] = new stdClass;
-					$this->zone_data[$i]->zone_name = $zone_name;
+					$this->zone_data[$i]->zone_name = (string) $zone_name;
 					$this->zone_data[$i]->address = $data[$i]->formatted_address;
 					
 					++$this->zone_data_size;

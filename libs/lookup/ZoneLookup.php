@@ -60,6 +60,11 @@ class ZoneLookup {
                     $lhs = explode(',', $lhs);
                     $lhs = array_map('trim', $lhs);
                     
+                    if( !isset($lhs[0]) || !isset($lhs[1]) || !isset($rhs[0]) || !isset($rhs[1]) ) {
+                        $rhs = $lhs;
+                        continue;
+                    }
+                    
                     if( $lhs[0] < $lng && $rhs[0] >= $lng || $rhs[0] < $lng && $lhs[0] >= $lng ) {
                         if( $lhs[1] + ($lng - $lhs[0]) / ($rhs[0] - $lhs[0]) * ($rhs[1] - $lhs[1]) < $lat ) {
                             $is_point_in_poly = !$is_point_in_poly;

@@ -4,21 +4,28 @@ class AppController extends Controller {
 	var $components = array('DebugKit.Toolbar', 'Auth', 'Session', 'RequestHandler');
 	var $scaffold = 'admin';
 	
-	function beforeFilter() {
-	
-		$this->Auth->userModel = 'Admin';
+	function beforeRender() {
 		$this->loadModel('Content');
-		$tips = $this->Content->find('all', array(
+
+		$tips = $this->Content->find('first', array(
 			'conditions' => array(
 				'category' => 'tips'
-			)
+			),
+			'order' => 'RAND()'
 		));
-		$this->set('tips', $tips);
+		$tip = $tips['Content']['body'];
+		$this->set('tip', $tip);
+	}
+	
+	function beforeFilter() {
 		
-    $this->Auth->fields = array(
-        'username' => 'email', 
-        'password' => 'password'
-    );    
+
+		$this->Auth->userModel = 'Admin';
+    
+	    $this->Auth->fields = array(
+	        'username' => 'email', 
+	        'password' => 'password'
+	    );    
 
 		$this->Auth->loginAction = array(
 			'controller' => 'admins',
