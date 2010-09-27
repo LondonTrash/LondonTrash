@@ -12,16 +12,12 @@ class SearchesController extends Controller {
             
             //if zone is empty, try to append city
             $cities = array('London', 'Byron', 'Lambeth', 'Hyde Park');
-            foreach($cities as $city)
-            {
-				if (empty($zone))
-				{
-					$searchAddress = $searchAddress .= ', ' . $city . ', ON';
-					$zone = $this->Zone->get_zone($searchAddress);
-				} else {
-					continue;
-				}
-			}
+            foreach($cities as $city) {
+							if (empty($zone)) {
+								$searchAddress = $searchAddress .= ', ' . $city . ', ON';
+								$zone = $this->Zone->get_zone($searchAddress);
+							}
+						}
             
             if(!empty($zone))
             {

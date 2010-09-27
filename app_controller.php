@@ -19,6 +19,7 @@ class AppController extends Controller {
 	
 	function beforeFilter() {
 		
+
 		$this->Auth->userModel = 'Admin';
     
 	    $this->Auth->fields = array(
