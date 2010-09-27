@@ -66,8 +66,13 @@ class ZonesController extends AppController {
 					break;
 				}	
 				/*
-					TODO: Fix undefined index: 'class' error here.
+					TODO: I'm not really sure what's we're doing with the class key,
+					* or if it will ever be set initially, this is just a quick fix
+					* to prevent errors from showing in our view.
 				*/
+				if (!isset($calendar[$event['start_date']]['class'])) {
+					$calendar[$event['start_date']]['class'] = '';
+				}
 				$calendar[$event['start_date']]['class'] .= ' ' . $event['type'];
 				$calendar[$event['start_date']]['event'] = $event;
 			}
