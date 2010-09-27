@@ -3,7 +3,7 @@ $address = $this->Session->read('address');
 ?>
 
 <div class="results mod">
-	<div class="address"><?php echo $address; ?> (Zone <?php echo $zone;?>)<a href="/?a=<?php echo $address; ?>">Change</a></div>
+	<div class="address"><?php echo $address; ?> (Zone <?php echo $zone;?>)<?php echo $this->Html->link("Change", "/?a=".$address); ?></div>
 	<div class="clear"></div>
 	<small>Your Next Pickup is:</small>
 <h2>
