@@ -27,7 +27,7 @@ class SearchesController extends Controller {
 							}
 						} */
             
-            if(!empty($zone))
+            if(!empty($zone_name))
             {
 				$this->Session->write("address", $searchAddress);
 				$this->Session->write("zone", $zone_name);
