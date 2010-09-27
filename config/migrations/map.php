@@ -20,5 +20,7 @@ $map = array(
 		'009_adding_type_and_last_created_to_notifications' => 'M4c9faf22e7b04f38af8732123201ca43'),
 	10 => array(
 		'010_adding_address_caches_table' => 'M4c9fc7db9c5042529c7653813201ca43'),
+	11 => array(
+		'011_adding_dte_dtw_zones' => 'M4ca0b665571845f19b26827b3201ca43'),
 );
 ?>
