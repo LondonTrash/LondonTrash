@@ -5,7 +5,7 @@
 $(document).ready(function(){
   var address = $("#SearchAddress").val(); 
   if(!address) {
-    $("#SearchAddress").css('color', '#dcdcdc');
+    $("#SearchAddress").css('color', '#999999');
     $("#SearchAddress").val("Enter address");
   }
   $("#SearchAddress").focus(function()
@@ -21,7 +21,7 @@ $(document).ready(function(){
   {
     var address = $("#SearchAddress").val(); 
     if(!address) { 
-      $("#SearchAddress").css('color', '#dcdcdc');
+      $("#SearchAddress").css('color', '#999999');
       $("#SearchAddress").val("Enter address"); 
     }
   });
