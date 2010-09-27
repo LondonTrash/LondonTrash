@@ -36,7 +36,7 @@ class Zone extends AppModel {
 		$zone_name = $this->getZoneLocal($address);
 		if( !$zone_name ) {
 			$found = $this->_do_zone_lookup($address);
-			if( $zone_data ) {
+			if( $found ) {
 				return true;
 			}
 		} else {
