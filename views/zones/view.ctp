@@ -85,8 +85,12 @@ $address = $this->Session->read('address');
 </div>
 
 <div class="clear"></div>
-	
-<!--
+		</div>
+</div>
+
+
+<?php
+/* <!--
 	<div id="calendar"> 
 	<div id="head" > 
 		<div class="arrow"><a href="" id="left">&lt;</a></div>  <h4><?php echo date('F Y', $timestamp); ?> </h4> <div class="arrow"><a href="" id="right">&gt;</a></div>
@@ -100,12 +104,7 @@ $address = $this->Session->read('address');
 	<span class="dotw">S</span>
 	<div id="cal_inner">
 			<br style="clear:both" /></div>
-<!-- #cal_inner -->
-		</div>
-</div>
-
-
-<?php
+<!-- #cal_inner --> */
 /** What the hell is all of this?
 	$i = 0;
 	foreach($calendar as $day=>$date){
