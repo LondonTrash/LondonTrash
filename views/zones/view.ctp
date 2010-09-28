@@ -60,7 +60,7 @@ $address = $this->Session->read('address');
 <div class="clear"></div>
 <div id="legend">
  <small><span class="pickup"></span>Regular Pickup</small>
- <small><span class="special"></span>Special Pickup</small>
+ <small><span class="special"></span>Yard Waste Pickup</small>
 </div></li>
 </ol>
 
