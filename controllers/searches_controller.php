@@ -55,16 +55,23 @@ class SearchesController extends Controller {
 					$this->redirect(array('action' => 'index'));
 				}
 				
+				// Check to see if they've entered at least an alpha char.
+				// Looking up just numbers on google returns odd results.
+				/*
+					TODO: This sort of validation really needs to be moved to the model!
+					* We can use the $validate property of the model class
+				*/
+				if (!preg_match('/[a-zA-Z]+/', $address)) {
+					$this->Session->setFlash('That does not appear to be a proper address. Please try again.');
+					$this->redirect(array('action' => 'index'));
+				}
+				
 				$searchAddress = ucwords($address);
 				$zone = $this->Zone->get_zone($searchAddress);
 			
-			// quickly hacked so that people like Cottser would stop complaining
-			// since people like Gav haven't updated this yet with the "select your N or S or E or W"
-			/*
-				TODO: Not sure if we need this anymore :) -Cottser
-			*/
+			// Try to get a result first before adding London ON, etc. to the end (below)
 			$zone_name = null;
-      if( isset($zone[0]) ) {
+			if( isset($zone[0]) ) {
 				$zone_name = $zone[0]->zone_name;
 				$searchAddress = $zone[0]->address;
 			}
@@ -76,8 +83,8 @@ class SearchesController extends Controller {
 				
 				foreach($cities as $city) {
 					if (empty($zone)) {
-						$searchAddress = $searchAddress .= ', ' . $city . ', ON';
-						$zone = $this->Zone->get_zone($searchAddress);
+						$specificSearchAddress = $searchAddress . ', ' . $city . ', ON';
+						$zone = $this->Zone->get_zone($specificSearchAddress);
 				
 						$zone_name = null;
 						if( isset($zone[0]) ) {
