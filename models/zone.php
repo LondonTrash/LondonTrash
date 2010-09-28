@@ -24,7 +24,7 @@ class Zone extends AppModel {
 		if( $lookup ) {
 			$this->lookup_zone($address);
 		}
-		
+				
 		if( 0 < $this->zone_data_size ) {
 			return $this->zone_data;
 		}
@@ -50,11 +50,19 @@ class Zone extends AppModel {
 		return $this->zone_data_size;
 	}
 	
+	public function are_results_ambiguous() {
+		return 1 < $this->zone_data_size ? true : false;
+	}
+	
 	private function _do_zone_lookup($address) {
 		App::import('Lib', 'lookup', array('file' => 'lookup/ZoneLookup.php'));
 		$zone_lookup = new ZoneLookup();
-		
-		$data = $zone_lookup->get_latlng_by_address($address);
+
+		// if we don't get a lat long from the address, return false
+		if (!$data = $zone_lookup->get_latlng_by_address($address)) {
+			return false;
+		}
+
 		$data_size = count($data);
 		
 		if( 0 < $data_size ) {

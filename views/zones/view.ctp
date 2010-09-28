@@ -135,7 +135,7 @@ $address = $this->Session->read('address');
 	
 	 //next event in the schedule
 	$timestamp = $schedule[0]['start_date'];
-	
+
 	if ($this->Time->isToday($timestamp)){
 		echo "<h2>7:00am Today!</h2>"; 
 		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
@@ -187,9 +187,4 @@ $address = $this->Session->read('address');
 		echo $this->Form->input('Notification.0.notification_type', array('type' => 'select', 'options' => $notification_type)); // regular, special, both
     echo $this->Form->end('Send me the info!');*/
 ?>
-<pre>
-<?php
- //print_r($schedule);
- //print_r($calendar); ?>
- </pre>
 </div>
