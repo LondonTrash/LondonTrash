@@ -121,36 +121,17 @@ table .last { padding-right: 0; }
 
 @font-face {
 	font-family: 'TeXGyreAdventorRegular';
-	src: url('texgyreadventor-regular-webfont.eot');
-	src: local('?'), url('texgyreadventor-regular-webfont.woff') format('woff'), url('texgyreadventor-regular-webfont.ttf') format('truetype'), url('texgyreadventor-regular-webfont.svg#webfontn18Af3vl') format('svg');
+	src: url('typefaces/texgyreadventor-regular-webfont.eot');
+	src: local('?'), url('typefaces/texgyreadventor-regular-webfont.woff') format('woff'), url('typefaces/texgyreadventor-regular-webfont.ttf') format('truetype'), url('typefaces/texgyreadventor-regular-webfont.svg#webfontn18Af3vl') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
-@font-face {
-	font-family: 'TeXGyreAdventorItalic';
-	src: url('texgyreadventor-italic-webfont.eot');
-	src: local('?'), url('texgyreadventor-italic-webfont.woff') format('woff'), url('texgyreadventor-italic-webfont.ttf') format('truetype'), url('texgyreadventor-italic-webfont.svg#webfontdgkr3R85') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 
 @font-face {
 	font-family: 'TeXGyreAdventorBold';
-	src: url('texgyreadventor-bold-webfont.eot');
-	src: local('?'), url('texgyreadventor-bold-webfont.woff') format('woff'), url('texgyreadventor-bold-webfont.ttf') format('truetype'), url('texgyreadventor-bold-webfont.svg#webfontTc3iYEdw') format('svg');
+	src: url('typefaces/texgyreadventor-bold-webfont.eot');
+	src: local('?'), url('typefaces/texgyreadventor-bold-webfont.woff') format('woff'), url('typefaces/texgyreadventor-bold-webfont.ttf') format('truetype'), url('typefaces/texgyreadventor-bold-webfont.svg#webfontTc3iYEdw') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
-
-@font-face {
-	font-family: 'TeXGyreAdventorBoldItalic';
-	src: url('texgyreadventor-bolditalic-webfont.eot');
-	src: local('?'), url('texgyreadventor-bolditalic-webfont.woff') format('woff'), url('texgyreadventor-bolditalic-webfont.ttf') format('truetype'), url('texgyreadventor-bolditalic-webfont.svg#webfontlVdkCKjF') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-
-
-

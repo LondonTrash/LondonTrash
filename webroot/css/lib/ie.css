@@ -8,31 +8,107 @@
 -------------------------------------------------------------- */
 
 /* Make sure the layout is centered in IE5 */
-body        { text-align: center; }
-.container  { text-align: left; }
 
+body { text-align: center }
+
+.container { text-align: left }
 
 /* This fixes the problem where IE6 adds an extra 3px margin to
    two columns that are floated up against each other. */
 
-* html .column { overflow-x: hidden; } /* IE6 fix */
+* html .column { overflow-x: hidden }
 
-.pull-1, .pull-2, .pull-3, .pull-4,
-.push-1, .push-2, .push-3, .push-4, 
-ul, ol {
-  position: relative; /* Keeps IE6 from cutting pulled/pushed images */
-}
+/* IE6 fix */
+
+.pull-1,
+.pull-2,
+.pull-3,
+.pull-4,
+.push-1,
+.push-2,
+.push-3,
+.push-4,
+ul,
+ol {
+    position: relative;
+    /* Keeps IE6 from cutting pulled/pushed images */: ; }
 
 /* Fixes incorrect styling of legend in IE6 fieldsets. */
-legend { margin-bottom:1.4em; }
+
+legend { margin-bottom: 1.4em }
 
 /* Fixes incorrect placement of numbers in ol's in IE6/7 */
-ol { margin-left:2em; }
 
+ol { margin-left: 2em }
 
-.new-users img, .users-online img, .top-users img {float:none!important;}
+#search-box .sbutton {
+    padding-left: 0px;
+    height: 74px;
+    color: #444!important;
+    top: 3px; }
 
+.home .glass { background: none }
 
-.side .beams #active{ top:-1px; }
+.glass { background: #fff }
 
-.profile  span input{ margin-top:2px!important;}
+.results { border-bottom: 1px solid #ddd }
+
+ .results #r-date {
+     line-height: 2.2em;
+     margin-top: -30px; }
+
+ .results #r-date sup { top: 5px }
+
+ .results small { margin-top: -35px }
+
+.address a {
+    background: #999;
+    top: 2px;
+    left: 10px; }
+
+.address a:hover { background: #666 }
+
+.results h2 {
+    line-height: normal;
+    margin-top: -20px; }
+
+.report { background: #666 }
+
+.report:hover { background: #444 }
+
+.dyk {
+    background: #fff;
+    padding: 5px 0 10px 0!important; }
+
+#calendar,
+#callist { border: 1px solid #eee }
+
+ #calendar #head { border-bottom: 1px solid #eee }
+
+#legend { border-top: 1px solid #eee }
+
+#callist #legend { border: 1px solid #eee }
+
+.precal {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30); }
+
+#calendar .today { border-bottom: 1px solid #003F87!important }
+
+#notify {
+    background: url('../../img/bell.png') 4px 60% no-repeat #555;
+    margin-top: 5px; }
+
+#notify:hover { background: url('../../img/bell.png') 4px 60% no-repeat #333 }
+
+.result hr {
+    color: #ddd;
+    background-color: #ddd; }
+
+.home .grid_11 #flashMessage {
+    margin-bottom: 10px;
+    margin-left: 50px;
+    width: 460px; }
+
+.contributer { background: #eee }
+
