@@ -169,7 +169,7 @@ $address = $this->Session->read('address');
 </div>
 
 <div id="subscribe"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<?php/*
+	<?php /*
 		echo $form->create('Zone', array('type' => 'post'));
 		echo $form->input('Email');
 		echo $form->input('Phone');
