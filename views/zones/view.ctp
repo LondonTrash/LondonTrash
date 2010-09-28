@@ -37,6 +37,54 @@ $address = $this->Session->read('address');
 	
 ?>
 	</h2>
+	</div>
+
+<ol id="callist">
+	<?php $iter = 0; ?>
+	<?php foreach( $calendar as $timestamp => &$day ) :
+	if( time() > $timestamp || !isset($day['event']) ) : continue; endif;
+	if( isset($day['event']) ) :
+	if( 15 == $iter ) : break; endif;
+	++$iter;
+	
+	$classes = array();
+	if( $day['event']['type'] == 'yard waste' )
+		$classes[] = 'special';
+	else
+		$classes[] = 'pickup';
+	
+	?>
+	<li class="calday <?php print implode(' ', $classes); ?>"><strong><?php print date('M', $timestamp); ?></strong> <span><?php print date('j', $timestamp); ?></span></li>
+	<?php endif; endforeach; ?>
+<li>
+<div class="clear"></div>
+<div id="legend">
+ <small><span class="pickup"></span>Regular Pickup</small>
+ <small><span class="special"></span>Special Pickup</small>
+</div></li>
+</ol>
+
+<div class="grid_6">  
+<?php /* Markup that is not being used right now ...
+<span id="holiday" class="pop-notice"> Holiday Schedule in Effect till 12/12/12</span>
+<a href="" id="notify">Set up Notifications</a> 
+<a href="" id="ical">iCal Feed (Zone D)</a>
+<a href="" id="ical">Add to gCal (Zone D)</a>
+
+<div class="clear"></div>
+<hr>
+<h4>Recycling</h4>
+<select>
+<option value="">Item</option>
+</select>
+<h4>Other Reuse and Recycling Options</h4>
+<select>
+<option value="">Item</option>
+</select> */ ?>
+&nbsp;
+</div>
+
+<div class="clear"></div>
 	
 <!--
 	<div id="calendar"> 
@@ -51,7 +99,14 @@ $address = $this->Session->read('address');
 	<span class="dotw">F</span> 
 	<span class="dotw">S</span>
 	<div id="cal_inner">
-<?php 
+			<br style="clear:both" /></div>
+<!-- #cal_inner -->
+		</div>
+</div>
+
+
+<?php
+/** What the hell is all of this?
 	$i = 0;
 	foreach($calendar as $day=>$date){
 		echo '<span class="';
@@ -85,15 +140,12 @@ $address = $this->Session->read('address');
 		
 		echo  date('F',$day)." ";	
 		
-		/**
-		 * Now let's deal with special events
-		 */
 		if(isset($date['event']) && is_array($date['event'])){
 			if ($date['event']['type'] == 'pickup'){
 				echo "pickup {$date['event']['type']} ";
 			}
 			
-			/*
+			
 			if ($date['event']['type'] != 'oldpickup' && $date['event']['type'] != 'pickup'){
 				echo "special ";
 				if ($date['event']['end_date'] != $date['event']['end_date'] && $date['event']['start_date'] == $timestamp){
@@ -101,7 +153,7 @@ $address = $this->Session->read('address');
 						$calendar[$i]['event'] = $date['event'];
 					}
 				}
-			}*/
+			}
 		}
 		
 		echo '">';
@@ -114,7 +166,4 @@ $address = $this->Session->read('address');
 		$i++;
 
 	}
-?>			<br style="clear:both" /></div>
-<!-- #cal_inner -->
-		</div>
-</div>
+*/ ?>
