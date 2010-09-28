@@ -77,30 +77,12 @@ class Zone extends AppModel {
 				
 				$zone_name = $zone_lookup->get_zone_by_latlng($data[$i]->geometry->location->lat, $data[$i]->geometry->location->lng);
 				if( $zone_name ) {
-
-					// don't use $i as a key, otherwise if we get a hit for a zone
-					// with i.e. the third result it causes everything assuming a
-					// result at [0] to screw up.
+					$o = new stdClass;
+					$o->zone_name = (string) $zone_name;
+					$o->address = $address;
+					$o->formatted_address = $data[$i]->formatted_address;
 					
-					$key = key($this->zone_data);
-					if (!$key) {
-						$key = 0;
-					}
-					
-					/*
-						TODO: Make this return just an array instead of an array of objects?
-						* It would be closer to Cake conventions, anyway
-					*/
-					
-					$this->zone_data[$key] = new stdClass;
-					
-					$this->zone_data[$key]->zone_name = (string) $zone_name;
-					$this->zone_data[$key]->address = $address;
-					$this->zone_data[$key]->formatted_address = $data[$i]->formatted_address;
-					
-					// maybe there's a better way of doing this than key() and next(),
-					// but hey, it works.
-					next($this->zone_data);
+					$this->zone_data[] = $o;
 					
 					// this is jedi aaron in action.
 					++$this->zone_data_size;
