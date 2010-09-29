@@ -44,12 +44,18 @@ class ZonesController extends AppController {
 		if (!empty($zone)) {
 			$schedule = $this->Zone->get_schedule($zone);
 		}
+		
+		/*
+			TODO: Check for valid zone - i.e. check zones table so they're
+			* not trying a gibberish zone
+		*/
 
 		if (empty($schedule)) {
 			/*
 				TODO: This should probably fire off an email to an admin, saying it needs to be fixed
 			*/
-			$this->Session->setFlash("Sorry, we weren't able to find a schedule for this zone.");
+			$this->Session->setFlash("Sorry, we weren't able to find a schedule for that address. Please try again.");
+			$this->redirect(array('controller' => 'searches', 'action' => 'index'));
 		}
 			
 		//set up the calendar vars
