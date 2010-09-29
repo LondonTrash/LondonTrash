@@ -1,5 +1,5 @@
 <?php
-class SearchesController extends Controller {
+class SearchesController extends AppController {
     
 	var $uses = array('Zone');
 
