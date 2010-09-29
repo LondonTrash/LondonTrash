@@ -22,12 +22,12 @@ if (!empty($this->params['pass'][0])) {
 ?>
 <body class="<?php echo $bodyClass; ?>"<?php echo $bodyId; ?>>
 	<div class="container_16">
-		<div class="grid_5 ">
-			<h1 id="site-title"><?php echo $this->Html->link("London Trash", "/"); ?></h1>
+		<div class="grid_5">
+			<h1 id="site-title"><?php echo $this->Html->link("London Trash", array('controller' => 'searches', 'action' => 'index')); ?></h1>
 			
 			<?php if ($this->params['controller'] != 'searches'): ?>
 				<div class="clear"></div>
-				<div class="dyk "><h3>Did You Know?</h3>
+				<div class="dyk"><h3>Did You Know?</h3>
 					<p><?php echo $tip; ?></p>
 				</div>
 			<?php endif; ?>
@@ -37,14 +37,15 @@ if (!empty($this->params['pass'][0])) {
 			<?php endif; ?>
 		</div>
 		
-		<div class="grid_11 ">
+		<div class="grid_11">
 								
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Session->flash('auth'); ?>
 			<?php echo $this->element('address_choices'); ?>
 			
-			<div class="glass ">
+			<div class="glass">
 				<?php echo $content_for_layout; ?>
+				<div class="clear"></div>
 			</div>
 			
 			<ul id="lh-nav">
