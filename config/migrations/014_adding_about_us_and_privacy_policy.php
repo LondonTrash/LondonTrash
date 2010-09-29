@@ -107,17 +107,17 @@ MIME type by reading this information from the browser string (information conta
 every user's browser).</p>
 
 <p>We use tracking information to determine which areas of our sites users like and don't
-like based on traf?c to those areas. We do not track what individual users read, but
+like based on traffic to those areas. We do not track what individual users read, but
 rather how well each page performs overall. This helps us continue to build a better
 service for you.</p>
 
 <h4>Cookies</h4>
 
-<p>We may place a text ?le called a "cookie" in the browser ?les of your computer. The
+<p>We may place a text file called a "cookie" in the browser files of your computer. The
 cookie itself does not contain personal information although it will enable us to relate
-your use of this site to information that you have speci?cally and knowingly provided.
+your use of this site to information that you have specifically and knowingly provided.
 But the only personal information a cookie can contain is information you supply
-yourself. A cookie can't read data off your hard disk or read cookie ?les created by other
+yourself. A cookie can't read data off your hard disk or read cookie files created by other
 sites. London Trash uses cookies to remember what is important to you and display
 personalized information.</p>
 
@@ -134,7 +134,7 @@ our users or the public.</p>
 
 <h3>SECURITY</h3>
 
-<p>London Trash operates secure data networks protected by industry standard ?rewall
+<p>London Trash operates secure data networks protected by industry standard firewall
 and password protection systems. Our security and privacy policies are periodically
 reviewed and enhanced as necessary and only authorized individuals have access to
 the information provided by our customers.</p>
