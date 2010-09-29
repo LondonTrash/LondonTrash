@@ -29,8 +29,8 @@ $(document).ready(function(){
 JAVASCRIPT
 , array('inline' => false)    );
 
-    echo $form->create('Search', array('id' => 'search-box', 'type' => 'post'));
-    echo $form->input('address', array('div' => false, 'label' => false, 'class' => 'searchTerm', 'value' => isset($_GET['a']) ? $_GET['a'] : ''));
-	echo $form->submit('GO', array('div' => false, 'class' => 'sbutton'));
-    echo $form->end();
+    echo $this->Form->create('Search', array('id' => 'search-box', 'type' => 'post'));
+    echo $this->Form->input('address', array('div' => false, 'label' => false, 'class' => 'searchTerm', 'value' => isset($_GET['a']) ? $_GET['a'] : ''));
+		echo $this->Form->submit('GO', array('div' => false, 'class' => 'sbutton'));
+    echo $this->Form->end();
 ?>
