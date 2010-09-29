@@ -1,5 +1,5 @@
 <div class="contents view">
-	<?php if(isset($content['Content']['title']) && isset($content['Content']['body'])) { ?>
+	<?php if(!empty($content)) { ?>
 		<h2><?php echo $content['Content']['title']; ?></h2>
 		<?php echo $content['Content']['body']; ?>
 	<?php } else { ?>
