@@ -32,11 +32,10 @@ $address = $this->Session->read('address');
 		echo "Next " . date('l',$timestamp) . '</h2>';
 		echo "<span id='r-date'>".date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp)."</span>";
 	}else {
-		echo "<h2>".date('F j\<\s\u\p\>S\<\/\s\u\p\>', $timestamp)."</h2>";	
+		echo date('F j\<\s\u\p\>S\<\/\s\u\p\>', $timestamp)."</h2>";	
 	}
 	
 ?>
-	</h2>
 	</div>
 
 <ol id="callist">
@@ -85,8 +84,6 @@ $address = $this->Session->read('address');
 </div>
 
 <div class="clear"></div>
-		</div>
-</div>
 
 
 <?php
