@@ -91,12 +91,16 @@ class ZonesController extends AppController {
 			}
 		}
 		
+		$formattedZone = $this->Zone->field('formatted_title', array('title' => $zone));
+		
 		$this->set("calendar", $calendar);
 	
 		$this->set("schedule", $schedule);
 		$this->set("zone", $zone);
+		$this->set('formattedZone', $formattedZone);
 		$this->set('delay_unit', array('hours', 'days'));
 		$this->set('notification_type', array('Regular', 'Special', 'Both'));
+		$this->set('title_for_layout', 'Schedule (' . $formattedZone . ')');
 	}
 
 }
