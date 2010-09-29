@@ -25,7 +25,7 @@ body {
 html { }
 
 a {
-    color: #418eca;
+ color: #104E8B;
     text-decoration: underlined;
     outline: none; }
 
@@ -34,7 +34,7 @@ a:hover,
 a:active,
 .actions li:hover,
 .actions li:focus,
-.actions li:active { color: #104E8B }
+.actions li:active {    color: #418eca;}
 
 .mod:after {
     display: block;
@@ -575,7 +575,7 @@ input[type="button"]::-moz-focus-inner { border : 0px }
     float: right;
     top: -4px;
     margin: 5px 0px 0 2px;
-    padding: 0px 15px 1px 23px;
+    padding: 0px 15px 1px 30px;
     color: #FAFAFA!important;
     font-size: 1.05em;
     font-weight: 600;
@@ -586,41 +586,41 @@ input[type="button"]::-moz-focus-inner { border : 0px }
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    background: url('../img/bell.png') 5px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .4) 46%,     rgba(0,0,0, .3) 49%);
-    background: url('../img/bell.png') 5px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .4) ), color-stop(0.49,  rgba(0,0,0, .3)) );
+    background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .4) 46%,     rgba(0,0,0, .3) 49%);
+    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .4) ), color-stop(0.49,  rgba(0,0,0, .3)) );
     -moz-box-shadow: 0px 2px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
     -webkit-box-shadow: 0px 2px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
     cursor: pointer; }
 
 #notify:hover {
-    position: relative;
-    top: -4px;
     color: #fff!important;
-    background: url('../img/bell.png') 5px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .3) 46%,     rgba(0,0,0, .2) 49%);
-    background: url('../img/bell.png') 5px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .3) ), color-stop(0.49,  rgba(0,0,0, .2)) );
-    -moz-box-shadow: 0px 2px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
-    -webkit-box-shadow: 0px 2px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2); }
+    background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .3) 46%,     rgba(0,0,0, .2) 49%);
+    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .3) ), color-stop(0.49,  rgba(0,0,0, .2)) );
+  }
 
 #notify:active {
     position: relative;
     top: -3px;
     color: #fff!important;
-    background: url('../img/bell.png') 5px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .4) 46%,     rgba(0,0,0, .3) 49%);
-    background: url('../img/bell.png') 5px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .4) ), color-stop(0.49,  rgba(0,0,0, .3)) );
+    background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .4) 46%,     rgba(0,0,0, .3) 49%);
+    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .4) ), color-stop(0.49,  rgba(0,0,0, .3)) );
     -moz-box-shadow: 0px 0px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
     -webkit-box-shadow: 0px 0px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2); }
 
 #ical {
+position:relative; top:-7px;
     display: inline-block;
     padding-left: 23px;
-    margin: 3px 20px 0 0;
-    font-size: 0.9em;
+    margin: 0 0px 10px 0;
+	width:140px;
+	white-space:nowrap;
+    font-size: 0.85em;
     text-decoration: none;
-    background: url('../img/cal.png') 4px 35% no-repeat; }
+    background: url('../img/cal.png') 4px 2px no-repeat ; }
 
-.grid_6 {
+.zones-view .grid_6 {
     position: relative;
-    left: 10px; }
+    left: 2px; width:350px;}
 
  .grid_6 select {
      margin: 5px 0;
@@ -649,7 +649,7 @@ input[type="button"]::-moz-focus-inner { border : 0px }
     border-top: 1px solid rgba(0,0,0,  0.05);
     -moz-box-shadow: 0px 1px 0px rgba(256,256,256, 1);
     -webkit-box-shadow: 0px 1px 0px rgba(256,256,256, 1);
-    margin-top: 20px; }
+    margin-top: 5px; margin-bottom:5px; }
 
 #callist {
     list-style: none outside;
