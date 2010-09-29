@@ -16,6 +16,12 @@ class SearchesController extends AppController {
 		$this->Session->write('zone', $zone);
 	}
 	
+	private function redirectToStoredResult() {
+		if ($zone = $this->Session->read('zone')) {
+			$this->redirect(array('controller' => 'zones', 'action' => 'view', $zone));
+		}
+	}
+	
 	/**
 	 * Used with ambiguous addresses
 	 * Updates the session and redirects to the proper schedule
@@ -37,7 +43,11 @@ class SearchesController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-   public function index($address = null) {
+	public function index($address = null) {		
+		if (empty($this->data) && empty($address) && empty($this->params['url']['a'])) {
+			// try to send to result stored in session
+			$this->redirectToStoredResult();
+		}
 		
 		if ($this->data || !empty($address)) {
 			if ($this->data) {
