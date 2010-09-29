@@ -17,6 +17,7 @@
 
 body {
     margin: 0;
+	margin-top:50px;
     padding: 0;
     font-size: 0.8em;
     text-align: center;     background: url(../img/trash-bg-seamless2.jpg) bottom center repeat-x fixed #344e75; }
@@ -301,9 +302,6 @@ input[type="button"]::-moz-focus-inner { border : 0px }
 /* * Results
 ------------------------------------------------------------------
  */
-
-.zones-view {
-    margin-top: 50px; }
 
  .zones-view .glass {
      margin-top: 5px;
@@ -717,8 +715,7 @@ input[type="button"]::-moz-focus-inner { border : 0px }
 ------------------------------------------------------------------
  */
 
-#privacy {
-    margin-top: 50px; }
+
 
  #privacy .glass {
      margin-top: 5px;
@@ -759,8 +756,6 @@ input[type="button"]::-moz-focus-inner { border : 0px }
 ------------------------------------------------------------------
  */
 
-#about {
-    margin-top: 50px;}
 
  #about .glass {
      margin-top: 5px;
