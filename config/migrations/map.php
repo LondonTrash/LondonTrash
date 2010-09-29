@@ -26,5 +26,7 @@ $map = array(
 		'012_added_formatted_address_to_address_caches_table' => 'M4ca0f13d67444b6fa8dc9fe43201ca43'),
 	13 => array(
 		'013_adding_preset_content' => 'M4ca14d4da44c47dba918bc173201ca43'),
+	14 => array(
+		'014_adding_about_us_and_privacy_policy' => 'M4ca2a63cf96843b2b841f2ee3201ca43'),
 );
 ?>
