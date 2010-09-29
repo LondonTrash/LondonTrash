@@ -47,7 +47,7 @@ ol { margin-left: 2em }
     color: #444!important;
     top: 3px; }
 
-.home .glass { background: none }
+.searches-index .glass { background: none }
 
 .glass { background: #fff }
 
@@ -101,11 +101,11 @@ ol { margin-left: 2em }
 
 #notify:hover { background: url('../../img/bell.png') 4px 60% no-repeat #333 }
 
-.result hr {
+.zones-view hr {
     color: #ddd;
     background-color: #ddd; }
 
-.home .grid_11 #flashMessage {
+.searches-index .grid_11 #flashMessage {
     margin-bottom: 10px;
     margin-left: 50px;
     width: 460px; }

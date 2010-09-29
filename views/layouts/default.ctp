@@ -10,12 +10,17 @@
 <?php echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');?>
 <?php echo $scripts_for_layout; ?>
 </head>
-<!-- <body id="<?php echo $this->params['controller'] . '-' . $this->action; ?>"> -->
-<?php if ($this->params['controller'] == 'searches'): ?>
-<body class="home">
-<?php else: ?>
-<body class="result">	
-<?php endif; ?>
+<?php
+// set class and id of body dynamically.
+// class = controller-action
+// id = param passed to action if there is one, else none
+$bodyClass = $this->params['controller'] . '-' . $this->action;
+$bodyId = null;
+if (!empty($this->params['pass'][0])) {
+	$bodyId = ' id="' . $this->params['pass'][0] . '"';
+}
+?>
+<body class="<?php echo $bodyClass; ?>"<?php echo $bodyId; ?>>
 	<div class="container_16">
 		<div class="grid_5 ">
 			<h1 id="site-title"><?php echo $this->Html->link("London Trash", "/"); ?></h1>
