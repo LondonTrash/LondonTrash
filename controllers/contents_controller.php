@@ -8,7 +8,9 @@ class ContentsController extends AppController {
 			$this->Session->setFlash(__('Invalid content', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('content', $this->Content->findBySlug($slug));
+		$content = $this->Content->findBySlug($slug);
+		$this->set('content', $content);
+		$this->set('title_for_layout', $content['Content']['title']);
 	}
 
 	function tips() {

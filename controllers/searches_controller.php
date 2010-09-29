@@ -45,6 +45,7 @@ class SearchesController extends Controller {
 			}
 			$this->doSearch($address);
 		}
+		$this->set('title_for_layout', false);
 	}
 
 	private function doSearch($address = null) {
