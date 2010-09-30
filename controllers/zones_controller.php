@@ -57,22 +57,7 @@ class ZonesController extends AppController {
 			$this->Session->setFlash("Sorry, we weren't able to find a schedule for that address. Please try again.");
 			$this->redirect(array('controller' => 'searches', 'action' => 'index'));
 		}
-			
-		//set up the calendar vars
-		//Sunday of this week
-		if (date('N') != 7) {
-			$sunday = mktime(0,0,0, date('m'),date('d')-date('N'), date('Y'));
-		} else {
-			$sunday = mktime();
-		}
 		
-		$curr_date = $sunday;
-		
-		for ($i=0;$i<375;$i++) {
-			$calendar[$curr_date]['date'] = date('d-m-Y', $curr_date);
-			$curr_date = mktime(0,0,0,date('m',$curr_date),date('d',$curr_date)+1,date('Y',$curr_date));
-		}
-
 		if( !empty($schedule) ) {
 			foreach ($schedule as $event) {
 				if (!isset($calendar[$event['start_date']])) {
@@ -92,7 +77,8 @@ class ZonesController extends AppController {
 		$this->set('delay_unit', array('hours', 'days'));
 		$this->set('notification_type', array('Regular', 'Special', 'Both'));
 		$this->set('title_for_layout', 'Schedule (' . $formattedZone . ')');
+		
+		
 	}
-
 }
 ?>
