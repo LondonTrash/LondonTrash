@@ -1,4 +1,8 @@
-<?php 
+<?php echo $this->Html->script('jquery-ui-1.8.5.custom.min'); ?>
+<?php echo $this->Html->css('/js/jquery-ui-1.8.5.custom', null, array('inline' => false)); ?>
+<?php echo $this->Html->script('notifications'); ?>
+
+<?php
 
 /**
  * Ajax call for loading another month
@@ -120,9 +124,6 @@ function show_Calendar($timestamp, $calendar){
 	
 }
 
-//show_Calendar('1288915200', $calendar);
-//die();
-
 echo $this->Html->script('calendar');
 
 $address = $this->Session->read('address');
@@ -168,4 +169,32 @@ $address = $this->Session->read('address');
 	<div id="cal_inner">
 		<?php show_Calendar($timestamp, $calendar) ?>
 	</div><!-- #cal_inner -->
+</div>
+<div class="grid_6">  
+	<span id="holiday" class="pop-notice">Email and SMS notifications are coming soon.</span>
+	<a id="notify">Email Notifications</a> 
+	<a href="#" class="ical">iCal Feed (Downtown W)</a>
+	<a href="#" class="ical">Add to gCal (Downtown W)</a>
+
+<div class="clear"></div>
+<hr />
+<!--h4>Recycling</h4>
+<select>
+<option value="">Item</option>
+</select>
+<h4>Other Reuse and Recycling Options</h4>
+<select>
+<option value="">Item</option>
+</select-->
+
+<br class="clear" />
+<a href="" class="report"> Report an Error</a>
+<br class="clear" />
+&nbsp;<br class="clear" />
+</div>
+<div class="hidden" id="notifications">
+	<p>Enter your email address
+	<input name="name" id="name" title="Name" /><br />
+	<input name="email" type="email" id="email" title="your@email.com" /><br />
+	<input type="button" id="submit" name="submit" value="Let me know!" />
 </div>
