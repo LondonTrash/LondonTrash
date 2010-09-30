@@ -15,7 +15,6 @@ $(document).ready(function() {
 				}
 			});
 			$(this).blur(function() {
-				var address = $("#SearchAddress").val(); 
 				if ($(this).val() == "") { 
 					$(this).css('color', '#999999');
 					$(this).val($(this).attr("title")); 
