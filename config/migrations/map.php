@@ -30,5 +30,7 @@ $map = array(
 		'014_adding_about_us_and_privacy_policy' => 'M4ca2a63cf96843b2b841f2ee3201ca43'),
 	15 => array(
 		'015_adding_formatted_title_to_zones' => 'M4ca2d46fb9484620bb09428f3201ca43'),
+	16 => array(
+		'016_letmeknow_table' => 'M4ca40b655c9849dc902a3e613201ca43'),
 );
 ?>
