@@ -31,6 +31,6 @@ $map = array(
 	15 => array(
 		'015_adding_formatted_title_to_zones' => 'M4ca2d46fb9484620bb09428f3201ca43'),
 	16 => array(
-		'016_letmeknow_table' => 'M4ca40b655c9849dc902a3e613201ca43'),
+		'016_update_signups' => 'M4ca40dc31b9c46619e87402f3201ca43'),
 );
 ?>
