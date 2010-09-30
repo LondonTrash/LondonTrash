@@ -33,6 +33,10 @@ class ZonesController extends AppController {
 		}
 		$schedule = null;
 
+		//replacing HTTP:// with webcal:// in the zone calendar link
+		$zone_data = $this->Zone->findByTitle($zone);
+		$webcal_url = preg_replace( '/http:/', 'webcal:', $zone_data['Zone']['ical_url'], 1 );
+		
 		if ($this->data) {
 			$zone = $this->data['Zone']['zone'];
 
@@ -83,9 +87,9 @@ class ZonesController extends AppController {
 		}
 		
 		$formattedZone = $this->Zone->field('formatted_title', array('title' => $zone));
-		
+
+		$this->set("webcal_url", $webcal_url);		
 		$this->set("calendar", $calendar);
-	
 		$this->set("schedule", $schedule);
 		$this->set("zone", $zone);
 		$this->set('formattedZone', $formattedZone);
