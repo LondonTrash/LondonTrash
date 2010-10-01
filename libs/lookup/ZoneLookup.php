@@ -40,7 +40,7 @@ class ZoneLookup {
                 }
                 
                 $coords = $poly->Polygon->outerBoundaryIs->LinearRing->coordinates;
-                $coords = explode('0 ', $coords);
+                $coords = explode("\n", $coords);
                 
                 $coords = array_map(array($this, '_coord_cleanup'), $coords);
                 $coords_size = count($coords);
