@@ -1,6 +1,6 @@
-<?php echo $this->Html->script('jquery-ui-1.8.5.custom.min'); ?>
+<?php echo $this->Html->script('jquery-ui-1.8.5.custom.min', array('inline' => false)); ?>
 <?php echo $this->Html->css('/js/jquery-ui-1.8.5.custom', null, array('inline' => false)); ?>
-<?php echo $this->Html->script('notifications'); ?>
+<?php echo $this->Html->script('notifications', array('inline' => false)); ?>
 
 <?php
 
@@ -193,8 +193,14 @@ $address = $this->Session->read('address');
 &nbsp;<br class="clear" />
 </div>
 <div class="hidden" id="notifications">
-	<p>Enter your email address
-	<input name="name" id="name" title="Name" /><br />
-	<input name="email" type="email" id="email" title="your@email.com" /><br />
-	<input type="button" id="submit" name="submit" value="Let me know!" />
+	<?php echo $this->Form->create('UpdateSignup', array('url' => '#')); ?>
+		<?php echo $this->Form->input('name', array('title' => 'First name')); ?>
+		<?php echo $this->Form->input('email', array('title' => 'Email address')); ?>
+		<?php echo $this->Js->submit('Let me know!', array(
+			'url' => $this->Html->url(array('controller' => 'update_signups', 'action' => 'add')),
+			'success' => 'notificationSuccess()'
+		)); ?>
+		<?php echo $this->Form->hidden('zone_id', array('value' => $zone_id)); ?>
+		
+	<?php echo $this->Form->end(); ?>
 </div>

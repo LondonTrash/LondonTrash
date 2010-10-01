@@ -5,10 +5,10 @@ $(document).ready(function(){
 			title: "Email Notifications"
 		});
 	});
-	
-	$("#submit").click(function(){
-
-			$("#notifications").dialog("close");
-
-	});
 });
+
+function notificationSuccess() {
+	$("#notifications").dialog("close");
+	$('.pop-notice').text("Don't call us, we'll call you.");
+	$('.pop-notice').effect('highlight', 2000);
+}
