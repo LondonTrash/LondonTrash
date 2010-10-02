@@ -62,8 +62,16 @@ class ZonesController extends AppController {
 			$this->redirect(array('controller' => 'searches', 'action' => 'index'));
 		}
 		
+		$next_pickup = 0;
+		foreach ($schedule as $date){
+			if (date($date['start_date']) > mktime() && ($next_pickup == 0 || $next_pickup  > $date['start_date'])){
+				$next_pickup = $date['start_date'];
+			}
+		}
+		
 		$formattedZone = $this->Zone->field('formatted_title', array('title' => $zone));
 
+		$this->set("pickup", $next_pickup);
 		$this->set("webcal_url", $webcal_url);
 		$this->set("schedule", $schedule);
 		$this->set("zone", $zone);
