@@ -30,14 +30,45 @@
 	<small>Your Next Pickup is:</small>
 	<h2><?php echo $next_pickup; ?></h2>
 	<span id='r-date'><?php echo $next_pickup_details; ?></span>
+	<ol id="callist">
+<li class="calday pickup"><strong>Jan</strong> <span>1</span> </li>
+<li class="calday pickup"><strong>Feb</strong> <span>2</span> </li>
+<li class="calday pickup"><strong>Mar</strong> <span>3</span> </li>
+<li class="calday pickup"><strong>Jun</strong> <span>4</span> </li>
+<li class="calday pickup"><strong>Jul</strong> <span>5</span> </li>
+<li class="calday pickup"><strong>Aug</strong> <span>6</span> </li>
+<li class="calday special pickup"><strong>Oct</strong> <span>7</span> </li>
+<li class="calday special"><strong>Sep</strong> <span>8</span> </li>
+<li class="calday pickup"><strong>Dec</strong> <span>10</span> </li>
+<li class="calday pickup"><strong>Jan</strong> <span>1</span> </li>
+<li class="calday pickup"><strong>Feb</strong> <span>2</span> </li>
+<li class="calday pickup"><strong>Mar</strong> <span>3</span> </li>
+<li class="calday pickup"><strong>Jun</strong> <span>4</span> </li>
+<li class="calday pickup"><strong>Jul</strong> <span>5</span> </li>
+<li class="calday pickup"><strong>Aug</strong> <span>6</span> </li>
+<li class="calday special pickup"><strong>Oct</strong> <span>7</span> </li>
+<li class="calday special"><strong>Sep</strong> <span>8</span> </li>
+<li class="calday pickup"><strong>Dec</strong> <span>10</span> </li>
+
+<li>
+<div class="clear"></div>
+<div id="legend">
+ <small><span class="pickup"></span>Regular Pickup</small>
+ <small><span class="special"></span>Special Pickup</small>
+</div></li>
+</ol>
 </div>
-<div id="calendar"> 
+<div id="calendar">
+	<?php foreach($schedule as $date) { ?>
+		<?php //echo $date['type']. ": ".  date('Y-m-d',$date['start_date']) . " => " . date('Y-m-d',strtotime(date('Y-m-d H:i:s',$date['end_date'])." -1 seconds")) . "<br />"; ?>
+		<div class="<?php echo $date['type'] == "pickup" ? "pickup" : "other"; ?> hidden <?php echo date('FY',$date['start_date']); ?>"><?php echo date('j',$date['start_date']); ?></div>
+	<?php } ?>
 </div>
 <div class="grid_6">  
 	<span id="holiday" class="pop-notice">Email and SMS notifications are coming soon.</span>
 	<a id="notify">Email Notifications</a> 
-	<a href="#" class="ical">iCal Feed (Downtown W)</a>
-	<a href="#" class="ical">Add to gCal (Downtown W)</a>
+	<a href="#" class="ical">iCal Feed (<?php echo $formattedZone; ?>)</a>
+	<a href="#" class="ical">Add to gCal (<?php echo $formattedZone; ?>)</a>
 
 <div class="clear"></div>
 <hr />

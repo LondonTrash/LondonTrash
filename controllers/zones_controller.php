@@ -62,19 +62,9 @@ class ZonesController extends AppController {
 			$this->redirect(array('controller' => 'searches', 'action' => 'index'));
 		}
 		
-		if( !empty($schedule) ) {
-			foreach ($schedule as $event) {
-				if (!isset($calendar[$event['start_date']])) {
-					break;
-				}
-				$calendar[$event['start_date']]['event'] = $event;
-			}
-		}
-		
 		$formattedZone = $this->Zone->field('formatted_title', array('title' => $zone));
 
-		$this->set("webcal_url", $webcal_url);		
-		$this->set("calendar", $calendar);
+		$this->set("webcal_url", $webcal_url);
 		$this->set("schedule", $schedule);
 		$this->set("zone", $zone);
 		$this->set('formattedZone', $formattedZone);
