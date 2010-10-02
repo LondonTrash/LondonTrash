@@ -173,9 +173,9 @@ $address = $this->Session->read('address');
 <div class="grid_6">  
 	<span id="holiday" class="pop-notice">Email and SMS notifications are coming soon.</span>
 	<a id="notify">Email Notifications</a> 
-	<a href="#" class="ical">iCal Feed (Downtown W)</a>
-	<a href="#" class="ical">Add to gCal (Downtown W)</a>
-
+	<?php echo $this->Html->link('iCal Feed (' . $formattedZone . ')', $webcal_url, array('class' => 'ical')); ?>
+	<?php echo $this->Html->link('Add to gCal (' . $formattedZone . ')', $gcal_url, array('class' => 'ical')); ?>
+	
 <div class="clear"></div>
 <hr />
 <!--h4>Recycling</h4>
