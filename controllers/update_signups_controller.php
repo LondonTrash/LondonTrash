@@ -7,7 +7,9 @@ class UpdateSignupsController extends AppController {
 			TODO: Possibly add error checking
 		*/
 		// grab data from AJAX and save to DB
-		$this->UpdateSignup->save($this->data);
+		if (!empty($this->data['UpdateSignup']['email'])) {
+			$this->UpdateSignup->save($this->data);
+		}
 	}
 }
 ?>
