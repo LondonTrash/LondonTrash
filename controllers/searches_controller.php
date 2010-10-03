@@ -11,20 +11,21 @@ class SearchesController extends AppController {
 	 * @return void
 	 * @author Scott Reeves
 	 */
-	private function updateSession($address, $zone) {
+	private function updateUserData($address, $zone) {
 		$this->Session->write('address', $address);
-		$this->Session->write('zone', $zone);
+		$this->Cookie->write('address', $address, null, '10 years');
+		$this->Cookie->write('zone', $zone, null, '10 years');
 	}
 	
 	private function redirectToStoredResult() {
-		if ($zone = $this->Session->read('zone')) {
+		if ($zone = $this->Cookie->read('zone')) {
 			$this->redirect(array('controller' => 'zones', 'action' => 'view', $zone));
 		}
 	}
 	
 	/**
 	 * Used with ambiguous addresses
-	 * Updates the session and redirects to the proper schedule
+	 * Updates the user data and redirects to the proper schedule
 	 *
 	 * @param string $address 
 	 * @param string $zone 
@@ -36,7 +37,7 @@ class SearchesController extends AppController {
 			// clear the ambiguities from the session
 			$this->Session->delete('addressChoices');
 			
-			$this->updateSession($address, $zone);
+			$this->updateUserData($address, $zone);
 			$this->redirect(array('controller' => 'zones', 'action' => 'view', $zone));
 		}
 		$this->Session->setFlash('Sorry! Please try your search again.');
@@ -123,7 +124,7 @@ class SearchesController extends AppController {
 		}
           
 		if(!empty($zone_name)) {
-			$this->updateSession($searchAddress, $zone_name);
+			$this->updateUserData($searchAddress, $zone_name);
 			$this->redirect(array("controller" => "zones", "action" => "view", $zone_name));
 		} else {
 			$this->Session->setFlash("Your address was not found. Please verify that you have typed it correctly and search again.");
