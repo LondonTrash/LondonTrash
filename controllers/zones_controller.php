@@ -107,6 +107,16 @@ class ZonesController extends AppController {
 		$this->set('delay_unit', array('hours', 'days'));
 		$this->set('notification_type', array('Regular', 'Special', 'Both'));
 		$this->set('title_for_layout', 'Schedule (' . $formattedZone . ')');
+		$this->setProviders();
+	}
+	
+	private function setProviders() {
+		$this->loadModel('Provider');
+		$providers = $this->Provider->find('list', array(
+			'conditions' => array('protocol_id' => 2),
+			'order' => 'title ASC'
+		));
+		$this->set('providers', $providers);
 	}
 
 }
