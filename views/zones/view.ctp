@@ -32,14 +32,13 @@
 <div id="calendar" class="hidden">
 
 </div>
-<ol id="callist">
+<ol id="callist" rel="<?php echo intval(($schedule[count($schedule)-1]['end_date'] - strtotime(date('Y-m-d H:i:s')))/86400); ?>d">
 	<?php foreach($schedule as $date) { ?>
 		<li class="calday <?php echo $date['type'] == "pickup" ? "pickup" : "special"; ?> <?php echo date('FY',$date['start_date']); ?>">
 			<strong class="<?php echo date('F', $date['start_date']); ?>"><?php echo date('M', $date['start_date']); ?></strong>
 			<span class="day"><?php echo date('j', $date['start_date']); ?></span>
 		</li>
 		<?php if (date('Y-m-d',$date['start_date']) != date('Y-m-d',strtotime(date('Y-m-d H:i:s',$date['end_date'])." -1 seconds"))) { ?>
-			<?php /**/ echo date('Y-m-d', $date['start_date']) . " => " . date('Y-m-d',strtotime(date('Y-m-d H:i:s',$date['end_date'])." -1 seconds")); ?>
 			<?php $d = strtotime(date('Y-m-d', $date['start_date'])." +1 day"); while($d < strtotime(date('Y-m-d H:i:s',$date['end_date'])." -1 seconds")) { ?>
 				<li class="calday <?php echo $date['type'] == "pickup" ? "pickup" : "special"; ?> <?php echo date('FY',$d); ?>">
 					<strong class="<?php echo date('F', $d); ?>"><?php echo date('M', $d); ?></strong>

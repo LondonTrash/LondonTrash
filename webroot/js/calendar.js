@@ -3,6 +3,9 @@ $(document).ready(function(){
 		$("#callist").hide(); //Hide the Non-JS calendar
 		$("#calendar").show(); //Show the JS calendar
 		$("#calendar").datepicker({
+			minDate: -0,
+			maxDate: "+"+$("#callist").attr("rel"),
+			dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
 			onChangeMonthYear: function(year, month, inst) {
 				updatecal();
 			}
