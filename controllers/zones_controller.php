@@ -19,28 +19,6 @@ class ZonesController extends AppController {
 	public function ThisMonth($date){
 		return (date('Ymd')-date('Ymd', $date))+1;	
 	}
-	public function get_CalClass($date){
-		$class = '';
-		if(date('dmY',$date) < date('dmY')){
-			$class .= ' before-today';
-		}
-		if(date('dmY',$date) == date('dmY')){
-			$class .= ' today';
-		}
-		if(date('dmY',$date) > date('dmY')){
-			$class .= ' after-today';
-		}
-		if ($this->ThisMonth($date) < 1){
-			$class .= ' last-month';
-		}
-		if ($this->ThisMonth($date) == 1){
-			$class .= ' this-month';
-		}
-		if ($this->ThisMonth($date) > 1){
-			$class .= ' next-month';
-		}
-		return $class;
-	}	
 		
 	/**
 	 * view
@@ -48,13 +26,22 @@ class ZonesController extends AppController {
 	 * @param string $zone (zone letter)
 	 * @return void
 	 */
-	public function view($zone = null) {
-		$schedule = null;
-		
-		// if we don't have a zone, redirect to search page
-		if (!$zone && empty($this->data)) {
+	public function view($zone = null) {		
+		// if no zone is passed, redirect to search
+		if (!$zone) {
 			$this->redirect(array('controller' => 'searches', 'action' => 'index'));
 		}
+		$schedule = null;
+
+		//replacing HTTP:// with webcal:// in the zone calendar link
+		// This is for webcal:// iCal feeds
+		$zone_data = $this->Zone->findByTitle($zone);
+		$webcal_url = str_replace('http://', 'webcal://', $zone_data['Zone']['ical_url']);
+		
+		// add to google calendar link
+		$gcalPrefix = 'http://www.google.com/calendar/render?cid=';
+		$gcal_url = $gcalPrefix . str_replace('/ical/', '/feeds/', $zone_data['Zone']['ical_url']); 
+		$gcal_url = str_replace('.ics', '', $gcal_url);
 		
 		if ($this->data) {
 			//TODO: Add some error processing here
@@ -70,9 +57,18 @@ class ZonesController extends AppController {
 		if (!empty($zone)) {
 			$schedule = $this->Zone->get_schedule($zone);
 		}
+		
+		/*
+			TODO: Check for valid zone - i.e. check zones table so they're
+			* not trying a gibberish zone
+		*/
 
 		if (empty($schedule)) {
-			$this->Session->setFlash("BOO FAIL!!!");
+			/*
+				TODO: This should probably fire off an email to an admin, saying it needs to be fixed
+			*/
+			$this->Session->setFlash("Sorry, we weren't able to find a schedule for that address. Please try again.");
+			$this->redirect(array('controller' => 'searches', 'action' => 'index'));
 		}
 			
 		//set up the calendar vars
@@ -82,26 +78,35 @@ class ZonesController extends AppController {
 		} else {
 			$sunday = mktime();
 		}
+		
 		$curr_date = $sunday;
-		for ($i=0;$i<35;$i++) {
-			$calendar[$curr_date]['class'] = $this->get_CalClass($curr_date);
+		
+		for ($i=0;$i<375;$i++) {
+			$calendar[$curr_date]['date'] = date('d-m-Y', $curr_date);
 			$curr_date = mktime(0,0,0,date('m',$curr_date),date('d',$curr_date)+1,date('Y',$curr_date));
 		}
 
-		foreach ($schedule as $event) {
-			if (!isset($calendar[$event['start_date']])) {
-				break;
-			}	
-			$calendar[$event['start_date']]['class'] .= ' ' . $event['type'];
-			$calendar[$event['start_date']]['event'] = $event;
+		if( !empty($schedule) ) {
+			foreach ($schedule as $event) {
+				if (!isset($calendar[$event['start_date']])) {
+					break;
+				}
+				$calendar[$event['start_date']]['event'] = $event;
+			}
 		}
-	
+		
+		$formattedZone = $this->Zone->field('formatted_title', array('title' => $zone));
+
+		$this->set("webcal_url", $webcal_url);
+		$this->set('gcal_url', $gcal_url);		
 		$this->set("calendar", $calendar);
-	
 		$this->set("schedule", $schedule);
 		$this->set("zone", $zone);
+		$this->set('zone_id', $zone_data['Zone']['id']);
+		$this->set('formattedZone', $formattedZone);
 		$this->set('delay_unit', array('hours', 'days'));
 		$this->set('notification_type', array('Regular', 'Special', 'Both'));
+		$this->set('title_for_layout', 'Schedule (' . $formattedZone . ')');
 	}
 
 }
