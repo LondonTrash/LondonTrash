@@ -71,4 +71,5 @@ if (!empty($this->params['pass'][0])) {
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+<?php echo $this->Js->writeBuffer(); ?>
 </html>

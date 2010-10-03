@@ -1,4 +1,19 @@
-<?php 
+<?php echo $this->Html->script('jquery-ui-1.8.5.custom.min', array('inline' => false)); ?>
+<?php echo $this->Html->css('/js/jquery-ui-1.8.5.custom', null, array('inline' => false)); ?>
+<?php echo $this->Html->script('notifications', array('inline' => false)); ?>
+<?php echo $this->Html->script('validate/jquery.validate.pack', array('inline' => false)); ?>
+<?php echo $this->Html->scriptBlock(
+<<<JAVASCRIPT
+$(document).ready(function(){
+  $("form#update-signup").validate({
+	  errorClass: 'formerror'
+  });
+});
+JAVASCRIPT
+, array('inline' => false)); ?>
+
+
+<?php
 
 /**
  * Ajax call for loading another month
@@ -120,9 +135,6 @@ function show_Calendar($timestamp, $calendar){
 	
 }
 
-//show_Calendar('1288915200', $calendar);
-//die();
-
 echo $this->Html->script('calendar');
 
 $address = $this->Session->read('address');
@@ -168,4 +180,38 @@ $address = $this->Session->read('address');
 	<div id="cal_inner">
 		<?php show_Calendar($timestamp, $calendar) ?>
 	</div><!-- #cal_inner -->
+</div>
+<div class="grid_6">  
+	<span id="holiday" class="pop-notice">Email and SMS notifications are coming soon.</span>
+	<a id="notify">Email Notifications</a> 
+	<?php echo $this->Html->link('iCal Feed (' . $formattedZone . ')', $webcal_url, array('class' => 'ical')); ?>
+	<?php echo $this->Html->link('Add to gCal (' . $formattedZone . ')', $gcal_url, array('class' => 'ical')); ?>
+	
+<div class="clear"></div>
+<hr />
+<!--h4>Recycling</h4>
+<select>
+<option value="">Item</option>
+</select>
+<h4>Other Reuse and Recycling Options</h4>
+<select>
+<option value="">Item</option>
+</select-->
+
+<br class="clear" />
+<a href="" class="report"> Report an Error</a>
+<br class="clear" />
+&nbsp;<br class="clear" />
+</div>
+<div class="hidden" id="notifications">
+	<?php echo $this->Form->create('UpdateSignup', array('id' => 'update-signup', 'url' => '#')); ?>
+		<?php echo $this->Form->input('name', array('class' => 'required', 'title' => 'First name')); ?>
+		<?php echo $this->Form->input('email', array('class' => 'required email', 'title' => 'Email address')); ?>
+		<?php echo $this->Js->submit('Let me know!', array(
+			'url' => $this->Html->url(array('controller' => 'update_signups', 'action' => 'add')),
+			'success' => 'notificationSuccess()'
+		)); ?>
+		<?php echo $this->Form->hidden('zone_id', array('value' => $zone_id)); ?>
+		
+	<?php echo $this->Form->end(); ?>
 </div>

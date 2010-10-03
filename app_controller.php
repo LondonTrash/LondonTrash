@@ -3,6 +3,10 @@ class AppController extends Controller {
 
 	var $components = array('DebugKit.Toolbar', 'Auth', 'Session', 'RequestHandler');
 	var $scaffold = 'admin';
+	var $helpers = array(
+		'Session',
+		'Js' // defaults to jQuery engine
+	);
 	
 	function beforeRender() {
 		$this->loadModel('Content');
@@ -18,8 +22,6 @@ class AppController extends Controller {
 	}
 	
 	function beforeFilter() {
-		
-
 		$this->Auth->userModel = 'Admin';
     
 	    $this->Auth->fields = array(

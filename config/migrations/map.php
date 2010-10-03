@@ -30,5 +30,13 @@ $map = array(
 		'014_adding_about_us_and_privacy_policy' => 'M4ca2a63cf96843b2b841f2ee3201ca43'),
 	15 => array(
 		'015_adding_formatted_title_to_zones' => 'M4ca2d46fb9484620bb09428f3201ca43'),
+	16 => array(
+		'016_update_signups' => 'M4ca40dc31b9c46619e87402f3201ca43'),
+	17 => array(
+		'018_adding_name_to_update_signups' => 'M4ca412bbea944c219a0523513201ca43'),
+	18 => array(
+		'018_adding_name_to_update_signups' => 'M4ca4145a56d44d8c9c87241a3201ca43'),
+	19 => array(
+		'018_adding_name_to_update_signups' => 'M4ca414bea2384ae4ae8724333201ca43'),
 );
 ?>
