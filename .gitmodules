@@ -10,3 +10,6 @@
 [submodule "plugins/syrup"]
 	path = plugins/syrup
 	url = git://github.com/mariano/syrup.git
+[submodule "plugins/code_check"]
+	path = plugins/code_check
+	url = git://github.com/Cottser/code_check.git
