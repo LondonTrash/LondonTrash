@@ -247,6 +247,7 @@ img { -ms-interpolation-mode: bicubic }
     letter-spacing: .05em;
     border: 1px solid rgba(140,190,220, 1);
     text-shadow: -1px -1px 0px rgba(0,0,0, .3);
+    background: #444;
     background: -moz-linear-gradient(    center bottom,     rgb(166,216,245) 46%,     rgb(176,226,255) 49%);
     background: -webkit-gradient( linear,    left bottom,    left top, color-stop(0.46, rgb(166,216,245) ), color-stop(0.49, rgb(176,226,255)) );
     line-height: 1.5em!important;
