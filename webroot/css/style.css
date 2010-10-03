@@ -563,6 +563,8 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
 
 #legend {
     display: block;
+    float: left;
+    width: 238px;
     margin: 5px 0 0 0;
     padding: 3px 0;
     border-top: 1px solid rgba(256,256,256, 1);
@@ -731,15 +733,15 @@ position:relative; top:-7px;
      width: 18px;
      border: 1px dotted #B22222; }
 
- #callist .pickup {
+ .pickup {
      color: #fff;
      font-weight: 600;
      background: #B9D3EE;
      text-shadow: 1px 1px 0px rgba(0,0,0, .3); }
 
- #callist #legend span { height: 15px }
+ #legend span { height: 15px }
 
- #callist #legend  .special {
+ #legend  .special {
      font-weight: 600;
      width: 18px;
      border: 1px dotted #B22222; }

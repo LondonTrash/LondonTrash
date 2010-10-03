@@ -13,6 +13,7 @@ $(document).ready(function(){
 		$("#calendar").click(function(){
 			updatecal();
 		}).click();
+		$("#calendar").append('<div id="legend"><small><span class="pickup"></span>Regular Pickup</small><small><span class="special"></span>Special Pickup</small></div>');
 	}
 });
 function updatecal(){
