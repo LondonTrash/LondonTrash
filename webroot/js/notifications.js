@@ -5,6 +5,10 @@ $(document).ready(function(){
 			title: "Email Notifications"
 		});
 	});
+	
+  $("form#update-signup").validate({
+	  errorClass: 'formerror'
+  });
 });
 
 function notificationSuccess() {
