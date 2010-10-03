@@ -74,49 +74,49 @@ class M4ca7f61c0fbc49e5998772b33201ca43 extends CakeMigration {
 					'template' => 'pcs.rogers.com'
 				),
 				array(
-					'id' => 2,
+					'id' => 3,
 					'title' => 'Fido',
 					'protocol_id' => 2,
 					'template' => 'fido.ca'
 				),
 				array(
-					'id' => 3,
+					'id' => 4,
 					'title' => 'Telus',
 					'protocol_id' => 2,
 					'template' => 'msg.telus.com'
 				),
 				array(
-					'id' => 4,
+					'id' => 5,
 					'title' => 'Bell',
 					'protocol_id' => 2,
 					'template' => 'txt.bell.ca'
 				),
 				array(
-					'id' => 5,
+					'id' => 6,
 					'title' => 'Koodo',
 					'protocol_id' => 2,
 					'template' => 'msg.koodomobile.com'
 				),
 				array(
-					'id' => 6,
+					'id' => 7,
 					'title' => 'MTS',
 					'protocol_id' => 2,
 					'template' => 'text.mtsmobility.com'
 				),
 				array(
-					'id' => 7,
+					'id' => 8,
 					'title' => "President's Choice",
 					'protocol_id' => 2,
 					'template' => 'txt.bell.ca'
 				),
 				array(
-					'id' => 8,
+					'id' => 9,
 					'title' => 'Solo',
 					'protocol_id' => 2,
 					'template' => 'txt.bell.ca'
 				),
 				array(
-					'id' => 9,
+					'id' => 10,
 					'title' => 'Virgin',
 					'protocol_id' => 2,
 					'template' => 'vmobile.ca'
