@@ -35,6 +35,7 @@ a:active,
 .actions li:hover,
 .actions li:focus,
 .actions li:active {    color: #418eca;}
+.hidden { display: none; }
 
 .mod:after {
     display: block;
