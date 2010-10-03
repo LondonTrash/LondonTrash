@@ -92,6 +92,11 @@ class ZonesController extends AppController {
 			}
 		}
 		
+		//something to put in #holiday
+		$holiday = $this->Zone->get_schedule('all');
+		
+		
+		
 		$formattedZone = $this->Zone->field('formatted_title', array('title' => $zone));
 
 		$this->set("webcal_url", $webcal_url);
