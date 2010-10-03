@@ -57,7 +57,7 @@ overflow:hidden;
 }
 
 #search-box .searchTerm {
- margin: 0px; padding:0px !important;
+ margin: 0px; padding:5px !important;
  font-size:1.4em!important;
  line-height:0.5em;
  font-family: 'TeXGyreAdventorRegular', Arial, sans-serif;
@@ -92,9 +92,9 @@ float:none!important;
 display:block;
 text-align:center;
 margin:0px!important;
-padding:0 0 5px 0!important;
+padding:5px 0 10px 0!important;
 margin-bottom:5px;
-
+font-size:0.7em;
  border-bottom: 1px solid rgba(0,0,0,  0.1);
  -moz-box-shadow: 0px 1px 0px rgba(256,256,256, 1);
  -webkit-box-shadow: 0px 1px 0px rgba(256,256,256, 1);
@@ -164,7 +164,7 @@ display:block!important;
 
 
 
-#ical {
+#ical {top:5px;
  margin: 0px 0px 10px 0!important;
 }
  
