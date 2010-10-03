@@ -10,20 +10,18 @@
 	</div>
 	<br class="clear" />
 	<?php
-		//next event in the schedule
-		$timestamp = $schedule[0]['start_date'];
-		
-		if ($this->Time->isToday($timestamp)){
+		//next event in the schedule		
+		if ($this->Time->isToday($pickup)){
 			$next_pickup = "7:00am Today!"; 
-			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp);
-		}else if ($this->Time->isTomorrow($timestamp)){
+			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
+		}else if ($this->Time->isTomorrow($pickup)){
 			$next_pickup = "Tomorrow!";
-			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp);
-		}else if(date('z', $timestamp) - date('z') < 7){
-			$next_pickup = "Next ".date('l',$timestamp);
-			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $timestamp);
+			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
+		}else if(date('z', $pickup) - date('z') < 7){
+			$next_pickup = "Next ".date('l',$pickup);
+			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
 		}else {
-			$next_pickup = date('F j<\s\u\p\>S\<\/\s\u\p\>', $timestamp);
+			$next_pickup = date('F j<\s\u\p\>S\<\/\s\u\p\>', $pickup);
 			$next_pickup_details = "";
 		}
 	?>
