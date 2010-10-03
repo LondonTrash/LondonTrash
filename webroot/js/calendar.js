@@ -13,12 +13,17 @@ $(document).ready(function(){
 	}
 });
 function updatecal(){
-	$(".pickup."+$(".ui-datepicker-month").text()+$(".ui-datepicker-year").text()).each(function(){
+	$("."+$(".ui-datepicker-month").text()+$(".ui-datepicker-year").text()).each(function(){
+		var pickuptype;
+		if($(this).hasClass("pickup")) {
+			pickuptype = "pickup";
+		} else {
+			pickuptype = "special";
+		}
 		var day = $(this).children(".day").text();
-		console.log(day);
 		$(".ui-state-default").each(function(){
 			if($(this).text() == day) {
-				$(this).css("border", "1px dashed red"); //addClass(;
+				$(this).addClass(pickuptype);
 			}
 		});
 	});
