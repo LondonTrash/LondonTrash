@@ -1,6 +1,17 @@
 <?php echo $this->Html->script('jquery-ui-1.8.5.custom.min', array('inline' => false)); ?>
 <?php echo $this->Html->css('/js/jquery-ui-1.8.5.custom', null, array('inline' => false)); ?>
 <?php echo $this->Html->script('notifications', array('inline' => false)); ?>
+<?php echo $this->Html->script('validate/jquery.validate.pack', array('inline' => false)); ?>
+<?php echo $this->Html->scriptBlock(
+<<<JAVASCRIPT
+$(document).ready(function(){
+  $("form#update-signup").validate({
+	  errorClass: 'formerror'
+  });
+});
+JAVASCRIPT
+, array('inline' => false)); ?>
+
 
 <?php
 
@@ -193,9 +204,9 @@ $address = $this->Session->read('address');
 &nbsp;<br class="clear" />
 </div>
 <div class="hidden" id="notifications">
-	<?php echo $this->Form->create('UpdateSignup', array('url' => '#')); ?>
-		<?php echo $this->Form->input('name', array('title' => 'First name')); ?>
-		<?php echo $this->Form->input('email', array('title' => 'Email address')); ?>
+	<?php echo $this->Form->create('UpdateSignup', array('id' => 'update-signup', 'url' => '#')); ?>
+		<?php echo $this->Form->input('name', array('class' => 'required', 'title' => 'First name')); ?>
+		<?php echo $this->Form->input('email', array('class' => 'required email', 'title' => 'Email address')); ?>
 		<?php echo $this->Js->submit('Let me know!', array(
 			'url' => $this->Html->url(array('controller' => 'update_signups', 'action' => 'add')),
 			'success' => 'notificationSuccess()'
