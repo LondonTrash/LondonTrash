@@ -437,26 +437,28 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
     background: #fff;
     background: rgba(256,256,256, .7); }
 
- #calendar .today {
+ #calendar .today,
+ .ui-datepicker-today {
      font-weight: 600;
      font-size: 1.2em;
      line-height: 1em;
      border-bottom: 2px solid #003F87!important; }
 
- #calendar .special {
+ #calendar td .special {
      padding: 4px 0px 4px 0px;
      color: #111;
      font-weight: 600;
      border: 1px dotted #B22222;
      text-shadow: 1px 1px 0px rgba(0,0,0, .3); }
 
- #calendar .pickup {
+ #calendar td .pickup {
      color: #fff;
      font-weight: 600;
      background: #B9D3EE;
      text-shadow: 1px 1px 0px rgba(0,0,0, .3); }
 
- #calendar #head, #calendar .ui-datepicker-title {
+ #calendar #head, 
+ #calendar .ui-datepicker-header {
      display: block;
      margin-bottom: 4px;
      padding: 5px 0;
@@ -464,23 +466,46 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
      overflow: auto;
      -moz-box-shadow: 0px 1px 0px rgba(256,256,256, 1);
      -webkit-box-shadow: 0px 1px 0px rgba(256,256,256, 1); }
-/*
- #calendar #head .arrow {
+
+ #calendar #head .arrow,
+ .ui-datepicker-prev,
+ .ui-datepicker-next {
      display: inline-block;
      float: left;
-     width: 10%; }
-*/
+     width: 10%; 
+     }
+     
+ .ui-datepicker-next {
+ 	float:right;
+ }
 
  #calendar #head .arrow #right,
- #calendar .ui-widget-header .ui-datepicker-next .ui-icon { background: url('../img/br_next.png') top center no-repeat }
-/*
- #calendar #head .arrow #right:hover { background: url('../img/br_next.png') bottom center no-repeat }
+ #calendar .ui-datepicker-next { 
+ 	background: url('../img/br_next.png') top center no-repeat;
+ }
 
- #calendar #head .arrow  #left { background: url('../img/br_prev.png') center top no-repeat }
+ #calendar #head .arrow #right:hover,
+ #calendar .ui-datepicker-next:hover { 
+ 	background: url('../img/br_next.png') bottom center no-repeat 
+ }
 
- #calendar #head .arrow  #left:hover { background: url('../img/br_prev.png') center bottom no-repeat }
+ #calendar #head .arrow  #left,
+ .ui-datepicker-prev { 
+ 	background: url('../img/br_prev.png') center top no-repeat 
+ }
 
- #calendar #head .arrow a {
+ #calendar #head .arrow  #left:hover,
+ .ui-datepicker-prev:hover  { 
+ 	background: url('../img/br_prev.png') center bottom no-repeat 
+ }
+ .ui-datepicker-prev.ui-state-disabled,
+ .ui-datepicker-next.ui-state-disabled{
+ 	/*background:none;*/
+ }
+ 
+ #calendar #head .arrow a,
+ .ui-datepicker-prev,
+ .ui-datepicker-next {
      display: block;
      height: 10px;
      margin: 2px 0;
@@ -489,36 +514,50 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
      outline: none;
      -moz-border-radius: 5px;
      -webkit-border-radius: 5px;
-     border-radius: 5px; }
+     border-radius: 5px; 
+ }
 
- #calendar #head h4 {
+ #calendar #head h4, 
+.ui-datepicker-header {
      display: inline-block;
      float: left;
-     width: 80%;
+     width: 100%;
      margin: 0;
      padding: 0;
      color: #666;
      font-size: 1.2em;
      text-align: center;
-     font-family: 'TeXGyreAdventorRegular', Arial, sans-serif; }
-
- #calendar .dotw {
-     color: #fff;
-     font-size: 0.8em;
-     font-weight: 600;
-     background: #B9D3EE; }
-
- #calendar span {
-     float: left;
+     font-family: 'TeXGyreAdventorRegular', Arial, sans-serif; 
+}
+#calendar td, #calendar th {
+	margin:0;
+	padding:0;
+     border: 1px solid #F7F7F7;
+}
+#calendar td a {
+	display:block;
+	text-align:center;
+	margin:0;
+	padding:5px 0;
+     width: 30px;
+     height:15px;
+     text-decoration:none;
+}
+#calendar th {
      width: 32px;
      height: 15px;
      margin: 0px;
      padding: 5px 0px;
      color: #666;
      text-align: center;
-     border: 1px solid #F7F7F7; }
-*/
-.precal { opacity: 0.4 }
+}
+#calendar .dotw,
+ #calendar th {
+     color: #fff;
+     font-size: 0.8em;
+     font-weight: 600;
+     background: #B9D3EE; 
+}
 
 #legend {
     display: block;
@@ -540,9 +579,6 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
      height: 5px;
      margin-right: 5px;
      vertical-align: middle; }
-
-#calendar,
-.sun { clear: left }
 
 .report {
     display: inline-block;
