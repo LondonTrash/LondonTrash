@@ -18,7 +18,10 @@ class SearchesController extends AppController {
 	}
 	
 	private function redirectToStoredResult() {
+		$address = null;
 		if ($zone = $this->Cookie->read('zone')) {
+			$address = $this->Cookie->read('address');
+			$this->updateUserData($address, $zone);
 			$this->redirect(array('controller' => 'zones', 'action' => 'view', $zone));
 		}
 	}
