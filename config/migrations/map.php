@@ -18,5 +18,23 @@ $map = array(
 		'008_adding_notifications_table' => 'M4c9f75da878c4ebdb42e3c843201ca43'),
 	9 => array(
 		'009_adding_type_and_last_created_to_notifications' => 'M4c9faf22e7b04f38af8732123201ca43'),
+	10 => array(
+		'010_adding_address_caches_table' => 'M4c9fc7db9c5042529c7653813201ca43'),
+	11 => array(
+		'011_adding_dte_dtw_zones' => 'M4ca0b665571845f19b26827b3201ca43'),
+	12 => array(
+		'012_added_formatted_address_to_address_caches_table' => 'M4ca0f13d67444b6fa8dc9fe43201ca43'),
+	13 => array(
+		'013_adding_preset_content' => 'M4ca14d4da44c47dba918bc173201ca43'),
+	14 => array(
+		'014_adding_about_us_and_privacy_policy' => 'M4ca2a63cf96843b2b841f2ee3201ca43'),
+	15 => array(
+		'015_adding_formatted_title_to_zones' => 'M4ca2d46fb9484620bb09428f3201ca43'),
+	16 => array(
+		'016_update_signups' => 'M4ca40dc31b9c46619e87402f3201ca43'),
+	17 => array(
+		'018_adding_name_to_update_signups' => 'M4ca414bea2384ae4ae8724333201ca43'),
+	18 => array(
+		'019_preset_providers_and_protocols' => 'M4ca7f61c0fbc49e5998772b33201ca43'),
 );
 ?>
