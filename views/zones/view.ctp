@@ -30,40 +30,34 @@
 	<small>Your Next Pickup is:</small>
 	<h2><?php echo $next_pickup; ?></h2>
 	<span id='r-date'><?php echo $next_pickup_details; ?></span>
-	<ol id="callist">
-<li class="calday pickup"><strong>Jan</strong> <span>1</span> </li>
-<li class="calday pickup"><strong>Feb</strong> <span>2</span> </li>
-<li class="calday pickup"><strong>Mar</strong> <span>3</span> </li>
-<li class="calday pickup"><strong>Jun</strong> <span>4</span> </li>
-<li class="calday pickup"><strong>Jul</strong> <span>5</span> </li>
-<li class="calday pickup"><strong>Aug</strong> <span>6</span> </li>
-<li class="calday special pickup"><strong>Oct</strong> <span>7</span> </li>
-<li class="calday special"><strong>Sep</strong> <span>8</span> </li>
-<li class="calday pickup"><strong>Dec</strong> <span>10</span> </li>
-<li class="calday pickup"><strong>Jan</strong> <span>1</span> </li>
-<li class="calday pickup"><strong>Feb</strong> <span>2</span> </li>
-<li class="calday pickup"><strong>Mar</strong> <span>3</span> </li>
-<li class="calday pickup"><strong>Jun</strong> <span>4</span> </li>
-<li class="calday pickup"><strong>Jul</strong> <span>5</span> </li>
-<li class="calday pickup"><strong>Aug</strong> <span>6</span> </li>
-<li class="calday special pickup"><strong>Oct</strong> <span>7</span> </li>
-<li class="calday special"><strong>Sep</strong> <span>8</span> </li>
-<li class="calday pickup"><strong>Dec</strong> <span>10</span> </li>
+</div>
+<div id="calendar" class="hidden">
 
-<li>
-<div class="clear"></div>
-<div id="legend">
- <small><span class="pickup"></span>Regular Pickup</small>
- <small><span class="special"></span>Special Pickup</small>
-</div></li>
-</ol>
 </div>
-<div id="calendar">
+<ol id="callist">
 	<?php foreach($schedule as $date) { ?>
-		<?php //echo $date['type']. ": ".  date('Y-m-d',$date['start_date']) . " => " . date('Y-m-d',strtotime(date('Y-m-d H:i:s',$date['end_date'])." -1 seconds")) . "<br />"; ?>
-		<div class="<?php echo $date['type'] == "pickup" ? "pickup" : "other"; ?> hidden <?php echo date('FY',$date['start_date']); ?>"><?php echo date('j',$date['start_date']); ?></div>
+		<li class="calday <?php echo $date['type'] == "pickup" ? "pickup" : "special"; ?> <?php echo date('FY',$date['start_date']); ?>">
+			<strong class="<?php echo date('F', $date['start_date']); ?>"><?php echo date('M', $date['start_date']); ?></strong>
+			<span class="day"><?php echo date('j', $date['start_date']); ?></span>
+		</li>
+		<?php if (date('Y-m-d',$date['start_date']) != date('Y-m-d',strtotime(date('Y-m-d H:i:s',$date['end_date'])." -1 seconds"))) { ?>
+			<?php $d = $date['start_date']; while($d < $date['end_date']) { ?>
+				<?php $d = strtotime(date('Y-m-d', $d)." +1 day"); ?>
+				<li class="calday <?php echo $date['type'] == "pickup" ? "pickup" : "special"; ?> <?php echo date('FY',$d); ?>">
+					<strong class="<?php echo date('F', $d); ?>"><?php echo date('M', $d); ?></strong>
+					<span class="day"><?php echo date('j', $d); ?></span>
+				</li>
+			<?php } ?>
+		<?php } ?>
 	<?php } ?>
-</div>
+	<li>
+		<div class="clear"></div>
+		<div id="legend">
+			<small><span class="pickup"></span>Regular Pickup</small>
+			<small><span class="special"></span>Special Pickup</small>
+		</div>
+	</li>
+</ol>
 <div class="grid_6">  
 	<span id="holiday" class="pop-notice">Email and SMS notifications are coming soon.</span>
 	<a id="notify">Email Notifications</a> 

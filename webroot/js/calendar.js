@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	if($("#calendar").length > 0) {
+		$("#callist").hide(); //Hide the Non-JS calendar
+		$("#calendar").show(); //Show the JS calendar
 		$("#calendar").datepicker({
 			onChangeMonthYear: function(year, month, inst) {
 				updatecal();
@@ -12,7 +14,8 @@ $(document).ready(function(){
 });
 function updatecal(){
 	$(".pickup."+$(".ui-datepicker-month").text()+$(".ui-datepicker-year").text()).each(function(){
-		var day = $(this).text();
+		var day = $(this).children(".day").text();
+		console.log(day);
 		$(".ui-state-default").each(function(){
 			if($(this).text() == day) {
 				$(this).css("border", "1px dashed red"); //addClass(;

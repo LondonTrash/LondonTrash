@@ -425,8 +425,7 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
 #calendar {
     float: left;
     width: 238px;
-    margin-top: 10px;
-    margin: 0 0 0 15px;
+    margin: 0 0 15px 15px;
     padding: 4px 4px 5px 5px;
     font-size: 0.8em;
     -webkit-border-radius: 5px;
