@@ -3,23 +3,18 @@
 define('_ZONELOOKUP_LIB_PATH', str_replace('\\', '/', dirname(__FILE__)) . '/');
 
 class ZoneLookup {
+
     protected static $_service_url = 'http://maps.googleapis.com/maps/api/geocode/json';
     protected static $_service_param_addy = 'address';
-    
-    public function __construct() {
-        /* void */
-    }
     
     public function get_latlng_by_address($address) {
         $address = trim($address);
         $gdata_url = $this->_build_url(array(self::$_service_param_addy => $address));
         
-        $data = null;
-        
         $data = file_get_contents($gdata_url);
         $data = json_decode($data);
         
-        if( 'OK' == $data->status ) {
+        if(!empty($data->status) && $data->status == 'OK') {
             return $data->results;
         }
         
@@ -75,7 +70,7 @@ class ZoneLookup {
                 }
                 
                 if( $is_point_in_poly ) {
-                    return $poly->name;
+                    return strval($poly->name);
                 }
             }
         }
@@ -95,7 +90,6 @@ class ZoneLookup {
         
         $url = self::$_service_url;
         $url .= '?' . http_build_query($params);
-        
         return $url;
     }
 }
