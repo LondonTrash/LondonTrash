@@ -13,11 +13,13 @@ $(document).ready(function(){
 		$("#calendar").click(function(){
 			updatecal();
 		}).click();
+		$("#calendar").append('<div id="legend"><small><span class="pickup"></span>Regular Pickup</small><small><span class="special"></span>Special Pickup</small></div>');
 	}
 });
 function updatecal(){
 	$("."+$(".ui-datepicker-month").text()+$(".ui-datepicker-year").text()).each(function(){
 		var pickuptype;
+		var pickuptooltip = $(this).attr("title");
 		if($(this).hasClass("pickup")) {
 			pickuptype = "pickup";
 		} else {
@@ -27,6 +29,7 @@ function updatecal(){
 		$(".ui-state-default").each(function(){
 			if($(this).text() == day) {
 				$(this).addClass(pickuptype);
+				$(this).attr("title", pickuptooltip);
 			}
 		});
 	});
