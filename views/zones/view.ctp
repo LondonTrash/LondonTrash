@@ -205,10 +205,10 @@ $address = $this->Session->read('address');
 <div class="hidden" id="notifications">
 	<?php
 	    echo $this->Form->create('Subscriber', array('id' => 'subscribe-notifications', 'url' => '#'));
-			echo $this->Form->radio('Provider.protocol_id', array('1' => 'Email'), array('hiddenField' => false, 'default' => 1));
-	    echo $this->Form->input('Subscriber.contact_email', array('label' => 'Email', 'class' => 'required email'));
-			echo $this->Form->radio('Provider.protocol_id', array('2' => 'SMS'), array('hiddenField' => false));
-	    echo $this->Form->input('Subscriber.contact_phone', array('label' => 'Phone', 'class' => 'required email'));
+			echo $this->Form->radio('Subscriber.protocol_id', array('1' => 'Email'), array('hiddenField' => false, 'default' => 1));
+	    echo $this->Form->input('Subscriber.email', array('label' => 'Email', 'class' => 'required email'));
+			echo $this->Form->radio('Subscriber.protocol_id', array('2' => 'SMS'), array('hiddenField' => false));
+	    echo $this->Form->input('Subscriber.phone', array('label' => 'Phone', 'class' => 'required email'));
 			echo $this->Form->input('Subscriber.provider_id');
 	    echo $this->Form->hidden('Subscriber.zone_id', array('value' => $zone_id));
 			
