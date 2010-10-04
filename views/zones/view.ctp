@@ -206,10 +206,10 @@ $address = $this->Session->read('address');
 	<?php
 	    echo $this->Form->create('Subscriber', array('id' => 'subscribe-notifications', 'url' => '#'));
 			echo $this->Form->radio('Subscriber.protocol_id', array('1' => 'Email'), array('hiddenField' => false, 'default' => 1));
-	    echo $this->Form->input('Subscriber.email', array('label' => 'Email', 'class' => 'required email'));
+	    echo $this->Form->input('Subscriber.email', array('label' => 'Email'));
 			echo $this->Form->radio('Subscriber.protocol_id', array('2' => 'SMS'), array('hiddenField' => false));
-	    echo $this->Form->input('Subscriber.phone', array('label' => 'Phone', 'class' => 'required email'));
-			echo $this->Form->input('Subscriber.provider_id');
+	    echo $this->Form->input('Subscriber.phone', array('label' => 'Phone'));
+			echo $this->Form->input('Subscriber.provider_id', array('empty' => 'Choose Provider'));
 	    echo $this->Form->hidden('Subscriber.zone_id', array('value' => $zone_id));
 			
 			// For multiple notifications, custom notifications, etc.
@@ -218,8 +218,9 @@ $address = $this->Session->read('address');
 			// echo $this->Form->input('Notification.0.notification_type', array('type' => 'select', 'options' => $notification_type)); // regular, special, both
 			
 	    echo $this->Js->submit('Let me know!', array(
-	    	'url' => $this->Html->url(array('controller' => 'notifications', 'action' => 'add')),
-				'success' => 'notificationSuccess()'
+	    	'url' => $this->Html->url(array('controller' => 'subscribers', 'action' => 'add')),
+				'success' => 'notificationSuccess()',
+				'beforeSubmit' => 'notificationValidation()'
 	    ));
 			echo $this->Form->end();
 	?>

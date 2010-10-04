@@ -12,3 +12,6 @@ function notificationSuccess() {
 	$('.pop-notice').text("Don't call us, we'll call you.");
 	$('.pop-notice').effect('highlight', 2000);
 }
+function notificationValidation() {
+	return($("#subscribe-notifications").validate().form());
+}
