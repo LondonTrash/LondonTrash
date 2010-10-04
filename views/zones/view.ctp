@@ -6,7 +6,7 @@
 <div class="results mod">
 	<div class="address">
 		<?php echo $this->Session->read('address'); ?> (<?php echo $formattedZone; ?>)
-		<?php echo $this->Html->link("Change", array('controller' => 'searches', '?' => array('a' => $this->Session->read('address')))); ?>
+		<?php echo $this->Html->link("Change", array('controller' => 'searches', 'action' => 'clear', $this->Session->read('address'))); ?>
 	</div>
 	<br class="clear" />
 	<?php

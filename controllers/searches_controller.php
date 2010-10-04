@@ -27,6 +27,20 @@ class SearchesController extends AppController {
 	}
 	
 	/**
+	 * Clear stored address and zone and redirect to search page
+	 *
+	 * @param string $address 
+	 * @return void
+	 * @author Scott Reeves
+	 */
+	public function clear($address = null) {
+		$this->Session->destroy();
+		$this->Cookie->delete('address');
+		$this->Cookie->delete('zone');
+		$this->redirect(array('action' => 'index', '?' => array('a' => $address)));
+	}
+	
+	/**
 	 * Used with ambiguous addresses
 	 * Updates the user data and redirects to the proper schedule
 	 *
