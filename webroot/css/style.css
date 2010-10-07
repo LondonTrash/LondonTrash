@@ -536,7 +536,7 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
 	padding:0;
     border: 1px solid #F7F7F7;
 }
-#calendar td a {
+#calendar td a, #calendar td span {
 	display:block;
 	text-align:center;
 	margin:0;
