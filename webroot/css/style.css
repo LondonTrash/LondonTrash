@@ -895,12 +895,12 @@ position:relative; top:-7px;
 	opacity:.80 !important;
 	filter: Alpha(Opacity=80);
 }
-/*#cboxWrapper {
+#cboxWrapper {
 	position: relative !important;
 	left: 50%;
 	margin: 0 auto;
 	text-align: center;
-}*/
+}
 
 #update-signup h3 {
 	margin: 0 0 12px;
