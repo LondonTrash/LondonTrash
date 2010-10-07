@@ -2,10 +2,10 @@
 <?php echo $this->Html->css('/js/colorbox/colorbox', null, array('inline' => false)); ?>
 <?php echo $this->Html->script('colorbox/jquery.colorbox-min', array('inline' => false)); ?>
 <?php echo $this->Html->script('validate/jquery.validate.pack', array('inline' => false)); ?>
-<?php echo $this->Html->script('jquery.form'); ?>
+<?php echo $this->Html->script('jquery.form', array('inline' => false)); ?>
 
-<?php echo $this->Html->script('notifications'); ?>
-<?php echo $this->Html->script('calendar'); ?>
+<?php echo $this->Html->script('notifications', array('inline' => false)); ?>
+<?php echo $this->Html->script('calendar', array('inline' => false)); ?>
 <?php $signupUrl = $this->Html->url(array(
 	'controller' => 'update_signups',
 	'action' => 'add',
