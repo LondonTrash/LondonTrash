@@ -1,19 +1,23 @@
-$(document).ready(function(){
-	$("#notify").colorbox({
-		width: "525px",
-		inline: true,
-		href: "#update-signup",
-		overlayClose: false,
-		scrolling: false
+function prepform(){ 
+	$("#update-signup").validate({
+		submitHandler: function(form) {
+			$(form).ajaxSubmit({success: 
+				function(html){ 
+					$.fn.colorbox({
+						html: html,
+						open: true,
+						scrolling: false
+					});
+					$.fn.colorbox.resize({width: 400, height: 150});
+				}
+			});
+		},
+		errorClass: 'form-error',
+		messages: {
+			'data[UpdateSignup][email]': {
+				email: 'Invalid Email',
+				required: 'Required'
+			}
+		}
 	});
-	
-  $("form#update-signup").validate({
-	  errorClass: 'formerror'
-  });
-});
-
-function notificationSuccess() {
-	$("#notifications").colorbox.close();
-	$('.pop-notice').text("Don't call us, we'll call you.");
-	$('.pop-notice').effect('highlight', 2000);
 }

@@ -1,9 +1,30 @@
 <?php echo $this->Html->script('jquery-ui-1.8.5.custom.min', array('inline' => false)); ?>
-<?php echo $this->Html->script('colorbox/jquery.colorbox-min', array('inline' => false)); ?>
 <?php echo $this->Html->css('/js/colorbox/colorbox', null, array('inline' => false)); ?>
+<?php echo $this->Html->script('colorbox/jquery.colorbox-min', array('inline' => false)); ?>
 <?php echo $this->Html->script('validate/jquery.validate.pack', array('inline' => false)); ?>
+<?php echo $this->Html->script('jquery.form'); ?>
+
 <?php echo $this->Html->script('notifications'); ?>
 <?php echo $this->Html->script('calendar'); ?>
+<?php $signupUrl = $this->Html->url(array(
+	'controller' => 'update_signups',
+	'action' => 'add',
+	$zone_id)); ?>
+<?php
+echo $this->Html->scriptBlock(
+<<<JAVASCRIPT
+$(document).ready(function(){
+	$("#notify").colorbox({
+		width: "525px",
+		href: "{$signupUrl}",
+		overlayClose: false,
+		scrolling: false
+	},
+	prepform);
+});
+JAVASCRIPT
+, array('inline' => false));
+?>
 
 <div class="results mod">
 	<div class="address">
@@ -78,17 +99,4 @@
 <a href="" class="report"> Report an Error</a>
 <br class="clear" />
 &nbsp;<br class="clear" />
-</div>
-<div class="hidden" id="notifications">
-	<?php echo $this->Form->create('UpdateSignup', array('id' => 'update-signup', 'url' => '#')); ?>
-		<h3>Sign up below and we'll let you know as soon as we have email and SMS notifications up and running.</h3>
-		<?php echo $this->Form->input('name', array('label' => false, 'class' => 'required', 'title' => 'First name')); ?>
-		<?php echo $this->Form->input('email', array('label' => false, 'class' => 'required email', 'title' => 'Email address')); ?>
-		<?php echo $this->Js->submit('Let me know!', array(
-			'url' => $this->Html->url(array('controller' => 'update_signups', 'action' => 'add')),
-			'success' => 'notificationSuccess()'
-		)); ?>
-		<?php echo $this->Form->hidden('zone_id', array('value' => $zone_id)); ?>
-		
-	<?php echo $this->Form->end(); ?>
 </div>

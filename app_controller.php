@@ -19,6 +19,11 @@ class AppController extends Controller {
 		));
 		$tip = $tips['Content']['body'];
 		$this->set('tip', $tip);
+		
+		// disable debug for ajax requests
+    if ($this->RequestHandler->isAjax()) {  
+			Configure::write('debug', 0);
+    }
 	}
 	
 	function beforeFilter() {
