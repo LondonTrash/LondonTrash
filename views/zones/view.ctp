@@ -1,4 +1,6 @@
 <?php echo $this->Html->script('jquery-ui-1.8.5.custom.min', array('inline' => false)); ?>
+<?php echo $this->Html->script('colorbox/jquery.colorbox-min', array('inline' => false)); ?>
+<?php echo $this->Html->css('/js/colorbox/colorbox', null, array('inline' => false)); ?>
 <?php echo $this->Html->script('validate/jquery.validate.pack', array('inline' => false)); ?>
 <?php echo $this->Html->script('notifications'); ?>
 <?php echo $this->Html->script('calendar'); ?>
