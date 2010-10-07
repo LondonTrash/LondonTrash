@@ -864,10 +864,10 @@ position:relative; top:-7px;
 #cboxClose {
 	bottom: 18px !important;
 	right: 18px !important;
-	color: #999 !important;
+	color: #666 !important;
 }
 #cboxClose.hover {
-	color: #444 !important;
+	color: #333 !important;
 }
  
 #colorbox {
@@ -906,6 +906,7 @@ position:relative; top:-7px;
 
 #update-signup div.text input {
 	font-size: 1.5em;
+	margin-bottom: 6px;
 }
  
 #update-signup .submit input {

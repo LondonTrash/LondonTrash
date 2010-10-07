@@ -3,7 +3,8 @@ $(document).ready(function(){
 		width: "525px",
 		inline: true,
 		href: "#update-signup",
-		overlayClose: false
+		overlayClose: false,
+		scrolling: false
 	});
 	
   $("form#update-signup").validate({
