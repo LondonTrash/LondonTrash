@@ -1,8 +1,9 @@
 $(document).ready(function(){
 	$("#notify").colorbox({
-		width:"500px",
-		inline:true,
-		href:"#update-signup"
+		width: "525px",
+		inline: true,
+		href: "#update-signup",
+		overlayClose: false
 	});
 	
   $("form#update-signup").validate({

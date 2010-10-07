@@ -81,8 +81,9 @@
 </div>
 <div class="hidden" id="notifications">
 	<?php echo $this->Form->create('UpdateSignup', array('id' => 'update-signup', 'url' => '#')); ?>
-		<?php echo $this->Form->input('name', array('class' => 'required', 'title' => 'First name')); ?>
-		<?php echo $this->Form->input('email', array('class' => 'required email', 'title' => 'Email address')); ?>
+		<h3>Sign up below and we'll let you know as soon as we have email and SMS notifications up and running.</h3>
+		<?php echo $this->Form->input('name', array('label' => false, 'class' => 'required', 'title' => 'First name')); ?>
+		<?php echo $this->Form->input('email', array('label' => false, 'class' => 'required email', 'title' => 'Email address')); ?>
 		<?php echo $this->Js->submit('Let me know!', array(
 			'url' => $this->Html->url(array('controller' => 'update_signups', 'action' => 'add')),
 			'success' => 'notificationSuccess()'
