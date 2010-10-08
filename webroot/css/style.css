@@ -1021,7 +1021,6 @@ position:relative; top:-7px;
 	position: absolute;
 	top: 0;
 	text-align: left;
-	width: 630px;
 }
 #admin-info a#admin-logout, #admin-info a#admin-area {
 	display: block;
