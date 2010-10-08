@@ -52,7 +52,7 @@ if (!empty($this->params['pass'][0])) {
 			<ul id="lh-nav">
 				<li><?php echo $this->Html->link('About', array('controller' => 'contents', 'action' => 'view', 'about')); ?>
 				</li>
-				<li><?php echo $this->Html->link('Feedback', array('controller' => 'feedback')); ?>
+				<li><?php echo $this->Html->link('Feedback', array('controller' => 'feedbacks', 'action' => 'add')); ?>
 				</li>
 				<li><?php echo $this->Html->link('Privacy Policy', array('controller' => 'contents', 'action' => 'view', 'privacy-policy')); ?>
 				</li>
