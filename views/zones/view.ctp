@@ -80,7 +80,8 @@ JAVASCRIPT
 </ol>
 <div class="grid_6">  
 	<span id="holiday" class="pop-notice">Email and SMS notifications are coming soon.</span>
-	<a id="notify">Email Notifications</a> 
+	<?php echo $this->Html->link('Email Notifications', $signupUrl, array('id' => 'notify')); ?>
+	
 	<?php echo $this->Html->link('iCal Feed (' . $formattedZone . ')', $webcal_url, array('class' => 'ical')); ?>
 	<?php echo $this->Html->link('Add to gCal (' . $formattedZone . ')', $gcal_url, array('class' => 'ical')); ?>
 

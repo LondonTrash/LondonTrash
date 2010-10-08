@@ -186,16 +186,16 @@ img { -ms-interpolation-mode: bicubic }
     font-weight: 600;
     text-shadow: 1px 1px 0px rgba(0,0,0, .2); }
 
-.notice {
+#flashMessage.notice {
     color: #fff;
     background: url('../img/warning-large.png') 10px 5px no-repeat #FF9912!important; }
 
-.success {
+#flashMessage.success {
     color: #fff;
     background: url('../img/sent-okay.png') 10px 5px no-repeat #458B00!important; }
 
-.message,
-.error {
+#flashMessage.message,
+#flashMessage.error {
     color: #fff;
     background: url('../img/message.png') 10px 5px no-repeat #5D92B1!important; }
 	 
@@ -902,6 +902,10 @@ position:relative; top:-7px;
 	text-align: center;
 }
 
+#update-signup {
+	text-align: center;
+}
+
 #update-signup h3 {
 	margin: 0 0 12px;
 	padding-bottom: 12px;
@@ -968,8 +972,15 @@ position:relative; top:-7px;
 	padding-right: 1em;
 	color: #777;
 }
-#update-signup label.form-error {
+.update_signups-add label {
+	margin-left: 45px;
+}
+.update_signups-add .submit input {
+	margin-bottom: 12px !important;
+}
+#update-signup label.form-error, form .error-message {
 	text-align: left;
+	float: left;
 	padding: 0 0 0 32px;
 	color: #900;
 	line-height: 2.65;
