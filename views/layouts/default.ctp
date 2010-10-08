@@ -56,8 +56,6 @@ if (!empty($this->params['pass'][0])) {
 			<ul id="lh-nav">
 				<li><?php echo $this->Html->link('About', array('controller' => 'contents', 'action' => 'view', 'about', 'admin' => false)); ?>
 				</li>
-				<li><?php echo $this->Html->link('Feedback', array('controller' => 'feedbacks', 'action' => 'add', 'admin' => false)); ?>
-				</li>
 				<li><?php echo $this->Html->link('Privacy Policy', array('controller' => 'contents', 'action' => 'view', 'privacy-policy', 'admin' => false)); ?>
 				</li>
 				<li><?php echo $this->Html->link('Open Data London', 'http://www.opendatalondon.ca/', array('id' => 'odl')); ?></li>
