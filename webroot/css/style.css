@@ -93,7 +93,7 @@ img { -ms-interpolation-mode: bicubic }
      font-family: 'TeXGyreAdventorBold', Arial, sans-serif;
      text-shadow: 0px 1px 0px rgba(256,256,256, 1); }
 
-.glass h3, #colorbox h3 {
+.glass h3, #nyroModalWrapperg h3 {
      margin: 0 0 5px 0;
      padding: 0;
      color: #333;
