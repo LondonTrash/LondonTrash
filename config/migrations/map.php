@@ -35,6 +35,6 @@ $map = array(
 	17 => array(
 		'018_adding_name_to_update_signups' => 'M4ca414bea2384ae4ae8724333201ca43'),
 	18 => array(
-		'001_feedback_table' => 'M4caea72ec4284413bb3e1b483201ca43'),
+		'019_feedback_table' => 'M4caea72ec4284413bb3e1b483201ca43'),
 );
 ?>
