@@ -82,9 +82,9 @@ if (!empty($this->params['pass'][0])) {
     host: 'londontrash.uservoice.com', 
     forum: '80369',
     alignment: 'right',
-    background_color:'#8dbcd9', 
+    background_color:'#18abf0', 
     text_color: 'white',
-    hover_color: '#18abf0',
+    hover_color: '#3dc2ff',
     lang: 'en',
     showTab: true
   };
