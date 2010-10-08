@@ -294,7 +294,8 @@ input[type="button"]::-moz-focus-inner { border : 0px }
 
  .zones-view .glass {
      margin-top: 5px;
-     height:395px;
+     height:420px;
+     position: relative;
      padding: 0px 0px 0px 0px; }
 
 .results {
@@ -595,7 +596,7 @@ padding: 4px 1.5px!important;
 	padding:4px 5px 4px 5px;
     text-decoration: none;
 	float:none;
-	position:absolute; bottom:-37.6%; right:-4%;
+	position:absolute; bottom: 10px; right:0;
     text-shadow: -1px -1px 0px rgba(0,0,0, .0);
     font-size: 0.8em;
     background: #666;
@@ -664,8 +665,8 @@ position:relative; top:-7px;
     background: url('../img/cal.png') 4px 2px no-repeat ; }
 
 .zones-view .grid_6 {
-    position: relative;
-    left: 2px; width:350px;}
+    padding-left: 2px;
+    width:350px;}
 
  .grid_6 select {
      margin: 5px 0;
