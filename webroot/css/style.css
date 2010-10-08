@@ -920,9 +920,7 @@ position:relative; top:-7px;
 	margin-bottom: 6px;
 }
  
-#update-signup .submit input,
-.feedback .submit input,
-#report-problem .submit input {
+.submit input {
     display: inline-block;
     margin: 15px 0px 0 0px;
     padding: 9px 15px 9px 15px;
@@ -943,17 +941,13 @@ position:relative; top:-7px;
     -webkit-box-shadow: 0px 2px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
     cursor: pointer; }
 
-#update-signup .submit input:hover,
-.feedback .submit input:hover,
-#report-problem .submit input:hover {
+.submit input:hover {
     color: #fff!important;
     background: -moz-linear-gradient(    center bottom,     rgba(0,0,0, .3) 46%,     rgba(0,0,0, .2) 49%);
     background: -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .3) ), color-stop(0.49,  rgba(0,0,0, .2)) );
   }
 
-#update-signup .submit input:active,
-.feedback .submit input:active,
-#report-problem .submit input:active {
+.submit input:active {
     position: relative;
     top: -3px;
     color: #fff!important;
@@ -1023,4 +1017,18 @@ position:relative; top:-7px;
 #admin-info a:hover,
 #admin-info a:active {
 	 color: #c7e4ff;
+}
+#AdminLoginForm label {
+	float: left;
+	width: 100px;
+	line-height: 2;
+}
+#AdminLoginForm {
+	margin-top: 12px;
+}
+#AdminLoginForm .text input, #AdminLoginForm .password input {
+	font-size: 1.5em;
+}
+#AdminLoginForm .submit {
+	margin: 0 0 15px 103px;
 }
