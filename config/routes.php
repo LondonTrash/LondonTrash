@@ -32,9 +32,13 @@
  */
 	Router::connect('/pages/*', array('controller' => 'contents', 'action' => 'view'));
 	
-	// Feedback
-	Router::connect('/feedback', array('controller' => 'feedbacks', 'action' => 'add'));
-	Router::connect('/feedback/thanks', array('controller' => 'feedbacks', 'action' => 'success'));
+	// Notifications for notifications
+	Router::connect('/notify', array('controller' => 'update_signups', 'action' => 'add'));
+	Router::connect('/notify/thanks', array('controller' => 'update_signups', 'action' => 'success'));
+	
+	// Report a problem
+	Router::connect('/report', array('controller' => 'problem_reports', 'action' => 'add'));
+	Router::connect('/report/thanks', array('controller' => 'problem_reports', 'action' => 'success'));
 	
 	// User Routes
 	Router::connect('/search/*', array(
