@@ -24,6 +24,14 @@ if (!empty($this->params['pass'][0])) {
 <body class="<?php echo $bodyClass; ?>"<?php echo $bodyId; ?>>
 	<div class="container_16">
 		<div class="grid_5">
+			<?php if ($this->Session->read('Auth.Admin')): ?>
+			<div id="admin-info">
+			Logged in as <?php echo $this->Session->read('Auth.Admin.email'); ?>
+			<?php echo $this->Html->link("Admin Area", array('controller' => 'admins', 'admin' => true), array('id' => 'admin-area')); ?>
+			<?php echo $this->Html->link("Logout", array('action' => 'logout', 'admin' => true), array('id' => 'admin-logout')); ?>
+			</div>
+			<?php endif; ?>
+			
 			<h1 id="site-title"><?php echo $this->Html->link("London Trash", array('controller' => 'searches', 'action' => 'index', 'admin' => false)); ?></h1>
 			
 			<?php if ($this->params['controller'] != 'searches'): ?>
@@ -32,21 +40,9 @@ if (!empty($this->params['pass'][0])) {
 					<p><?php echo $tip; ?></p>
 				</div>
 			<?php endif; ?>
-			
-			<?php if ($this->params['controller'] == 'zones' && $this->action == 'view'): ?>
-				<!--a href="" class="report"> Report an Error</a-->
-			<?php endif; ?>
 		</div>
 		
 		<div class="grid_11">
-			
-			<?php if ($this->Session->read('Auth.Admin')): ?>
-			<div id="admin-info">
-			Logged in as <?php echo $this->Session->read('Auth.Admin.email'); ?>
-			<?php echo $this->Html->link("Admin Area", array('controller' => 'admins', 'admin' => true), array('id' => 'admin-area')); ?>
-			<?php echo $this->Html->link("Logout", array('action' => 'logout', 'admin' => true), array('id' => 'admin-logout')); ?>
-			</div>
-			<?php endif; ?>
 								
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Session->flash('auth'); ?>

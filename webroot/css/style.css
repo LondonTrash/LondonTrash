@@ -1020,11 +1020,11 @@ position:relative; top:-7px;
 	color: #eee;
 	position: absolute;
 	top: 0;
-	text-align: right;
+	text-align: left;
 	width: 630px;
 }
 #admin-info a#admin-logout, #admin-info a#admin-area {
-	margin-left: 1em;
+	display: block;
 }
 #admin-info a {
 	color: #8ac7ff;
