@@ -62,7 +62,7 @@ JAVASCRIPT
 		}
 	?>
 	<small>Your Next Regular Pickup is:</small>
-	<br class="clear" />
+	<div class="clear"></div>
 	<h2><?php echo $next_pickup; ?></h2>
 	<span id='r-date'><?php echo $next_pickup_details; ?></span>
 </div>
