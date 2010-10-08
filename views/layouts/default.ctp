@@ -28,7 +28,7 @@ if (!empty($this->params['pass'][0])) {
 			<div id="admin-info">
 			Logged in as <?php echo $this->Session->read('Auth.Admin.email'); ?>
 			<?php echo $this->Html->link("Admin Area", array('controller' => 'admins', 'admin' => true), array('id' => 'admin-area')); ?>
-			<?php echo $this->Html->link("Logout", array('action' => 'logout', 'admin' => true), array('id' => 'admin-logout')); ?>
+			<?php echo $this->Html->link("Logout", array('controller' => 'admins', 'action' => 'logout', 'admin' => true), array('id' => 'admin-logout')); ?>
 			</div>
 			<?php endif; ?>
 			
