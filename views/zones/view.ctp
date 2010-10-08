@@ -5,6 +5,7 @@
 <?php echo $this->Html->script('jquery.form', array('inline' => false)); ?>
 
 <?php echo $this->Html->script('notifications', array('inline' => false)); ?>
+<?php echo $this->Html->script('report_problem', array('inline' => false)); ?>
 <?php echo $this->Html->script('calendar', array('inline' => false)); ?>
 <?php
 $notifyUrl = $this->Html->url(array(
@@ -110,7 +111,7 @@ JAVASCRIPT
 </select-->
 
 <br class="clear" />
-<a href="" id="report"> Report an Error</a>
+<?php echo $this->Html->link('Report an Error', $reportUrl, array('id' => 'report')); ?>
 <br class="clear" />
 &nbsp;<br class="clear" />
 </div>
