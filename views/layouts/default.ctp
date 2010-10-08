@@ -9,6 +9,17 @@
 <title><?php echo (!empty($title_for_layout) ? $title_for_layout . ' - ' :''); ?>LondonTrash.ca</title>
 <?php echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js');?>
 <?php	echo $this->Html->script('global'); ?>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18764236-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 <?php echo $scripts_for_layout; ?>
 </head>
 <?php
@@ -66,15 +77,24 @@ if (!empty($this->params['pass'][0])) {
 	</div>
 </body>
 <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-18764236-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  var uservoiceOptions = {
+    key: 'londontrash',
+    host: 'londontrash.uservoice.com', 
+    forum: '80369',
+    alignment: 'right',
+    background_color:'#8dbcd9', 
+    text_color: 'white',
+    hover_color: '#18abf0',
+    lang: 'en',
+    showTab: true
+  };
+  function _loadUserVoice() {
+    var s = document.createElement('script');
+    s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "uservoice.com/javascripts/widgets/tab.js";
+    document.getElementsByTagName('head')[0].appendChild(s);
+  }
+  _loadSuper = window.onload;
+  window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
 </script>
 <?php echo $this->Js->writeBuffer(); ?>
 </html>
