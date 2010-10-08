@@ -93,7 +93,7 @@ JAVASCRIPT
 	</li>
 </ol>
 <div class="grid_6">  
-	<span id="holiday" class="pop-notice">Email and SMS notifications are coming soon.</span>
+	<span id="holiday" class="pop-notice"><p>Email and SMS notifications are coming soon.</p><p>Click the <strong>Email Notifications</strong> button below, <br>and we'll let you know once it's ready.</p></span>
 	<?php echo $this->Html->link('Email Notifications', $notifyUrl, array('id' => 'notify')); ?>
 	
 	<?php echo $this->Html->link('iCal Feed (' . $formattedZone . ')', $webcal_url, array('class' => 'ical')); ?>
