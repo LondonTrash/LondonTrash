@@ -11,7 +11,8 @@ class SearchesController extends AppController {
 	 * @author Scott Reeves
 	 */
 	public function clear($address = null) {
-		$this->Session->destroy();
+		$this->Session->delete('address');
+		$this->Session->delete('zone');
 		$this->Cookie->delete('address');
 		$this->Cookie->delete('zone');
 		$this->redirect(array('action' => 'index', '?' => array('a' => $address)));
