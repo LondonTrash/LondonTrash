@@ -1,7 +1,6 @@
 <?php
 class AdminsController extends AppController {
 	var $name = 'Admins';
-	var $helpers = array('Session');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -22,13 +21,17 @@ class AdminsController extends AppController {
 	}
 	
 	function admin_add_account() {
-		if($this->data) {
-			$this->Admin->create();
-			
-			if($this->Admin->save($this->data))
+		// disable this action (for now, at least)
+		$this->Session->setFlash("This functionality has been disabled.");
+		$this->redirect(array('action' => 'index'));
+		
+		if($this->data) {			
+			if($this->Admin->save($this->data)) {
 				$this->Session->setFlash("New administrator added.");
-			else
+				$this->redirect(array('action' => 'index'));
+			} else {
 				$this->Session->setFlash("Unable to add administrator.");
+			}
 		}
 	}
 	
