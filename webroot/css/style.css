@@ -294,6 +294,7 @@ input[type="button"]::-moz-focus-inner { border : 0px }
 
  .zones-view .glass {
      margin-top: 5px;
+     height:395px;
      padding: 0px 0px 0px 0px; }
 
 .results {
@@ -340,7 +341,7 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
 
 .pop-notice {
     display: block;
-    margin: 0 0 15px 0;
+    margin: 0 0 25px 0;
     padding: 5px 5px 5px 5px;
     text-align: center;
     background-color: #fff;
@@ -420,7 +421,6 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
      font-family: 'TeXGyreAdventorBold', Arial, sans-serif; }
 
  .dyk p { margin: 5px 15px 10px 15px; }
-
 #calendar {
     float: left;
     width: 238px;
@@ -437,21 +437,20 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
     background: rgba(256,256,256, .7); }
     
 #calendar table {
-	clear:left;
+	clear:left; margin:0; border-collapse:collapse; width:100%;
 }
- #calendar .today,
- .ui-datepicker-today {
+ #calendar .today a,
+ .ui-datepicker-today a {
      font-weight: 600;
      font-size: 1.2em;
-     line-height: 1em;
+padding: 4px 1.5px!important;
      border-bottom: 2px solid #003F87!important; }
 
  #calendar td .special {
-     padding: 4px 0px 4px 0px;
+     padding: 5px 0.5px 5px 0.5px;
      color: #111;
      font-weight: 600;
-     border: 1px dotted #B22222;
-     text-shadow: 1px 1px 0px rgba(0,0,0, .3); }
+     border: 1px dotted #B22222;}
 
  #calendar td .pickup {
      color: #fff;
@@ -536,17 +535,18 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
 #calendar td, #calendar th {
 	margin:0;
 	padding:0;
-    border: 1px solid #F7F7F7;
+    border: 1px solid #eee;
 }
 #calendar td a, #calendar td span {
 	display:block;
 	text-align:center;
 	margin:0;
-	padding:5px 0;
+	padding:6px 1.5px;
      width: 30px;
      height:15px;
      text-decoration:none;
  	cursor:default;
+	color:#666;
 }
 #calendar th {
      width: 32px;
@@ -561,8 +561,9 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
      color: #fff;
      font-size: 0.8em;
      font-weight: 600;
-     background: #B9D3EE; 
+     background: #7AA9DD; 
 }
+
 
 #legend {
     display: block;
@@ -593,7 +594,8 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
     color: #888;
 	padding:4px 5px 4px 5px;
     text-decoration: none;
-	float:right;
+	float:none;
+	position:absolute; bottom:-37.6%; right:-4%;
     text-shadow: -1px -1px 0px rgba(0,0,0, .0);
     font-size: 0.8em;
     background: #666;
@@ -606,7 +608,7 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
     border-radius: 5px;
    }
 
-.report:hover {
+#report:hover {
 	color: #333;
 	background: #444;
 	background:rgba(256,256,256, 1); }
@@ -629,26 +631,26 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
     -webkit-border-radius: 5px;
     border-radius: 5px;
     background: url('../img/bell.png') 10px 60% no-repeat #555;
-    background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .4) 46%,     rgba(0,0,0, .3) 49%);
-    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .4) ), color-stop(0.49,  rgba(0,0,0, .3)) );
-    -moz-box-shadow: 0px 2px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
-    -webkit-box-shadow: 0px 2px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
+	background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgb(137,141,145) 46%,    rgb(158,163,168) 49%);
+    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgb(137,141,145) ), color-stop(0.49,  rgb(158,163,168)) );
+    -moz-box-shadow: 0px 2px 0px rgb(114,117,121), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
+    -webkit-box-shadow: 0px 2px 0px rgb(114,117,121), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
     cursor: pointer; }
 
 #notify:hover {
     color: #fff!important;
-    background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .3) 46%,     rgba(0,0,0, .2) 49%);
-    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .3) ), color-stop(0.49,  rgba(0,0,0, .2)) );
+	background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgb(154,160,167) 46%,     rgb(177,184,191) 49%);
+    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46, rgb(154,160,167)), color-stop(0.49,   rgb(177,184,191))) );
   }
 
 #notify:active {
     position: relative;
     top: -3px;
     color: #fff!important;
-    background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgba(0,0,0, .4) 46%,     rgba(0,0,0, .3) 49%);
-    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgba(0,0,0, .4) ), color-stop(0.49,  rgba(0,0,0, .3)) );
-    -moz-box-shadow: 0px 0px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
-    -webkit-box-shadow: 0px 0px 0px rgba(0,0,0, .5), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2); }
+	background: url('../img/bell.png') 10px 60% no-repeat, -moz-linear-gradient(    center bottom,     rgb(137,141,145) 46%,    rgb(158,163,168) 49%);
+    background: url('../img/bell.png') 10px 60% no-repeat, -webkit-gradient( linear,     left bottom,     left top, color-stop(0.46,  rgb(137,141,145) ), color-stop(0.49,  rgb(158,163,168)) );
+    -moz-box-shadow: 0px 0px 0px rgb(114,117,121), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2);
+    -webkit-box-shadow: 0px 0px 0px rgb(114,117,121), inset 0px 1px 1px rgba(256,256,256, .8), inset 0px -1px 0px rgba(256,256,256, .2); }
 
 #ical, .ical {
 position:relative; top:-7px;
@@ -909,8 +911,9 @@ position:relative; top:-7px;
 }
 
 #update-signup h3, #report-problem h3 {
-	margin: 0 0 12px;
-	padding-bottom: 12px;
+	margin: 0 0 12px 0;
+	padding: 0 0 12px 0;
+	width:95%;
 	border-bottom: 1px solid rgba(0,0,0,  0.1)!important;
     -moz-box-shadow: 0px 1px 0px rgba(256,256,256, 1)!important;
     -webkit-box-shadow: 0px 1px 0px rgba(256,256,256, 1)!important;
