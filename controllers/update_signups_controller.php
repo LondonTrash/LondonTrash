@@ -2,7 +2,7 @@
 class UpdateSignupsController extends AppController {
 	var $name = 'UpdateSignups';
 	
-	function add($zone = null) {
+	function add() {
 		if (!empty($this->data)) {
 			if ($this->UpdateSignup->save($this->data)) {
 				$this->Session->setFlash("You're signed up!", 'default', array('class' => 'success'));
@@ -11,7 +11,6 @@ class UpdateSignupsController extends AppController {
 				$this->Session->setFlash('Sorry, there was an error with your signup. Please try again.');	
 			}
 		}
-		$this->set('zone_id', $zone);
 	}
 	
 	function success() {

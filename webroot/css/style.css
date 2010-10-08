@@ -585,7 +585,7 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
      margin-right: 5px;
      vertical-align: middle; }
 
-.report {
+#report {
     display: inline-block;
     margin: 0 15px 0px 0; 
     color: #888;

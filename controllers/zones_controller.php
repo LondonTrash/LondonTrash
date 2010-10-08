@@ -88,13 +88,12 @@ class ZonesController extends AppController {
 		$this->set("gcal_url",$gcal_url);
 		$this->set("schedule", $schedule);
 		$this->set("zone", $zone);
-		$this->set('zone_id', $zone_data['Zone']['id']);
 		$this->set('formattedZone', $formattedZone);
 		$this->set('delay_unit', array('hours', 'days'));
 		$this->set('notification_type', array('Regular', 'Special', 'Both'));
 		$this->set('title_for_layout', 'Schedule (' . $formattedZone . ')');
 		
-		
+		$this->Session->write('zone_id', $zone_data['Zone']['id']);
 	}
 }
 ?>

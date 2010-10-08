@@ -6,21 +6,34 @@
 
 <?php echo $this->Html->script('notifications', array('inline' => false)); ?>
 <?php echo $this->Html->script('calendar', array('inline' => false)); ?>
-<?php $signupUrl = $this->Html->url(array(
+<?php
+$notifyUrl = $this->Html->url(array(
 	'controller' => 'update_signups',
-	'action' => 'add',
-	$zone_id)); ?>
+	'action' => 'add'
+));
+$reportUrl = $this->Html->url(array(
+	'controller' => 'problem_reports',
+	'action' => 'add'
+));
+?>
 <?php
 echo $this->Html->scriptBlock(
 <<<JAVASCRIPT
 $(document).ready(function(){
 	$("#notify").colorbox({
 		width: "525px",
-		href: "{$signupUrl}",
+		href: "{$notifyUrl}",
 		overlayClose: false,
 		scrolling: false
 	},
-	prepform);
+	notify_prepForm);
+	$("#report").colorbox({
+		width: "525px",
+		href: "{$reportUrl}",
+		overlayClose: false,
+		scrolling: false
+	},
+	report_prepForm);
 });
 JAVASCRIPT
 , array('inline' => false));
@@ -80,7 +93,7 @@ JAVASCRIPT
 </ol>
 <div class="grid_6">  
 	<span id="holiday" class="pop-notice">Email and SMS notifications are coming soon.</span>
-	<?php echo $this->Html->link('Email Notifications', $signupUrl, array('id' => 'notify')); ?>
+	<?php echo $this->Html->link('Email Notifications', $notifyUrl, array('id' => 'notify')); ?>
 	
 	<?php echo $this->Html->link('iCal Feed (' . $formattedZone . ')', $webcal_url, array('class' => 'ical')); ?>
 	<?php echo $this->Html->link('Add to gCal (' . $formattedZone . ')', $gcal_url, array('class' => 'ical')); ?>
@@ -97,7 +110,7 @@ JAVASCRIPT
 </select-->
 
 <br class="clear" />
-<a href="" class="report"> Report an Error</a>
+<a href="" id="report"> Report an Error</a>
 <br class="clear" />
 &nbsp;<br class="clear" />
 </div>

@@ -1,4 +1,4 @@
-function prepform(){ 
+function notify_prepForm(){ 
 	$("#update-signup").validate({
 		submitHandler: function(form) {
 			$(form).ajaxSubmit({success: 
