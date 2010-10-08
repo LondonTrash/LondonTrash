@@ -45,7 +45,6 @@ JAVASCRIPT
 		<?php echo $this->Session->read('address'); ?> (<?php echo $formattedZone; ?>)
 		<?php echo $this->Html->link("Change", array('controller' => 'searches', 'action' => 'clear', $this->Session->read('address'))); ?>
 	</div>
-	<br class="clear" />
 	<?php
 		//next regular pickup in the schedule		
 		if ($this->Time->isToday($pickup)){
@@ -63,6 +62,7 @@ JAVASCRIPT
 		}
 	?>
 	<small>Your Next Regular Pickup is:</small>
+	<br class="clear" />
 	<h2><?php echo $next_pickup; ?></h2>
 	<span id='r-date'><?php echo $next_pickup_details; ?></span>
 </div>
