@@ -13,6 +13,7 @@ class ZonesController extends AppController {
   function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow();
+		$this->getCookieData();
 	}
 
 	//pass me a timestamp, I return 0 = last month, 1 = this month, 2 = next month

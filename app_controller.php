@@ -70,4 +70,29 @@ class AppController extends Controller {
 	  	return true;	  	
 	}
 	
+	/**
+	 * Keep it DRY
+	 *
+	 * @param string $address 
+	 * @param string $zone 
+	 * @return void
+	 * @author Scott Reeves
+	 */
+	public function updateUserData($address, $zone) {
+		$this->Session->write('address', $address);
+		$this->Cookie->write('address', $address, null, '10 years');
+		$this->Cookie->write('zone', $zone, null, '10 years');
+	}
+	
+	public function getCookieData($redirect = false) {
+		$address = null;
+		if ($zone = $this->Cookie->read('zone')) {
+			$address = $this->Cookie->read('address');
+			$this->updateUserData($address, $zone);
+			if ($redirect === true) {
+				$this->redirect(array('controller' => 'zones', 'action' => 'view', $zone));
+			}
+		}
+	}
+	
 }

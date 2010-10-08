@@ -2,29 +2,6 @@
 class SearchesController extends AppController {
     
 	var $uses = array('Zone');
-
-	/**
-	 * Keep it DRY
-	 *
-	 * @param string $address 
-	 * @param string $zone 
-	 * @return void
-	 * @author Scott Reeves
-	 */
-	private function updateUserData($address, $zone) {
-		$this->Session->write('address', $address);
-		$this->Cookie->write('address', $address, null, '10 years');
-		$this->Cookie->write('zone', $zone, null, '10 years');
-	}
-	
-	private function redirectToStoredResult() {
-		$address = null;
-		if ($zone = $this->Cookie->read('zone')) {
-			$address = $this->Cookie->read('address');
-			$this->updateUserData($address, $zone);
-			$this->redirect(array('controller' => 'zones', 'action' => 'view', $zone));
-		}
-	}
 	
 	/**
 	 * Clear stored address and zone and redirect to search page
@@ -64,7 +41,7 @@ class SearchesController extends AppController {
 	public function index($address = null) {		
 		if (empty($this->data) && empty($address) && empty($this->params['url']['a'])) {
 			// try to send to result stored in session
-			$this->redirectToStoredResult();
+			$this->getCookieData(true);
 		}
 		
 		if ($this->data || !empty($address)) {
