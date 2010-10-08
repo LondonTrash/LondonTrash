@@ -32,7 +32,9 @@
  */
 	Router::connect('/pages/*', array('controller' => 'contents', 'action' => 'view'));
 	
+	// Feedback
 	Router::connect('/feedback', array('controller' => 'feedbacks', 'action' => 'add'));
+	Router::connect('/feedback/thanks', array('controller' => 'feedbacks', 'action' => 'success'));
 	
 	// User Routes
 	Router::connect('/search/*', array(
