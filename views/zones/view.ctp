@@ -110,8 +110,5 @@ JAVASCRIPT
 <option value="">Item</option>
 </select-->
 
-<br class="clear" />
 <?php echo $this->Html->link('Report an Error', $reportUrl, array('id' => 'report')); ?>
-<br class="clear" />
-&nbsp;<br class="clear" />
 </div>
