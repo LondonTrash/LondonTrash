@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('jquery-ui-1.8.5.custom.min', array('inline' => false)); ?>
-<?php echo $this->Html->css('/js/colorbox/colorbox', null, array('inline' => false)); ?>
-<?php echo $this->Html->script('colorbox/jquery.colorbox-min', array('inline' => false)); ?>
+<?php //echo $this->Html->css('/js/nyro/nyroModal', null, array('inline' => false)); ?>
+<?php echo $this->Html->script('nyro/jquery.nyroModal-1.6.2.pack', array('inline' => false)); ?>
 <?php echo $this->Html->script('validate/jquery.validate.pack', array('inline' => false)); ?>
 <?php echo $this->Html->script('jquery.form', array('inline' => false)); ?>
 
@@ -21,13 +21,12 @@ $reportUrl = $this->Html->url(array(
 echo $this->Html->scriptBlock(
 <<<JAVASCRIPT
 $(document).ready(function(){
-	$("#notify").colorbox({
-		width: "525px",
-		href: "{$notifyUrl}",
-		overlayClose: false,
-		scrolling: false
-	},
-	notify_prepForm);
+	$("#notify").nyroModal({
+		// width: "525px",
+		url: "{$notifyUrl}",
+		// overlayClose: false,
+		// scrolling: false
+	});
 	$("#report").colorbox({
 		width: "525px",
 		href: "{$reportUrl}",

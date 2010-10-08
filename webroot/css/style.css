@@ -861,16 +861,7 @@ position:relative; top:-7px;
  .ca #site-title a,
  .cs h1#site-title { margin-bottom: 0px }
  
-#cboxClose {
-	bottom: 18px !important;
-	right: 18px !important;
-	color: #666 !important;
-}
-#cboxClose.hover {
-	color: #333 !important;
-}
- 
-#colorbox {
+#nyroModalWrapper {
 	width:500px!important; 
 	padding: 0 10px 10px 10px!important;
 	-webkit-border-radius: 15px!important;
@@ -890,18 +881,6 @@ position:relative; top:-7px;
 	position: relative;
 }
  
-#cboxOverlay {
-	background: #000 !important;
-	opacity:.80 !important;
-	filter: Alpha(Opacity=80);
-}
-#cboxWrapper {
-	position: relative !important;
-	left: 50%;
-	margin: 0 auto;
-	text-align: center;
-}
-
 #update-signup {
 	text-align: center;
 }
