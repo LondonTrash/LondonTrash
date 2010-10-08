@@ -2,6 +2,12 @@
 class UpdateSignupsController extends AppController {
 	var $name = 'UpdateSignups';
 	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('title_for_layout', 'Notifications');
+	}
+	
+	
 	function add() {
 		if (!empty($this->data)) {
 			if ($this->UpdateSignup->save($this->data)) {

@@ -2,6 +2,11 @@
 class ProblemReportsController extends AppController {
 	var $name = 'ProblemReports';
 	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('title_for_layout', 'Report an Error');
+	}
+	
 	function add() {
 		if (!empty($this->data)) {
 			if ($this->ProblemReport->save($this->data)) {
