@@ -47,7 +47,7 @@ JAVASCRIPT
 	</div>
 	<br class="clear" />
 	<?php
-		//next event in the schedule		
+		//next regular pickup in the schedule		
 		if ($this->Time->isToday($pickup)){
 			$next_pickup = "7:00am Today!"; 
 			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
@@ -62,7 +62,7 @@ JAVASCRIPT
 			$next_pickup_details = "";
 		}
 	?>
-	<small>Your Next Pickup is:</small>
+	<small>Your Next Regular Pickup is:</small>
 	<h2><?php echo $next_pickup; ?></h2>
 	<span id='r-date'><?php echo $next_pickup_details; ?></span>
 </div>

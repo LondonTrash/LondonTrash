@@ -44,14 +44,6 @@ class ZonesController extends AppController {
 		$gcal_url = $gcalPrefix . str_replace('/ical/', '/feeds/', $zone_data['Zone']['ical_url']); 
 		$gcal_url = str_replace('.ics', '', $gcal_url);
 		
-		if ($this->data) {
-			$zone = $this->data['Zone']['zone'];
-
-			//TODO: Add some error processing here
-			$this->Zone->Subscriber->set('contact', $this->data['Zone']['Email']);
-			$this->Zone->Subscriber->save();
-		 }
-
 		if (!empty($zone)) {
 			$schedule = $this->Zone->get_schedule($zone);
 		}
@@ -71,15 +63,13 @@ class ZonesController extends AppController {
 		
 		$next_pickup = 0;
 		foreach ($schedule as $date){
-			if (date($date['start_date']) > mktime() && ($next_pickup == 0 || $next_pickup  > $date['start_date'])){
+			if (date($date['start_date']) > mktime() && ($next_pickup == 0 || $next_pickup  > $date['start_date']) && $date['type'] == 'pickup'){
 				$next_pickup = $date['start_date'];
 			}
 		}
 		
 		//something to put in #holiday
-		$holiday = $this->Zone->get_schedule('all');
-		
-		
+		$holiday = $this->Zone->get_schedule('all');		
 		
 		$formattedZone = $this->Zone->field('formatted_title', array('title' => $zone));
 
