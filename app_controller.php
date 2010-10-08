@@ -80,6 +80,7 @@ class AppController extends Controller {
 	 */
 	public function updateUserData($address, $zone) {
 		$this->Session->write('address', $address);
+		$this->Session->write('zone', $zone);
 		$this->Cookie->write('address', $address, null, '10 years');
 		$this->Cookie->write('zone', $zone, null, '10 years');
 	}
