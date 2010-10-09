@@ -1,5 +1,5 @@
 function notify_prepForm(){ 
-	$("#update-signup").validate({
+	$("#colorbox #update-signup").validate({
 		submitHandler: function(form) {
 			$(form).ajaxSubmit({success: 
 				function(html){ 
