@@ -1026,8 +1026,9 @@ position:relative; top:-7px;
 	float: left;
 	color: #eee;
 	position: absolute;
-	top: 0;
+	top: 8px;
 	text-align: left;
+	z-index: 100;
 }
 #admin-info a#admin-logout, #admin-info a#admin-area {
 	display: block;
