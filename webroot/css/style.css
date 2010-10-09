@@ -1005,6 +1005,8 @@ position:relative; top:-7px;
 #update-signup label.form-error, form .error-message {
 	text-align: left;
 	float: left;
+	width: auto;
+	clear: none;
 	padding: 0 0 0 32px;
 	color: #900;
 	line-height: 2.65;
