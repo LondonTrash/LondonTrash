@@ -1,4 +1,12 @@
-<h2>Administrative Actions</h2>
+<h2>Admin</h2>
+<hr />
+<h3>Usage Stats:</h3>
+<ul>
+<li>There are currently <strong><?php echo $cachedLookups; ?></strong> cached lookups stored.</li>
+<li><strong><?php echo $updateSignups; ?></strong> people have signed up to be notified when we have notifications ready.</li>
+<li><strong><?php echo $problemReports; ?></strong> people have reported <?php echo $this->Html->link("problems", array('controller' => 'problem_reports', 'admin' => true)); ?>.</li>
+</ul>
+<hr />
 <ul>
 	<li>
 		<?php echo $this->Html->link("Manage Content", array('controller' => 'contents', 'admin' => true)); ?>

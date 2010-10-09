@@ -8,7 +8,17 @@ class AdminsController extends AppController {
 	}
 	
 	function admin_index() {
-
+		$this->loadModel('AddressCache');
+		$cachedLookups = $this->AddressCache->find('count');
+		$this->set('cachedLookups', $cachedLookups);
+		
+		$this->loadModel('ProblemReport');
+		$problemReports = $this->ProblemReport->find('count');
+		$this->set('problemReports', $problemReports);
+		
+		$this->loadModel('UpdateSignup');
+		$updateSignups = $this->UpdateSignup->find('count');
+		$this->set('updateSignups', $updateSignups);
 	}
 	
 	function admin_login() {
