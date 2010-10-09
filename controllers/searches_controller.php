@@ -32,7 +32,7 @@ class SearchesController extends AppController {
 			// clear the ambiguities from the session
 			$this->Session->delete('addressChoices');
 			
-			$this->updateUserData($address, $zone);
+			$this->UserData->write($address, $zone);
 			$this->redirect(array('controller' => 'zones', 'action' => 'view', $zone));
 		}
 		$this->Session->setFlash('Sorry! Please try your search again.');
@@ -48,7 +48,7 @@ class SearchesController extends AppController {
 	public function index($address = null) {		
 		if (empty($this->data) && empty($address) && empty($this->params['url']['a'])) {
 			// try to send to result stored in session
-			$this->getCookieData(true);
+			$this->UserData->refresh(true);
 		}
 		
 		if ($this->data || !empty($address)) {
@@ -131,7 +131,7 @@ class SearchesController extends AppController {
 		}
           
 		if(!empty($zone_name)) {
-			$this->updateUserData($searchAddress, $zone_name);
+			$this->UserData->write($searchAddress, $zone_name);
 			$this->redirect(array("controller" => "zones", "action" => "view", $zone_name));
 		} else {
 			$this->Session->setFlash("Your address was not found. Please verify that you have typed it correctly and search again.");

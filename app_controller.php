@@ -31,7 +31,8 @@ class AppController extends Controller {
 
 		'Session',
 		'Cookie',
-		'RequestHandler'
+		'RequestHandler',
+		'UserData'
 	);
 	var $scaffold = 'admin';
 	var $helpers = array(
@@ -93,40 +94,6 @@ class AppController extends Controller {
 		));
 		$tip = $tips['Content']['body'];
 		$this->set('tip', $tip);
-	}
-	
-	/**
-	 * Update session and long-term cookie
-	 *
-	 * @param string $address 
-	 * @param string $zone 
-	 * @return void
-	 * @author Scott Reeves
-	 */
-	public function updateUserData($address, $zone) {
-		$this->Session->write('address', $address);
-		$this->Session->write('zone', $zone);
-		$this->Cookie->write('address', $address, null, '10 years');
-		$this->Cookie->write('zone', $zone, null, '10 years');
-	}
-	
-	/**
-	 * Grab data from long-term cookie, use it to update session and cookie,
-	 * and optionally redirect.
-	 *
-	 * @param bool $redirect 
-	 * @return void
-	 * @author Scott Reeves
-	 */
-	public function getCookieData($redirect = false) {
-		$address = null;
-		if ($zone = $this->Cookie->read('zone')) {
-			$address = $this->Cookie->read('address');
-			$this->updateUserData($address, $zone);
-			if ($redirect === true) {
-				$this->redirect(array('controller' => 'zones', 'action' => 'view', $zone));
-			}
-		}
 	}
 	
 }
