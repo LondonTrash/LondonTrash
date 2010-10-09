@@ -22,7 +22,7 @@ class AdminsController extends AppController {
 	}
 	
 	function admin_login() {
-		
+		// let the Auth component do its thing.
 	}
 	
 	function admin_logout() {

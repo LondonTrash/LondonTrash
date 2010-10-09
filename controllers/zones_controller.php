@@ -1,11 +1,6 @@
 <?php
 App::import('Vendor', 'SG-iCal', array('file' => 'SG-iCalendar/SG_iCal.php'));
 
-/**
- * @property Zone $Zone
- * @property Auth $Auth
- * @property Session $Session
- */
 class ZonesController extends AppController {
 	
 	var $helpers = array('Time');
@@ -15,14 +10,9 @@ class ZonesController extends AppController {
 		$this->Auth->allow();
 		$this->getCookieData();
 	}
-
-	//pass me a timestamp, I return 0 = last month, 1 = this month, 2 = next month
-	public function ThisMonth($date){
-		return (date('Ymd')-date('Ymd', $date))+1;	
-	}
 		
 	/**
-	 * view
+	 * View garbage schedule
 	 *
 	 * @param string $zone (zone letter)
 	 * @return void
@@ -48,11 +38,6 @@ class ZonesController extends AppController {
 			$schedule = $this->Zone->get_schedule($zone);
 		}
 		
-		/*
-			TODO: Check for valid zone - i.e. check zones table so they're
-			* not trying a gibberish zone
-		*/
-
 		if (empty($schedule)) {
 			$this->Session->setFlash("Sorry, we weren't able to find a schedule for that address. Please try again.");
 			$this->redirect(array('controller' => 'searches', 'action' => 'clear'));

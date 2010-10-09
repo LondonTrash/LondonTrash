@@ -39,6 +39,12 @@ class SearchesController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
+	/**
+	 * Main search page
+	 *
+	 * @param string $address 
+	 * @return void
+	 */
 	public function index($address = null) {		
 		if (empty($this->data) && empty($address) && empty($this->params['url']['a'])) {
 			// try to send to result stored in session
@@ -54,6 +60,12 @@ class SearchesController extends AppController {
 		$this->set('title_for_layout', false);
 	}
 
+	/**
+	 * Logic for search function
+	 *
+	 * @param string $address 
+	 * @return void
+	 */
 	private function doSearch($address = null) {
 
 		// clear any ambiguous address we have in the session
