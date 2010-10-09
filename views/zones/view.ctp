@@ -101,14 +101,6 @@ JAVASCRIPT
 
 <div class="clear"></div>
 <hr />
-<!--h4>Recycling</h4>
-<select>
-<option value="">Item</option>
-</select>
-<h4>Other Reuse and Recycling Options</h4>
-<select>
-<option value="">Item</option>
-</select-->
 
 <?php echo $this->Html->link('Report an Error', $reportUrl, array('id' => 'report')); ?>
 </div>
