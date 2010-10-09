@@ -198,8 +198,9 @@ img { -ms-interpolation-mode: bicubic }
 #authMessage.message {
     color: #fff;
     background: url('../img/message.png') 10px 5px no-repeat #5D92B1!important; }
-	 
-	 
+.glass #flashMessage {
+	left: 353px;
+}
 	 
 	 
 /* * Home
