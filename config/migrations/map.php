@@ -38,5 +38,7 @@ $map = array(
 		'020_problem_reports_table' => 'M4cae8d5a11c44d86982872a93201ca43'),
 	19 => array(
 		'019_feedback_table' => 'M4caea72ec4284413bb3e1b483201ca43'),
+	20 => array(
+		'021_remove_feedbacks_table' => 'M4cafcb1c5c544610b231c5233201ca43'),
 );
 ?>
