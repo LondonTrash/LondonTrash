@@ -41,69 +41,48 @@ legend { margin-bottom: 1.4em }
 
 ol { margin-left: 2em }
 
+
 #search-box .sbutton {
     padding-left: 0px;
-    height: 74px;
-    color: #444!important;
+    height: 72px;
     top: 3px; }
 
 .searches-index .glass { background: none }
+.glass { background: #fff; overflow:auto;}
+.results { border-bottom: 1px solid #ddd; display:block; clear:right; width:609px;}
 
-.glass { background: #fff }
-
-.results { border-bottom: 1px solid #ddd }
-
- .results #r-date {
-     line-height: 2.2em;
-     margin-top: -30px; }
-
- .results #r-date sup { top: 5px }
-
- .results small { margin-top: -35px }
-
+.results #r-date sup { top: 1px }
+.results h2 {overflow:visible;  height:60px; position:relative; top:-15px; line-height:1.4em;}
+	 
 .address a {
-    background: #999;
+    background: #eee;
     top: 2px;
-    left: 10px; }
+	font-weight:500;
+	padding:2px 5px;
+    left: 10px; border:1px solid #ddd; color:#aaa!important;}
 
-.address a:hover { background: #666 }
+.address a:hover { background: #ddd; color:#666!important; }
+.address { margin-top:-2px;}
 
-.results h2 {
-    line-height: normal;
-    margin-top: -20px; }
+#report {  
+ background: #fff;
+ border:1px solid #ccc; color:#999!important; border-bottom:none;}
+ 
+#report:hover { background: #ddd; color:#666!important;}
 
-.report { background: #666 }
+.dyk {    background: #fff;    padding: 5px 0 10px 0!important; }
+	
+.zones-view hr {  color: #ddd;   background-color: #ddd; }
+	
+#calendar, #callist { border: 1px solid #eee }
 
-.report:hover { background: #444 }
-
-.dyk {
-    background: #fff;
-    padding: 5px 0 10px 0!important; }
-
-#calendar,
-#callist { border: 1px solid #eee }
-
- #calendar #head { border-bottom: 1px solid #eee }
-
-#legend { border-top: 1px solid #eee }
-
-#callist #legend { border: 1px solid #eee }
-
-.precal {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-    filter: alpha(opacity=30); }
-
-#calendar .today { border-bottom: 1px solid #003F87!important }
+#calendar .ui-datepicker-today a{ border-bottom: 1px solid #003F87!important }
 
 #notify {
     background: url('../../img/bell.png') 4px 60% no-repeat #555;
-    margin-top: 5px; }
+    margin-top: 5px; padding-top:3px; padding-bottom:3px;}
 
 #notify:hover { background: url('../../img/bell.png') 4px 60% no-repeat #333 }
-
-.zones-view hr {
-    color: #ddd;
-    background-color: #ddd; }
 
 .searches-index .grid_11 #flashMessage {
     margin-bottom: 10px;
@@ -111,4 +90,14 @@ ol { margin-left: 2em }
     width: 460px; }
 
 .contributor { background: #eee }
+
+#calendar td, #calendar th {    border: 1px solid #eee;}
+
+#calendar{ margin-left:15px; }
+.zones-view .grid_6 { margin:0 0 0 13px;     padding-left: 0px; }
+
+
+
+
+
 

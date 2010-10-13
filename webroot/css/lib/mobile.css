@@ -29,6 +29,7 @@ overflow:hidden;
 .glass {
  margin-top: 5px;
   padding: 25px 10px!important;
+  height:auto!important;
 }
 
 
@@ -128,7 +129,7 @@ margin:0!important;
  #calendar {
  float: none!important;
  width: 238px;
- 
+ height:auto;
  margin: 0 0 10px 0px!important; padding: 4px 4px 5px 5px;
  font-size: 0.8em;
  -webkit-border-radius: 5px;
@@ -139,6 +140,7 @@ margin:0!important;
  -webkit-box-shadow: 0px 0px 5px rgba(256,256,256, .5), inset 1px 1px 2px rgba(0,0,0, .3);
  background: #fff;
  background: rgba(256,256,256, .7);
+ overflow:auto;
 }
  
  
@@ -160,11 +162,12 @@ margin:0!important;
 float:none!important;
 left:0px!important;
 display:block!important;
+margin-bottom:25px;
 }
 
 
 
-#ical {top:5px;
+#ical {
  margin: 0px 0px 10px 0!important;
 }
  
