@@ -3,6 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <?php echo $this->Html->css('style', null, array('media' => 'screen, projection')); ?>
+<?php echo $this->Html->css('lib/mobile', null, array('media' => 'handheld, only screen and (max-device-width: 480px)')); ?>
+<?php if (stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone')): ?>
+	<meta name="viewport" content="initial-scale=2.3, user-scalable=no" />
+	<meta name="viewport" content="width=320; initial-scale=2; maximum-scale=1.0; user-scalable=0;" />
+<?php endif; ?>
 <!--[if IE]>
 <?php echo $this->Html->css('lib/ie', null, array('media' => 'screen, projection')); ?>
 <![endif]-->
