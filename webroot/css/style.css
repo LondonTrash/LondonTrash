@@ -353,7 +353,8 @@ font-family: 'TeXGyreAdventorBold', "Helvetica Neue", Helvetica, Calibri, Arial,
 .pop-notice {
     display: block;
     margin: 0 0 20px 0;
-    padding: 5px 5px 5px 5px;
+    /*padding: 5px 5px 5px 5px;*/
+    padding: 5px 30px 5px;
     text-align: center;
     background-color: #fff;
     color: #444;
