@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="description" content="LondonTrash.ca is a tool to make garbage pickup in London, Ontario a little less confusing." />
+<meta property="og:description" content="LondonTrash.ca is a tool to make garbage pickup in London, Ontario a little less confusing." />
+<meta property="og:image" content="apple-touch-icon.png" />
 <?php echo $this->Html->css('style', null, array('media' => 'screen, projection')) . "\n"; ?>
 <?php echo $this->Html->css('lib/mobile', null, array('media' => 'handheld, only screen and (max-device-width: 480px)')) . "\n"; ?>
 <?php if (stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone')): ?>
 	<meta name="viewport" content="initial-scale=2.3, user-scalable=no" />
 	<meta name="viewport" content="width=320; initial-scale=2; maximum-scale=1.0; user-scalable=0;" />
 <?php endif; ?>
-<!--[if IE]>
+<!--[if lte IE8]>
 <?php echo $this->Html->css('lib/ie', null, array('media' => 'screen, projection')); ?>
 <![endif]-->
 <title><?php echo (!empty($title_for_layout) ? $title_for_layout . ' - ' :''); ?>LondonTrash.ca</title>
