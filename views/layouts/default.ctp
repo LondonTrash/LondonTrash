@@ -11,7 +11,7 @@
 	<meta name="viewport" content="initial-scale=2.3, user-scalable=no" />
 	<meta name="viewport" content="width=320; initial-scale=2; maximum-scale=1.0; user-scalable=0;" />
 <?php endif; ?>
-<!--[if lte IE8]>
+<!--[if lte IE 8]>
 <?php echo $this->Html->css('lib/ie', null, array('media' => 'screen, projection')); ?>
 <![endif]-->
 <title><?php echo (!empty($title_for_layout) ? $title_for_layout . ' - ' :''); ?>LondonTrash.ca</title>
