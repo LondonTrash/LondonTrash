@@ -174,8 +174,17 @@ margin-bottom:25px;
  
  
  
+ #about .glass {
+     padding-top: 0px!important; }
  
  
+ .contributor {
+
+    width: 115px;
+    height: 50px;
+    padding: 2px 3px;
+    margin: 2px; }
  
- 
- 
+ .org {width:auto!important;  margin:10px 10px;}
+
+
