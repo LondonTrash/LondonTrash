@@ -46,18 +46,29 @@ JAVASCRIPT
 		<?php echo $this->Html->link("Change", array('controller' => 'searches', 'action' => 'clear', $this->Session->read('address'))); ?>
 	</div>
 	<?php
-		//next regular pickup in the schedule		
-		if ($this->Time->isToday($pickup)){
+		//next regular pickup in the schedule
+		
+		$longDate = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
+		
+		// today
+		if ($this->Time->isToday($pickup)) {
 			$next_pickup = "7:00am Today!"; 
-			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
-		}else if ($this->Time->isTomorrow($pickup)){
+			$next_pickup_details = $longDate;
+		// tomorrow
+		} else if ($this->Time->isTomorrow($pickup)) {
 			$next_pickup = "Tomorrow!";
-			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
-		}else if(date('z', $pickup) - date('z') < 7){
-			$next_pickup = "Next ".date('l',$pickup);
-			$next_pickup_details = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
-		}else {
-			$next_pickup = date('F j<\s\u\p\>S\<\/\s\u\p\>', $pickup);
+			$next_pickup_details = $longDate;
+		// this week, i.e. "This Friday"
+		} else if (date('W', $pickup) == date('W')) {
+			$next_pickup = "This " . date('l', $pickup);
+			$next_pickup_details = $longDate;
+		// next week, i.e. "Next Tuesday"
+		} else if (date('W', $pickup) - date('W') == 1) {
+			$next_pickup = "Next " . date('l', $pickup);
+			$next_pickup_details = $longDate;
+		// two weeks or more away
+		} else {
+			$next_pickup = $longDate;
 			$next_pickup_details = "";
 		}
 	?>
