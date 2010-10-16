@@ -26,25 +26,61 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/views/pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'searches', 'action' => 'index', 'home'));
+	Router::connect('/', array('controller' => 'searches', 'action' => 'index'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	Router::connect('/pages/*', array('controller' => 'contents', 'action' => 'view'));
 	
-	Router::connect('/admin/login', array('controller' => 'admins',
-		'action' => 'login', 'admin' => true));
+	// Notifications for notifications
+	Router::connect('/notify', array('controller' => 'update_signups', 'action' => 'add'));
+	Router::connect('/notify/thanks', array('controller' => 'update_signups', 'action' => 'success'));
+	
+	// Report a problem
+	Router::connect('/report', array('controller' => 'problem_reports', 'action' => 'add'));
+	Router::connect('/report/thanks', array('controller' => 'problem_reports', 'action' => 'success'));
+	
+	// User Routes
+	Router::connect('/search/*', array(
+		'controller' => 'searches',
+		'action' => 'index'
+	));
+	
+	Router::connect('/schedule/*', array(
+		'controller' => 'zones',
+		'action' => 'view'
+	));
+	
+	// Admin Routes
+	
+	Router::connect('/admin/login', array(
+		'controller' => 'admins',
+		'action' => 'login',
+		'admin' => true
+	));
 		
-	Router::connect('/admin/logout', array('controller' => 'admins',
-		'action' => 'logout', 'admin' => true));
+	Router::connect('/admin/logout', array(
+		'controller' => 'admins',
+		'action' => 'logout',
+		'admin' => true
+	));
 		
-	Router::connect('/admin', array('controller' => 'admins',
-		'action' => 'index', 'admin' => true));
+	Router::connect('/admin', array(
+		'controller' => 'admins',
+		'action' => 'index',
+		'admin' => true
+	));
 		
-	Router::connect('/admin/content/add', array('controller' => 'contents',
-		'action' => 'add', 'admin' => true));
+	Router::connect('/admin/content/add', array(
+		'controller' => 'contents',
+		'action' => 'add',
+		'admin' => true
+	));
 		
-	Router::connect('/admin/content/edit', array('controller' => 'contents',
-		'action' => 'edit', 'admin' => true));
+	Router::connect('/admin/content/edit', array(
+		'controller' => 'contents',
+		'action' => 'edit',
+		'admin' => true
+	));
 
 Router::parseExtensions();

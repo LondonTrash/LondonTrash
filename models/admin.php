@@ -4,8 +4,9 @@ class Admin extends AppModel {
 	
 	var $validate = array(
 		'email' => array(
-			'emailVal' => array(
-				'rule' => 'email'
+			'email' => array(
+				'rule' => 'email',
+				'message' => 'Please enter a valid email address'
 			),
 			'uniqueVal' => array(
 				'rule' => 'isUnique',
@@ -13,8 +14,14 @@ class Admin extends AppModel {
 			)
 		),
 		'password' => array(
-			'rule' => array('minLength', '8'),
-			'message' => 'Password must be at least 8 characters long.'
+			'password' => array(
+				'rule' => array('minLength', '8'),
+				'message' => 'Password must be at least 8 characters long.'
+			),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'This field cannot be left blank.'
+			)
 		)
 	);
 	

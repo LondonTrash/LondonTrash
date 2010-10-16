@@ -1,84 +1,117 @@
+<?php echo $this->Html->script('jquery-ui-1.8.5.custom.min', array('inline' => false)); ?>
+<?php echo $this->Html->css('/js/colorbox/colorbox', null, array('inline' => false)); ?>
+<?php echo $this->Html->script('colorbox/jquery.colorbox-min', array('inline' => false)); ?>
+<?php echo $this->Html->script('validate/jquery.validate.pack', array('inline' => false)); ?>
+<?php echo $this->Html->script('jquery.form', array('inline' => false)); ?>
+
+<?php echo $this->Html->script('notifications', array('inline' => false)); ?>
+<?php echo $this->Html->script('report_problem', array('inline' => false)); ?>
+<?php echo $this->Html->script('calendar', array('inline' => false)); ?>
 <?php
-		//print_r($this->Session);
+$notifyUrl = $this->Html->url(array(
+	'controller' => 'update_signups',
+	'action' => 'add'
+));
+$reportUrl = $this->Html->url(array(
+	'controller' => 'problem_reports',
+	'action' => 'add'
+));
+?>
+<?php
+echo $this->Html->scriptBlock(
+<<<JAVASCRIPT
+$(document).ready(function(){
+	$("#notify").colorbox({
+		width: "525px",
+		href: "{$notifyUrl}",
+		overlayClose: false,
+		scrolling: false
+	},
+	notify_prepForm);
+	$("#report").colorbox({
+		width: "525px",
+		href: "{$reportUrl}",
+		overlayClose: false,
+		scrolling: false
+	},
+	report_prepForm);
+});
+JAVASCRIPT
+, array('inline' => false));
 ?>
 
-<div class="mod results">
+<div class="results mod">
 	<div class="address">
-	<?php
-		if ($this->Session->read('zone') != '')
-		{
-			echo $this->Session->read('address');
-			echo ' (Zone ' . $this->Session->read('zone') . ')';
-		}
-	?>
-	<a href="/">Change</a></div>
-	<div class="clear"></div>
-	<small>Your Next Pickup is:</small>
-	<?php 
-
-		$timestamp = $schedule[0]['start_date'];
-
-		if ($this->Time->isToday($timestamp)){
-			echo "<h2>TODAY</h2>"; 
-			echo '<span id="r-date">' . date('l, F jS',$schedule[1]['start_date']) . '</span>';
-		}else if ($this->Time->isTomorrow($timestamp)){
-				echo "<h2>TOMORROW!</h2>";
-				echo '<span id="r-date">' . date('l, F jS',$schedule[1]['start_date']) . '</span>';
-		}else if(date('z', $timestamp) - date('z') < 7){
-			echo "<h2>" . date('next l',$timestamp) . "</h2>";
-		}else {
-			echo "<h2>" . date('l, F jS',$timestamp) . "</h2>";	
-		}
-		?>
-
-		<div id="calendar">
-		<table>
-			<tr>
-				<th>S</th>
-				<th>M</th>
-				<th>T</th>
-				<th>W</th>
-				<th>T</th>
-				<th>F</th>
-				<th>S</th>
-			<tr>
-			<tr>
-				<?php 
-					$i = 0;
-					foreach($calendar as $day=>$date){
-						echo '<td class="'.$date['class'].'">';
-						echo date('j',$day); 
-						if (isset($date['event'])){
-							echo ': '.$date['event']['type'];	
-						}	
-						print "</td>\n\t\t\t";
-						$i++;
-						if(is_int($i/7)){
-							print "</tr>\n\t\t<tr>\n\t\t\t";
-						}
-					}
-				?>	
-				</tr>
-		</table>
-		</div>
-		<div id="subscribe">
-	<?php
-		echo $form->create('Zone', array('type' => 'post'));
-		echo $form->input('Email');
-		echo $form->input('Phone');
-		echo $form->hidden('zone', array('value' => $zone));
-		echo $form->end('Send me the info!');
-	?>
+		<?php echo $this->Session->read('address'); ?> (<?php echo $formattedZone; ?>)
+		<?php echo $this->Html->link("Change", array('controller' => 'searches', 'action' => 'clear', $this->Session->read('address'))); ?>
 	</div>
-<?php
-    echo $this->Form->create('Zone', array('type' => 'post'));
-    echo $this->Form->input('Subscriber.email');
-    echo $this->Form->input('Subscriber.phone');
-    echo $this->Form->hidden('Subscriber.zone_id', array('value' => $zone));
-		echo $this->Form->input('Notification.0.delay_time');
-		echo $this->Form->input('Notification.0.delay_unit', array('type' => 'select', 'options' => $delay_unit)); // hours, days
-		echo $this->Form->input('Notification.0.notification_type', array('type' => 'select', 'options' => $notification_type)); // regular, special, both
-    echo $this->Form->end('Send me the info!');
-?>
-<?php debug($schedule); ?>
+	<?php
+		//next regular pickup in the schedule
+		
+		$longDate = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
+		
+		// today
+		if ($this->Time->isToday($pickup)) {
+			$next_pickup = "7:00am Today!"; 
+			$next_pickup_details = $longDate;
+		// tomorrow
+		} else if ($this->Time->isTomorrow($pickup)) {
+			$next_pickup = "Tomorrow!";
+			$next_pickup_details = $longDate;
+		// this week, i.e. "This Friday"
+		} else if (date('W', $pickup) == date('W')) {
+			$next_pickup = "This " . date('l', $pickup);
+			$next_pickup_details = $longDate;
+		// next week, i.e. "Next Tuesday"
+		} else if (date('W', $pickup) - date('W') == 1) {
+			$next_pickup = "Next " . date('l', $pickup);
+			$next_pickup_details = $longDate;
+		// two weeks or more away
+		} else {
+			$next_pickup = $longDate;
+			$next_pickup_details = "";
+		}
+	?>
+	<small>Your Next Regular Pickup is:</small>
+	<div class="clear"></div>
+	<h2><?php echo $next_pickup; ?></h2>
+	<span id='r-date'><?php echo $next_pickup_details; ?></span>
+</div>
+<div id="calendar" class="hidden">
+</div>
+<ol id="callist" rel="<?php echo intval(($schedule[count($schedule)-1]['end_date'] - strtotime(date('Y-m-d H:i:s')))/86400); ?>d">
+	<?php foreach($schedule as $date) { ?>
+		<li class="calday <?php echo $date['type'] == "pickup" ? "pickup" : "special"; ?> <?php echo date('FY',$date['start_date']); ?>" title="<?php echo ucwords($date['type']." ".$date['description']); ?>">
+			<strong class="<?php echo date('F', $date['start_date']); ?>"><?php echo date('M', $date['start_date']); ?></strong>
+			<span class="day"><?php echo date('j', $date['start_date']); ?></span>
+		</li>
+		<?php if (date('Y-m-d',$date['start_date']) != date('Y-m-d',strtotime(date('Y-m-d H:i:s',$date['end_date'])." -1 seconds"))) { ?>
+			<?php $d = strtotime(date('Y-m-d', $date['start_date'])." +1 day"); while($d < strtotime(date('Y-m-d H:i:s',$date['end_date'])." -1 seconds")) { ?>
+				<li class="calday <?php echo $date['type'] == "pickup" ? "pickup" : "special"; ?> <?php echo date('FY',$d); ?>">
+					<strong class="<?php echo date('F', $d); ?>"><?php echo date('M', $d); ?></strong>
+					<span class="day"><?php echo date('j', $d); ?></span>
+				</li>
+				<?php $d = strtotime(date('Y-m-d', $d)." +1 day"); ?>
+			<?php } ?>
+		<?php } ?>
+	<?php } ?>
+	<li>
+		<div class="clear"></div>
+		<div id="legend">
+			<small><span class="pickup"></span>Regular Pickup</small>
+			<small><span class="special"></span>Special Pickup</small>
+		</div>
+	</li>
+</ol>
+<div class="grid_6">  
+	<span id="holiday" class="pop-notice"><p>Email and SMS notifications are coming soon.</p><p>Click the <strong>Email Notifications</strong> button below, and we'll let you know once it's ready.</p></span>
+	<?php echo $this->Html->link('Email Notifications', $notifyUrl, array('id' => 'notify')); ?>
+	
+	<?php echo $this->Html->link('iCal Feed (' . $formattedZone . ')', $webcal_url, array('class' => 'ical')); ?>
+	<?php echo $this->Html->link('Add to gCal (' . $formattedZone . ')', $gcal_url, array('class' => 'ical')); ?>
+
+<div class="clear"></div>
+<hr />
+
+<?php echo $this->Html->link('Report an Error', $reportUrl, array('id' => 'report')); ?>
 </div>

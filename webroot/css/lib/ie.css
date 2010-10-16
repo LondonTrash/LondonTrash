@@ -1,0 +1,103 @@
+/* -------------------------------------------------------------- 
+   
+   ie.css
+   
+   Contains every hack for Internet Explorer versions prior 
+   to IE7, so that our core files stay sweet and nimble.
+   
+-------------------------------------------------------------- */
+
+/* Make sure the layout is centered in IE5 */
+
+body { text-align: center }
+
+.container { text-align: left }
+
+/* This fixes the problem where IE6 adds an extra 3px margin to
+   two columns that are floated up against each other. */
+
+* html .column { overflow-x: hidden }
+
+/* IE6 fix */
+
+.pull-1,
+.pull-2,
+.pull-3,
+.pull-4,
+.push-1,
+.push-2,
+.push-3,
+.push-4,
+ul,
+ol {
+    position: relative;
+    /* Keeps IE6 from cutting pulled/pushed images */: ; }
+
+/* Fixes incorrect styling of legend in IE6 fieldsets. */
+
+legend { margin-bottom: 1.4em }
+
+/* Fixes incorrect placement of numbers in ol's in IE6/7 */
+
+ol { margin-left: 2em }
+
+
+#search-box .sbutton {
+    padding-left: 0px;
+    height: 72px;
+    top: 3px; }
+
+.searches-index .glass { background: none }
+.glass { background: #fff; overflow:auto;}
+.results { border-bottom: 1px solid #ddd; display:block; clear:right; width:609px;}
+
+.results #r-date sup { top: 1px }
+.results h2 {overflow:visible;  height:60px; position:relative; top:-15px; line-height:1.4em;}
+	 
+.address a {
+    background: #eee;
+    top: 2px;
+	font-weight:500;
+	padding:2px 5px;
+    left: 10px; border:1px solid #ddd; color:#aaa!important;}
+
+.address a:hover { background: #ddd; color:#666!important; }
+.address { margin-top:-2px;}
+
+#report {  
+ background: #fff;
+ border:1px solid #ccc; color:#999!important; border-bottom:none;}
+ 
+#report:hover { background: #ddd; color:#666!important;}
+
+.dyk {    background: #fff;    padding: 5px 0 10px 0!important; }
+	
+.zones-view hr {  color: #ddd;   background-color: #ddd; }
+	
+#calendar, #callist { border: 1px solid #eee }
+
+#calendar .ui-datepicker-today a{ border-bottom: 1px solid #003F87!important }
+
+#notify {
+    background: url('../../img/bell.png') 4px 60% no-repeat #555;
+    margin-top: 5px; padding-top:3px; padding-bottom:3px;}
+
+#notify:hover { background: url('../../img/bell.png') 4px 60% no-repeat #333 }
+
+.searches-index .grid_11 #flashMessage {
+    margin-bottom: 10px;
+    margin-left: 50px;
+    width: 460px; }
+
+.contributor { background: #eee }
+
+#calendar td, #calendar th {    border: 1px solid #eee;}
+
+#calendar{ margin-left:15px; }
+.zones-view .grid_6 { margin:0 0 0 13px;     padding-left: 0px; }
+
+
+
+
+
+

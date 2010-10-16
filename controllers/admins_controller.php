@@ -1,7 +1,6 @@
 <?php
 class AdminsController extends AppController {
 	var $name = 'Admins';
-	var $helpers = array('Session');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -9,11 +8,21 @@ class AdminsController extends AppController {
 	}
 	
 	function admin_index() {
-
+		$this->loadModel('AddressCache');
+		$cachedLookups = $this->AddressCache->find('count');
+		$this->set('cachedLookups', $cachedLookups);
+		
+		$this->loadModel('ProblemReport');
+		$problemReports = $this->ProblemReport->find('count');
+		$this->set('problemReports', $problemReports);
+		
+		$this->loadModel('UpdateSignup');
+		$updateSignups = $this->UpdateSignup->find('count');
+		$this->set('updateSignups', $updateSignups);
 	}
 	
 	function admin_login() {
-		
+		// let the Auth component do its thing.
 	}
 	
 	function admin_logout() {
@@ -22,13 +31,17 @@ class AdminsController extends AppController {
 	}
 	
 	function admin_add_account() {
-		if($this->data) {
-			$this->Admin->create();
-			
-			if($this->Admin->save($this->data))
+		// disable this action (for now, at least)
+		$this->Session->setFlash("This functionality has been disabled.");
+		$this->redirect(array('action' => 'index'));
+		
+		if($this->data) {			
+			if($this->Admin->save($this->data)) {
 				$this->Session->setFlash("New administrator added.");
-			else
+				$this->redirect(array('action' => 'index'));
+			} else {
 				$this->Session->setFlash("Unable to add administrator.");
+			}
 		}
 	}
 	

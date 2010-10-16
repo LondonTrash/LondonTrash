@@ -1,23 +1,17 @@
 <?php
-
 class Zone extends AppModel {
-
 	var $name = 'Zone';
 	var $hasMany = array(
 		'Subscriber'
 	);
-
-	/**
-	 * Retrieve the zone information from http://openhalton.ca
-	 * @param string $address The user entered address
-	 * @return string the zone's name (if it was found, otherwise false)
-	 */
-	public function get_zone($address) {
-		//if we haven't got the zone locally, get it from the openhalton database
-		if (!$zone_name = $this->getZoneLocal($address)) {
-			$zone_name = $this->getZoneOpenhalton($address);
-		}
-		return $zone_name;
+	
+	protected $zone_data = null;
+	protected $zone_data_size = 0;
+	
+	public function __construct() {
+		parent::__construct();
+		
+		ClassRegistry::init('AddressCache');
 	}
 
 	/**
@@ -25,17 +19,92 @@ class Zone extends AppModel {
 	 * @param string $address The user entered address
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
-	private function getZoneOpenhalton($address) {
-		//find the zone
-		$contents = file_get_contents("http://openhalton.ca/londontrash/LondonTrash.svc/GetZone?address=" . urlencode($address) . "&mapprovider=bing");
-		$contents = json_decode($contents);
-		$zone_name = false;
-		if (!empty($contents->d->ZoneText)) {
-			$zone_name = $contents->d->ZoneText;
+	public function get_zone($address, $lookup = true) {
+		if( $lookup ) {
+			$this->lookup_zone($address);
 		}
-		//TODO: save zone so we don't have to make a call to a service that may or may not be up all the time
+				
+		if( 0 < $this->zone_data_size ) {
+			return $this->zone_data;
+		}
+		
+		return false;
+	}
+	
+	public function lookup_zone($address) {
+		if( !$this->getZoneLocal($address) ) {
+			if( $this->_do_zone_lookup($address) ) {
+				if( 0 < $this->zone_data_size ) {
+					return true;
+				}
+			}
+		} else {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public function get_zone_result_count() {
+		return $this->zone_data_size;
+	}
+	
+	public function are_results_ambiguous() {
+		return 1 < $this->zone_data_size ? true : false;
+	}
+	
+	private function _do_zone_lookup($address) {
+		App::import('Lib', 'lookup', array('file' => 'lookup/ZoneLookup.php'));
+		$zone_lookup = new ZoneLookup();
 
-		return $zone_name;
+		// if we don't get a lat long from the address, return false
+		if (!$data = $zone_lookup->get_latlng_by_address($address)) {
+			return false;
+		}
+
+		$data_size = count($data);
+		
+		if( 0 < $data_size ) {
+			$this->zone_data = array();
+			$this->zone_data_size = 0;
+			
+			for( $i = 0; $i < $data_size; ++$i ) {
+				// test to assure that resolved addresses are actually in London Ontario
+				if( isset($data[$i]->address_components[2]->long_name) && $data[$i]->address_components[2]->long_name == "London" &&
+				   isset($data[$i]->address_components[4]->long_name) && $data[$i]->address_components[4]->long_name == "Ontario" &&
+				   isset($data[$i]->address_components[5]->long_name) && $data[$i]->address_components[5]->long_name == "Canada" ) {
+				
+				$zone_name = $zone_lookup->get_zone_by_latlng($data[$i]->geometry->location->lat, $data[$i]->geometry->location->lng);
+				if( $zone_name ) {
+					$o = new stdClass;
+					$o->zone_name = (string) $zone_name;
+					$o->address = $address;
+					$o->formatted_address = $data[$i]->formatted_address;
+					
+					$this->zone_data[] = $o;
+					
+					// this is jedi aaron in action.
+					++$this->zone_data_size;
+					
+					$addy_cache_data = array(
+						'AddressCache' => array(
+							'address' => $address,
+							'formatted_address' => $data[$i]->formatted_address,
+							'zone' => $zone_name
+					));
+					
+					$this->AddressCache = new AddressCache();
+					$this->AddressCache->set($addy_cache_data);
+					$this->AddressCache->save();
+				}
+				
+				}
+			}
+			
+			return true;
+		}
+		
+		return false;
 	}
 
 	/**
@@ -44,9 +113,30 @@ class Zone extends AppModel {
 	 * @return string the zone's name (if it was found, otherwise false)
 	 */
 	private function getZoneLocal($address) {
-		//parse out postal code
-		//get the zone based on the postal code
-		//if zones can change: make sure that the zone retrieval date is not greater than x
+		$this->AddressCache = ClassRegistry::init('AddressCache');
+		$data = $this->AddressCache->find('all', array(
+			'conditions' => array(
+				'AddressCache.address' => $address
+			)
+		));
+		$data_size = count($data);
+		if( 0 < $data_size ) {
+			$this->zone_data = array();
+			$this->zone_data_size = 0;
+			
+			for( $i = 0; $i < $data_size; ++$i ) {
+				$o = new stdClass;
+				$o->zone_name = $data[$i]['AddressCache']['zone'];
+				$o->address = $data[$i]['AddressCache']['address'];
+				$o->formatted_address = $data[$i]['AddressCache']['formatted_address'];
+				
+				$this->zone_data[] = $o;
+				++$this->zone_data_size;
+			}
+			
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -73,7 +163,6 @@ class Zone extends AppModel {
 	private function compare_date($a, $b) {
 		return $a['start_date'] > $b['start_date'];
 	}
-
 }
 
 ?>
