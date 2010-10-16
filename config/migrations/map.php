@@ -40,5 +40,7 @@ $map = array(
 		'019_feedback_table' => 'M4caea72ec4284413bb3e1b483201ca43'),
 	20 => array(
 		'021_remove_feedbacks_table' => 'M4cafcb1c5c544610b231c5233201ca43'),
+	21 => array(
+		'022_removing_pickup_types_from_subscribers' => 'M4cb9d06d82dc48c39a7053e23201ca43'),
 );
 ?>
