@@ -146,12 +146,27 @@ class Zone extends AppModel {
 	 * @return array
 	 */
 	public function get_schedule($zone) {
-		$zone_id = $this->find('first', array('conditions' => array('Zone.title' => $zone))); #logic to find zone goes here
+		$zone_id = $this->find('first', array('conditions' => array('Zone.title' => $zone)));
 		//find the schedule for said zone
 		$this->Schedule = ClassRegistry::init('Schedule');
 		$zone_schedule = $this->Schedule->get_schedule($zone_id);
 		usort($zone_schedule, array($this, "compare_date"));
 		return $zone_schedule;
+	}
+	
+	public function get_next_pickup($zone, $options = array()) {
+		$schedule = $this->get_schedule($zone);
+		
+		// filter out past events
+		$schedule = array_filter($schedule, array($this, "filter_past_pickups"));
+		
+		// filter by pickup type
+		if (isset($options['type'])) {
+			$this->pickupType = $options['type'];
+			$schedule = array_filter($schedule, array($this, "filter_pickup_type"));
+		}
+		
+		return array_shift($schedule);
 	}
 
 	/**
@@ -162,6 +177,14 @@ class Zone extends AppModel {
 	 */
 	private function compare_date($a, $b) {
 		return $a['start_date'] > $b['start_date'];
+	}
+	
+	private function filter_past_pickups($array) {
+		return $array['start_date'] > time();
+	}
+	
+	private function filter_pickup_type($array) {
+		return $array['type'] == $this->pickupType;
 	}
 }
 
