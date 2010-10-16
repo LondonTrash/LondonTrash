@@ -1,0 +1,18 @@
+<?php
+/**
+ * Configuration details for SMTP server
+ * In this example, we're using Gmail.
+ */
+
+Configure::write('smtp.config',
+	array(
+		'port' => '465',
+		'timeout' => '30',
+		'auth' => true,
+		'host' => 'ssl://smtp.gmail.com',
+		'username' => 'your_username@gmail.com',
+		'password' => 'your_gmail_password'
+	)
+);
+
+?>
