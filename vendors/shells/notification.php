@@ -20,7 +20,7 @@ class NotificationShell extends Shell {
 		$gracePeriod = 60 * 60 * 1;
 		
 		// Just for testing purposes. Use time() instead.
-		$currentTime = 1287617400;
+		$currentTime = 1287354600;
 		
 		// grab all our zone data
 		$zones = $this->Zone->find('all');
@@ -31,37 +31,37 @@ class NotificationShell extends Shell {
 			
 			// when to notify
 			$notification_time = $pickup['start_date'] - $notificationOffset;
-
-			// for each subscriber in the zone
-			$subscribers = $this->Subscriber->find('all', array('conditions' => array('Subscriber.zone_id' => $zone['Zone']['id'])));
+			
+			// we haven't yet reached the notification time
+			if ($currentTime <= $notification_time) {
+				$timeDifference = $notification_time - $currentTime;
+			} else { // we're not at the notification time yet
+				$timeDifference = $currentTime - $notification_time;
+			}
+			
+			// only try to send while within the grace period
+			if ($gracePeriod >= $timeDifference) {
+				
+				echo "Current time: " . date('r', $currentTime) . "\n";
+				echo "Not - Grace: " . date('r', $notification_time - $gracePeriod) . "\n";
+				echo "Not + Grace: " . date('r', $notification_time + $gracePeriod) . "\n";
+			
+				// for each subscriber in the zone
+				$subscribers = $this->Subscriber->find('all', array('conditions' => array('Subscriber.zone_id' => $zone['Zone']['id'])));
 	
-			foreach ($subscribers as $subscriber) {
-				foreach ($subscriber['Notification'] as $notification) {
-					// check to see if we've already sent a notification to this user
-					if ($notification['last_sent'] == null || $notification['last_sent'] < $notification_time) {
-						
-						// Check for a date match
-						echo "Current time: " . date('r', $currentTime) . "\n";
-						echo "Not - Grace: " . date('r', $notification_time - $gracePeriod) . "\n";
-						echo "Not + Grace: " . date('r', $notification_time + $gracePeriod) . "\n";
-							
-						// we haven't yet reached the notification time
-						if ($currentTime <= $notification_time) {
-							$timeDifference = $notification_time - $currentTime;
-						} else { // we're not at the notification time yet
-							$timeDifference = $currentTime - $notification_time;
-						}
-						
-						if ($gracePeriod >= $timeDifference) {
+				foreach ($subscribers as $subscriber) {
+					foreach ($subscriber['Notification'] as $notification) {
+						// check to see if we've already sent a notification to this user
+						if ($notification['last_sent'] == null || $notification['last_sent'] < $notification_time) {
 							$this->out($subscriber["Subscriber"]["contact"] . " in Zone " . $zone['Zone']['title'] .
 							" about a pickup on " . date('F j Y', $pickup['start_date']) . "\n");
-							
+						
 							$subscriberData = array(
 								'Subscriber' => $subscriber['Subscriber'],
 								'Notification' => $notification,
 								'Zone' => $zone['Zone']
 							);
-								
+							
 							if ($this->sendMail($subscriberData)) {
 								$this->out("Sent!\n");
 								$this->Subscriber->Notification->id = $notification['id'];
@@ -70,10 +70,10 @@ class NotificationShell extends Shell {
 								$this->out("Unable to send.\n");
 								$this->out($this->Email->smtpError);
 							}
-						}
 							
-					}
+						}
 				
+					}
 				}
 			}
 		}
@@ -92,6 +92,8 @@ class NotificationShell extends Shell {
 			include(CONFIGS . 'smtp.php');
 			$this->Email->smtpOptions = Configure::read('smtp.config');
 		}
+		
+		$this->Email->delivery = 'debug';
 		
 		// plaintext for now, point to our template
 		$this->Email->sendAs = 'text';
