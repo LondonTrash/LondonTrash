@@ -99,24 +99,18 @@ class M4ca7f61c0fbc49e5998772b33201ca43 extends CakeMigration {
 				),
 				array(
 					'id' => 7,
-					'title' => 'MTS',
-					'protocol_id' => 2,
-					'template' => 'text.mtsmobility.com'
-				),
-				array(
-					'id' => 8,
 					'title' => "President's Choice",
 					'protocol_id' => 2,
 					'template' => 'txt.bell.ca'
 				),
 				array(
-					'id' => 9,
+					'id' => 8,
 					'title' => 'Solo',
 					'protocol_id' => 2,
 					'template' => 'txt.bell.ca'
 				),
 				array(
-					'id' => 10,
+					'id' => 9,
 					'title' => 'Virgin',
 					'protocol_id' => 2,
 					'template' => 'vmobile.ca'
