@@ -20,7 +20,7 @@ class NotificationShell extends Shell {
 		$gracePeriod = 60 * 60 * 1;
 		
 		// Just for testing purposes. Use time() instead.
-		$currentTime = 1287354600;
+		$currentTime = 1287355600;
 		
 		// grab all our zone data
 		$zones = $this->Zone->find('all');
@@ -36,23 +36,28 @@ class NotificationShell extends Shell {
 			if ($currentTime <= $notification_time) {
 				$timeDifference = $notification_time - $currentTime;
 			} else { // we're not at the notification time yet
-				$timeDifference = $currentTime - $notification_time;
+				$timeDifference = $notification_time + $currentTime;
 			}
 			
 			// only try to send while within the grace period
 			if ($gracePeriod >= $timeDifference) {
 				
+				$graceStart = $notification_time - $gracePeriod;
+				$graceEnd = $notification_time + $gracePeriod;
+				
 				echo "Current time: " . date('r', $currentTime) . "\n";
-				echo "Not - Grace: " . date('r', $notification_time - $gracePeriod) . "\n";
-				echo "Not + Grace: " . date('r', $notification_time + $gracePeriod) . "\n";
+				echo "Grace period starts: " . date('r', $graceStart) . "\n";
+				echo "Grace period ends: " . date('r', $graceEnd) . "\n";
 			
 				// for each subscriber in the zone
 				$subscribers = $this->Subscriber->find('all', array('conditions' => array('Subscriber.zone_id' => $zone['Zone']['id'])));
 	
 				foreach ($subscribers as $subscriber) {
 					foreach ($subscriber['Notification'] as $notification) {
-						// check to see if we've already sent a notification to this user
-						if ($notification['last_sent'] == null || $notification['last_sent'] < $notification_time) {
+						echo "Notification last sent: " . date('r', $notification['last_sent']) . "\n";
+
+						// check to see if we've already sent a notification to this user within the grace period
+						if ($notification['last_sent'] == null || ($notification['last_sent'] < $graceStart && $notification['last_sent'] > $graceEnd)) {
 							$this->out($subscriber["Subscriber"]["contact"] . " in Zone " . $zone['Zone']['title'] .
 							" about a pickup on " . date('F j Y', $pickup['start_date']) . "\n");
 						
@@ -65,7 +70,7 @@ class NotificationShell extends Shell {
 							if ($this->sendMail($subscriberData)) {
 								$this->out("Sent!\n");
 								$this->Subscriber->Notification->id = $notification['id'];
-								$this->Subscriber->Notification->saveField('last_sent', time());	
+								$this->Subscriber->Notification->saveField('last_sent', $currentTime);	
 							} else {
 								$this->out("Unable to send.\n");
 								$this->out($this->Email->smtpError);
