@@ -3,6 +3,8 @@ class NotificationShell extends Shell {
 
 	var $uses = array('Subscriber', 'Zone');
 	
+	var $tasks = array('SwiftMailer');
+	
 	function main() {
 		/**
 		 * How far ahead of time we should send the notification
@@ -79,7 +81,6 @@ class NotificationShell extends Shell {
 								$this->Subscriber->Notification->saveField('last_sent', $currentTime);	
 							} else {
 								$this->out("Unable to send.\n");
-								$this->out($this->Email->smtpError);
 							}
 							
 						}
@@ -91,50 +92,52 @@ class NotificationShell extends Shell {
 	}
 	
 	function sendMail($subscriberData) {
-		App::import('Core', 'Controller'); 
-		App::import('Component', 'Email'); 
-		$this->Controller =& new Controller(); 
-		$this->Email =& new EmailComponent(null); 
-		$this->Email->initialize($this->Controller);
-		
 		// SMTP configuration
 		if (file_exists(CONFIGS . 'smtp.php')) {
 			$this->Email->delivery = 'smtp';
 			include(CONFIGS . 'smtp.php');
-			$this->Email->smtpOptions = Configure::read('smtp.config');
+
+			// pass SMTP configuration to SwiftMailer component
+			foreach (Configure::read('smtp.config') as $key => $value) {
+				$this->SwiftMailer->instance->{'smtp' . ucfirst($key)} = $value;
+			}
 		}
-		
-		// overriding delivery method for now
-		$this->Email->delivery = 'debug';
-		
-		// plaintext for now
-		$this->Email->sendAs = 'text';
+
+		$this->SwiftMailer->instance->sendAs = 'text';
+		$this->SwiftMailer->instance->from = 'noreply@londontrash.ca';
+		$this->SwiftMailer->instance->fromName = 'LondonTrash.ca';
+		$this->SwiftMailer->instance->to = $subscriberData['Subscriber']['contact_email'];
 		
 		// Setting email subject and template for email/SMS
 		if ($subscriberData['Provider']['protocol_id'] == 1) {
 			// Email
-			$this->Email->subject = 'LondonTrash.ca reminder';
-			$this->Email->template = 'pickup';
+			$this->SwiftMailer->instance->subject = 'LondonTrash.ca reminder';
+			$this->SwiftMailer->instance->template = 'pickup';
 		} else {
 			// SMS
-			$this->Email->subject = null;
-			$this->Email->template = 'pickup_sms';
+			$this->SwiftMailer->instance->subject = null;
+			$this->SwiftMailer->instance->template = 'pickup_sms';
 		}
-		
-		// pass data to email template
-		$this->Controller->set('subscriberData', $subscriberData);
 
-		// message headers
-		$this->Email->from = 'noreply@londontrash.ca'; 
-		$this->Email->to = $subscriberData['Subscriber']['contact_email'];
+		// pass data to email template
+		$this->SwiftMailer->set('subscriberData', $subscriberData);
 		
-		if ($this->Email->send()) {
-			// debug the email message
-			$this->out('Subject: ' . $this->Email->subject);
-			$this->out($this->Email->textMessage);
-			return true;
+		// logging
+		//$this->SwiftMailer->instance->registerPlugin('LoggerPlugin', new Swift_Plugins_Loggers_EchoLogger());
+
+		try { 
+			if(!$this->SwiftMailer->instance->send($this->SwiftMailer->instance->template, $this->SwiftMailer->instance->subject)) {
+				foreach($this->SwiftMailer->instance->postErrors as $failed_send_to) {
+					$this->log("Failed to send email to: " . $failed_send_to);
+					return false;
+				} 
+			} 
+		} 
+		catch(Exception $e) { 
+			$this->log("Failed to send email: " . $e->getMessage());
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 }	 
