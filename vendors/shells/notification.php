@@ -58,7 +58,7 @@ class NotificationShell extends Shell {
 
 						// check to see if we've already sent a notification to this user within the grace period
 						if ($notification['last_sent'] == null || ($notification['last_sent'] < $graceStart && $notification['last_sent'] > $graceEnd)) {
-							$this->out($subscriber["Subscriber"]["contact"] . " in Zone " . $zone['Zone']['title'] .
+							$this->out($subscriber['Subscriber']['contact_email'] . " in Zone " . $zone['Zone']['title'] .
 							" about a pickup on " . date('F j Y', $pickup['start_date']) . "\n");
 						
 							$subscriberData = array(
@@ -110,7 +110,7 @@ class NotificationShell extends Shell {
 
 		// headers
 		$this->Email->from = 'noreply@londontrash.ca'; 
-		$this->Email->to = $subscriberData['Subscriber']['contact']; //logic for email/SMS not in place yet
+		$this->Email->to = $subscriberData['Subscriber']['contact_email'];
 		$this->Email->subject = 'Take out the trash!';
 		
 		if ($this->Email->send()) {
