@@ -24,7 +24,7 @@ class NotificationShell extends Shell {
 		$gracePeriod = 60 * 60 * 1;
 		
 		// Just for testing purposes. Use time() instead.
-		$currentTime = 1287613802;
+		$currentTime = time();
 		
 		// grab all our zone data
 		$zones = $this->Zone->find('all');
@@ -42,7 +42,7 @@ class NotificationShell extends Shell {
 				$timeDifference = $notification_time - $currentTime;
 			} else {
 				// we're past the notification time
-				$timeDifference = $notification_time + $currentTime;
+				$timeDifference = $currentTime - $notification_time;
 			}
 			
 			// only try to send while within the grace period
