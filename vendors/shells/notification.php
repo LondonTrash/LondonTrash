@@ -32,10 +32,12 @@ class NotificationShell extends Shell {
 			// when to notify
 			$notification_time = $pickup['start_date'] - $notificationOffset;
 			
-			// we haven't yet reached the notification time
+			// Figure out where we are in relation to the notification time
 			if ($currentTime <= $notification_time) {
+				// we haven't yet reached the notification time
 				$timeDifference = $notification_time - $currentTime;
-			} else { // we're not at the notification time yet
+			} else {
+				// we're past the notification time
 				$timeDifference = $notification_time + $currentTime;
 			}
 			
@@ -62,6 +64,7 @@ class NotificationShell extends Shell {
 						if ($notification['last_sent'] == null || ($notification['last_sent'] < $graceStart && $notification['last_sent'] > $graceEnd)) {
 							$this->out($subscriber['Subscriber']['contact_email'] . " in Zone " . $zone['Zone']['title'] .
 							" about a pickup on " . date('F j Y', $pickup['start_date']) . "\n");
+							
 							$subscriberData = array(
 								'Subscriber' => $subscriber['Subscriber'],
 								'Notification' => $notification,
@@ -101,11 +104,13 @@ class NotificationShell extends Shell {
 			$this->Email->smtpOptions = Configure::read('smtp.config');
 		}
 		
+		// overriding delivery method for now
 		$this->Email->delivery = 'debug';
 		
-		// plaintext for now, point to our template
+		// plaintext for now
 		$this->Email->sendAs = 'text';
 		
+		// Setting email subject and template for email/SMS
 		if ($subscriberData['Provider']['protocol_id'] == 1) {
 			// Email
 			$this->Email->subject = 'LondonTrash.ca reminder';
@@ -119,7 +124,7 @@ class NotificationShell extends Shell {
 		// pass data to email template
 		$this->Controller->set('subscriberData', $subscriberData);
 
-		// headers
+		// message headers
 		$this->Email->from = 'noreply@londontrash.ca'; 
 		$this->Email->to = $subscriberData['Subscriber']['contact_email'];
 		
