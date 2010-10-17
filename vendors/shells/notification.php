@@ -64,7 +64,8 @@ class NotificationShell extends Shell {
 							$subscriberData = array(
 								'Subscriber' => $subscriber['Subscriber'],
 								'Notification' => $notification,
-								'Zone' => $zone['Zone']
+								'Zone' => $zone['Zone'],
+								'Pickup' => $pickup
 							);
 							
 							if ($this->sendMail($subscriberData)) {
@@ -102,7 +103,7 @@ class NotificationShell extends Shell {
 		
 		// plaintext for now, point to our template
 		$this->Email->sendAs = 'text';
-		$this->Email->template = 'pickup';
+		$this->Email->template = 'pickup_sms';
 		
 		// pass data to email template
 		$this->Controller->set('subscriberData', $subscriberData);
