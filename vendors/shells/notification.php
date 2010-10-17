@@ -5,6 +5,8 @@ class NotificationShell extends Shell {
 	
 	var $tasks = array('SwiftMailer');
 	
+	var $swiftTransport = null;
+	
 	function main() {
 		/**
 		 * How far ahead of time we should send the notification
@@ -55,6 +57,8 @@ class NotificationShell extends Shell {
 			
 				// for each subscriber in the zone
 				$subscribers = $this->Subscriber->find('all', array('conditions' => array('Subscriber.zone_id' => $zone['Zone']['id'])));
+				
+				$this->initializeMailer();
 	
 				foreach ($subscribers as $subscriber) {
 					foreach ($subscriber['Notification'] as $notification) {
@@ -91,7 +95,7 @@ class NotificationShell extends Shell {
 		}
 	}
 	
-	function sendMail($subscriberData) {
+	function initializeMailer() {
 		// SMTP configuration
 		if (file_exists(CONFIGS . 'smtp.php')) {
 			$this->Email->delivery = 'smtp';
@@ -102,7 +106,12 @@ class NotificationShell extends Shell {
 				$this->SwiftMailer->instance->{'smtp' . ucfirst($key)} = $value;
 			}
 		}
-
+		
+		// Set transport for later usage
+		$this->swiftTransport =& $this->SwiftMailer->instance->init_swiftmail();
+	}
+	
+	function sendMail($subscriberData) {
 		$this->SwiftMailer->instance->sendAs = 'text';
 		$this->SwiftMailer->instance->from = 'noreply@londontrash.ca';
 		$this->SwiftMailer->instance->fromName = 'LondonTrash.ca';
@@ -126,7 +135,7 @@ class NotificationShell extends Shell {
 		//$this->SwiftMailer->instance->registerPlugin('LoggerPlugin', new Swift_Plugins_Loggers_EchoLogger());
 
 		try { 
-			if(!$this->SwiftMailer->instance->send($this->SwiftMailer->instance->template, $this->SwiftMailer->instance->subject)) {
+			if(!$this->SwiftMailer->instance->fastsend($this->SwiftMailer->instance->template, $this->SwiftMailer->instance->subject, $this->swiftTransport)) {
 				foreach($this->SwiftMailer->instance->postErrors as $failed_send_to) {
 					$this->log("Failed to send email to: " . $failed_send_to);
 					return false;

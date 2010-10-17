@@ -450,6 +450,211 @@ class SwiftMailerComponent extends Object {
 				if (method_exists($this->__controller, $call)) { 
 						$this->__controller->{$call}($object); 
 				} 
+		}
+		
+		// Next two methods are from here:
+		// http://bakery.cakephp.org/articles/sky_l3ppard/2009/11/07/updated-swiftmailer-4-xx-component-with-attachments-and-plugins/page:3#comment4caea200-e708-4d87-93e3-4c2d82f0cb67
+		
+		/**
+		 * init_swiftmail() 
+		 * 
+		 * Initializes connection with mail server so that it can be reused 
+				 * Code copied from the send() function 
+		 * 
+		 * @param String $method - email message sending method, possible values are: 
+		 *				 "smtp" - Simple Mail Transfer Protocol method 
+		 *				 "sendmail" - Sendmail method http://www.sendmail.org/ 
+		 *				 "native" - Native PHP mail method 
+		 * 
+		 */ 
+			
+		function init_swiftmail($method = 'smtp')		 { 
+				// Initializing mail method object with sending parameters 
+				$transport = null; 
+				switch ($method) { 
+						case 'smtp': 
+								$transport = Swift_SmtpTransport::newInstance($this->smtpHost, $this->smtpPort, $this->smtpType); 
+								$transport->setTimeout($this->smtpTimeout); 
+								if (!empty($this->smtpUsername)) { 
+										$transport->setUsername($this->smtpUsername); 
+										$transport->setPassword($this->smtpPassword); 
+								} 
+								break; 
+						case 'sendmail': 
+								$transport = Swift_SendmailTransport::newInstance($this->sendmailCmd); 
+								break; 
+						case 'native': default: 
+								$transport = Swift_MailTransport::newInstance(); 
+								break; 
+				} 
+				 
+				// Initialize Mailer 
+				$mailer = Swift_Mailer::newInstance($transport); 
+
+
+				// Load plugins if any 
+				if (!empty($this->__plugins)) { 
+						foreach($this->__plugins as $name => $args) { 
+								$plugin_class = "Swift_Plugins_{$name}"; 
+								if (!class_exists($plugin_class)) { 
+										throw new Exception("SwiftMailer library does not support this plugin: {$plugin_class}");
+								} 
+								 
+								$plugin = null; 
+								switch(count($args)) { 
+										case 1: 
+												$plugin = new $plugin_class($args[0]); 
+												break; 
+										case 2: 
+												$plugin = new $plugin_class($args[0], $args[1]); 
+												break; 
+										case 3: 
+												$plugin = new $plugin_class($args[0], $args[1], $args[2]); 
+												break; 
+										case 4: 
+												$plugin = new $plugin_class($args[0], $args[1], $args[2], $args[3]); 
+												break; 
+										default: 
+												throw new Exception('SwiftMailer component plugin can register maximum of 4 arguments');
+								} 
+								$mailer->registerPlugin($plugin); 
+						} 
+				} 
+				 
+				return $mailer; 
 		} 
+		 
+		/** 
+		 * fastsend() 
+		 *	
+		 * Copy of send() function, with the instantiation of the connection separated out	
+		 * into the init_swiftmail() function. 
+		 * 
+		 * sends Email depending on parameters specified, using 
+		 * mail template $view and subject $subject 
+		 *	
+		 * @param String $view - template for mail content 
+		 * @param String $subject - email message subject 
+		 * @param $mailer - mailer connection 
+		 * 
+		 * @return Integer - number of emails sent 
+		 * @access Public 
+		 */ 
+
+		function fastsend($view = 'default', $subject = '', $mailer) { 
+
+				// Check if $mailer exists 
+				if (!$mailer) { 
+						throw new Exception('SwiftMailer mailer does not exist, need to start it'); 
+				} 
+
+				// Check subject charset, asuming we are by default using "utf-8" 
+				if (strtolower($this->subjectCharset) != 'utf-8') { 
+						if (function_exists('mb_convert_encoding')) { 
+								//outlook uses subject in diferent encoding, this is the case to change it 
+								$subject = mb_convert_encoding($subject, $this->subjectCharset, 'utf-8'); 
+						} 
+				} 
+				// Check if swift mailer is imported 
+				if (!class_exists('Swift_Message')) { 
+						throw new Exception('SwiftMailer was not included, check the path and filename'); 
+				} 
+				 
+				// Create message 
+				$message = Swift_Message::newInstance($subject); 
+				 
+				// Run Init Callback 
+				$this->__runCallback($message, 'initializeMessage'); 
+				 
+				$message->setCharset($this->subjectCharset); 
+				 
+				// Add html text 
+				if ($this->sendAs == 'both' || $this->sendAs == 'html') { 
+						$html_part = $this->_emailBodyPart($view, 'html'); 
+						$message->addPart($html_part, 'text/html', $this->bodyCharset); 
+						unset($html_part); 
+				} 
+				 
+				// Add plain text or an alternative 
+				if ($this->sendAs == 'both' || $this->sendAs == 'text') { 
+						$text_part = $this->_emailBodyPart($view, 'text'); 
+						$message->addPart($text_part, 'text/plain', $this->bodyCharset); 
+						unset($text_part); 
+				} 
+				 
+				// Add attachments if any 
+				if (!empty($this->attachments)) { 
+						foreach($this->attachments as $attachment) { 
+								if (!file_exists($attachment)) { 
+										continue; 
+								} 
+								$message->attach(Swift_Attachment::fromPath($attachment)); 
+						} 
+				} 
+				 
+				// On read notification if supported 
+				if (!empty($this->readNotifyReceipt)) { 
+						$message->setReadReceiptTo($this->readNotifyReceipt); 
+				} 
+				 
+				$message->setMaxLineLength($this->maxLineLength); 
+				 
+				// Set the FROM address/name. 
+				$message->setFrom($this->from, $this->fromName); 
+				// Add all TO recipients. 
+				if (!empty($this->to)) { 
+						if (is_array($this->to)) { 
+								foreach($this->to as $address => $name) { 
+										$message->addTo($address, $name); 
+								} 
+						}	 
+						else { 
+								$message->addTo($this->to); 
+						} 
+				} 
+				 
+				// Add all CC recipients. 
+				if (!empty($this->cc)) { 
+						if (is_array($this->cc)) { 
+								foreach($this->cc as $address => $name) { 
+										$message->addCc($address, $name); 
+								} 
+						}	 
+						else { 
+								$message->addCc($this->cc); 
+						} 
+				} 
+				 
+				// Add all BCC recipients. 
+				if (!empty($this->bcc)) { 
+						if (is_array($this->bcc)) { 
+								foreach($this->bcc as $address => $name) { 
+										$message->addBcc($address, $name); 
+								} 
+						}	 
+						else { 
+								$message->addBcc($this->bcc); 
+						} 
+				} 
+
+				// Set REPLY TO addresses 
+				if (!empty($this->replyTo)) { 
+						if (is_array($this->replyTo)) { 
+								foreach($this->replyTo as $address => $name) { 
+										$message->addReplyTo($address, $name); 
+								} 
+						}	 
+						else { 
+								$message->addReplyTo($this->replyTo); 
+						} 
+				}	 
+				 
+
+				// Run Send Callback 
+				$this->__runCallback($message, 'beforeSend'); 
+				 
+				// Attempt to send the email. 
+				return $mailer->send($message, $this->postErrors); 
+		}
 } 
 ?>
