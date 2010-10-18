@@ -69,7 +69,7 @@ class NotificationShell extends Shell {
 						// check to see if we've already sent a notification to this user within the grace period
 						if ($notification['last_sent'] == null || ($notification['last_sent'] < $graceStart && $notification['last_sent'] > $graceEnd)) {
 							$this->out($subscriber['Subscriber']['contact_email'] . " in Zone " . $zone['Zone']['title'] .
-							" about a pickup on " . date('F j Y', $pickup['start_date']) . "\n");
+							" about a pickup on " . date('F j Y', $pickup['start_date']));
 							
 							$subscriberData = array(
 								'Subscriber' => $subscriber['Subscriber'],
@@ -80,11 +80,11 @@ class NotificationShell extends Shell {
 							);
 							
 							if ($this->sendMail($subscriberData)) {
-								$this->out("Sent!\n");
+								$this->out("Sent!");
 								$this->Subscriber->Notification->id = $notification['id'];
-								$this->Subscriber->Notification->saveField('last_sent', $currentTime);	
+								$this->Subscriber->Notification->saveField('last_sent', time());	
 							} else {
-								$this->out("Unable to send.\n");
+								$this->out("Unable to send.");
 							}
 							
 						}
