@@ -1,1 +1,1 @@
-It's garbage day tomorrow, <?php echo date('D\. M\. j', $subscriberData['Pickup']['start_date']) ?>. Make sure your garbage and recycling are at the curb by 7am. (LondonTrash.ca - <?php echo $subscriberData['Zone']['formatted_title']; ?>)
+It's garbage day tomorrow, <?php echo date('D\. M\. j', $subscriberData['Pickup']['start_date']) ?>. Don't forget to take out your garbage and recycling! (LondonTrash.ca - <?php echo $subscriberData['Zone']['formatted_title']; ?>)
