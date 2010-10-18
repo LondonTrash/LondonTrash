@@ -23,7 +23,7 @@ class NotificationShell extends Shell {
 		 */
 		$gracePeriod = 60 * 60 * 1;
 		
-		// Just for testing purposes. Use time() instead.
+		// Current time
 		$currentTime = time();
 		
 		// grab all our zone data
@@ -59,16 +59,17 @@ class NotificationShell extends Shell {
 				$subscribers = $this->Subscriber->find('all', array('conditions' => array('Subscriber.zone_id' => $zone['Zone']['id'])));
 				
 				$this->initializeMailer();
-	
+				
 				foreach ($subscribers as $subscriber) {
 					foreach ($subscriber['Notification'] as $notification) {
+						
 						if (!empty($notification['last_sent'])) {
 							$this->out("Notification last sent: " . date('r', $notification['last_sent']));
 						}
 
 						// check to see if we've already sent a notification to this user within the grace period
 						if ($notification['last_sent'] == null || ($notification['last_sent'] < $graceStart && $notification['last_sent'] > $graceEnd)) {
-							$this->out($subscriber['Subscriber']['contact_email'] . " in Zone " . $zone['Zone']['title'] .
+							$this->out($subscriber['Subscriber']['contact_email'] . " in " . $zone['Zone']['formatted_title'] .
 							" about a pickup on " . date('F j Y', $pickup['start_date']));
 							
 							$subscriberData = array(
@@ -105,6 +106,8 @@ class NotificationShell extends Shell {
 			foreach (Configure::read('smtp.config') as $key => $value) {
 				$this->SwiftMailer->instance->{'smtp' . ucfirst($key)} = $value;
 			}
+		} else {
+			$this->out("Please configure SMTP settings. See config/smtp.default.php.");
 		}
 		
 		// Set transport for later usage
@@ -132,7 +135,7 @@ class NotificationShell extends Shell {
 		$this->SwiftMailer->set('subscriberData', $subscriberData);
 		
 		// logging
-		//$this->SwiftMailer->instance->registerPlugin('LoggerPlugin', new Swift_Plugins_Loggers_EchoLogger());
+		// $this->SwiftMailer->instance->registerPlugin('LoggerPlugin', new Swift_Plugins_Loggers_EchoLogger());
 
 		try { 
 			if(!$this->SwiftMailer->instance->fastsend($this->SwiftMailer->instance->template, $this->SwiftMailer->instance->subject, $this->swiftTransport)) {
