@@ -12,13 +12,15 @@ class NotificationShell extends Shell {
 		 * How far ahead of time we should send the notification
 		 * This value is in seconds.
 		 * 
-		 * Since we're using all day events in gCal, 12am - 5h = 7pm the night before
+		 * Since we're using all day events in gCal, 12am - 6h = 6pm the night before
 		 */
-		$notificationOffset = 60 * 60 * 5;
+		$notificationOffset = 60 * 60 * 6;
 		
 		/**
-		 * How far ahead and behind of notification time we should allow
-		 * In other words, if we're +/- this amount, go ahead and send the notification
+		 * How far past the notification time we should allow.
+		 * In other words, if we're past the notification time, but within this amount,
+		 * go ahead and send the notification.
+		 * 
 		 * This value is in seconds.
 		 */
 		$gracePeriod = 60 * 60 * 1;
@@ -36,19 +38,19 @@ class NotificationShell extends Shell {
 			// when to notify
 			$notification_time = $pickup['start_date'] - $notificationOffset;
 			
-			// Figure out where we are in relation to the notification time
-			if ($currentTime <= $notification_time) {
-				// we haven't yet reached the notification time
-				$timeDifference = $notification_time - $currentTime;
-			} else {
-				// we're past the notification time
+			// Figure out the time difference
+			if ($currentTime >= $notification_time) {
+				// we're at or past the notification time
 				$timeDifference = $currentTime - $notification_time;
+				$sendNotification = true;
+			} else {
+				$sendNotification = false;
 			}
 			
-			// only try to send while within the grace period
-			if ($gracePeriod >= $timeDifference) {
+			// only try to send while at or past the notification time, within the grace period
+			if ($sendNotification && $gracePeriod >= $timeDifference) {
 				
-				$graceStart = $notification_time - $gracePeriod;
+				$graceStart = $notification_time;
 				$graceEnd = $notification_time + $gracePeriod;
 				
 				$this->out("Current time: " . date('r', $currentTime));
