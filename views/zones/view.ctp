@@ -48,16 +48,19 @@ JAVASCRIPT
 	<?php
 		//next regular pickup in the schedule
 		
-		$longDate = date('F j<\s\u\p\>S\<\/\s\u\p\>, Y', $pickup);
+		$dateFormat = 'F j<\s\u\p\>S\<\/\s\u\p\>, Y';
+		$dowDateFormat = 'l, ' . $dateFormat;
+		$longDate = date($dateFormat, $pickup);
+		$longerDate = date($dowDateFormat, $pickup);
 		
 		// today
 		if ($this->Time->isToday($pickup)) {
 			$next_pickup = "7:00am Today!"; 
-			$next_pickup_details = $longDate;
+			$next_pickup_details = $longerDate;
 		// tomorrow
 		} else if ($this->Time->isTomorrow($pickup)) {
 			$next_pickup = "Tomorrow!";
-			$next_pickup_details = $longDate;
+			$next_pickup_details = $longerDate;
 		// this week, i.e. "This Friday"
 		} else if (date('W', $pickup) == date('W')) {
 			$next_pickup = "This " . date('l', $pickup);
@@ -68,7 +71,7 @@ JAVASCRIPT
 			$next_pickup_details = $longDate;
 		// two weeks or more away
 		} else {
-			$next_pickup = $longDate;
+			$next_pickup = $longerDate;
 			$next_pickup_details = "";
 		}
 	?>
