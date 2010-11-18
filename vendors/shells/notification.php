@@ -70,7 +70,7 @@ class NotificationShell extends Shell {
 						}
 
 						// check to see if we've already sent a notification to this user within the grace period
-						if ($notification['last_sent'] == null || ($notification['last_sent'] < $graceStart && $notification['last_sent'] > $graceEnd)) {
+						if ($notification['last_sent'] == null || !($notification['last_sent'] >= $graceStart && $notification['last_sent'] <= $graceEnd)) {
 							$this->out($subscriber['Subscriber']['contact_email'] . " in " . $zone['Zone']['formatted_title'] .
 							" about a pickup on " . date('F j Y', $pickup['start_date']));
 							
