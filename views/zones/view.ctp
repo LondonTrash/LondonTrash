@@ -9,7 +9,7 @@
 <?php echo $this->Html->script('calendar', array('inline' => false)); ?>
 <?php
 $notifyUrl = $this->Html->url(array(
-	'controller' => 'update_signups',
+	'controller' => 'subscribers',
 	'action' => 'add'
 ));
 $reportUrl = $this->Html->url(array(
@@ -106,9 +106,8 @@ JAVASCRIPT
 		</div>
 	</li>
 </ol>
-<div class="grid_6">  
-	<span id="holiday" class="pop-notice"><p>Email and SMS notifications are coming soon.</p><p>Click the <strong>Email Notifications</strong> button below, and we'll let you know once it's ready.</p></span>
-	<?php echo $this->Html->link('Email Notifications', $notifyUrl, array('id' => 'notify')); ?>
+<div class="grid_6">
+	<?php echo $this->Html->link('Notify Me!', $notifyUrl, array('id' => 'notify')); ?>
 	
 	<?php echo $this->Html->link('iCal Feed (' . $formattedZone . ')', $webcal_url, array('class' => 'ical')); ?>
 	<?php echo $this->Html->link('Add to gCal (' . $formattedZone . ')', $gcal_url, array('class' => 'ical')); ?>

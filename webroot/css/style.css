@@ -895,11 +895,11 @@ display:block;
 	text-align: center;
 }
 
-#update-signup {
+#subscriber {
 	text-align: center;
 }
 
-#update-signup h3, #report-problem h3 {
+#subscriber h3, #report-problem h3 {
 	margin: 0 0 12px 0;
 	padding: 0 0 12px 0;
 	width:95%;
@@ -908,7 +908,7 @@ display:block;
     -webkit-box-shadow: 0px 1px 0px rgba(256,256,256, 1)!important;
 }
 
-#update-signup div.text input,
+#subscriber div.text input,
 .feedback div.text input {
 	font-size: 1.5em;
 	margin-bottom: 6px;
@@ -963,18 +963,42 @@ display:block;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-family: 'TeXGyreAdventorRegular', Arial, sans-serif; }  
+	font-family: 'TeXGyreAdventorRegular', Arial, sans-serif; } 
 
-#update-signup div.text {
+#subscriber h3 {
+	margin-bottom: 1em;
+}
+
+#subscriber div.text {
 	clear: both;
 	padding-left: 40px;
 }
-#update-signup div.text input,
+#subscriber #email input {
+	width: 240px;
+}
+#subscriber #phone input {
+	width: 100px;
+}
+#subscriber #andor {
+	text-align: center;
+	clear: both;
+	color: #666;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-family: 'TeXGyreAdventorRegular', Arial, sans-serif;
+}
+#subscriber div.text input,
 .feedback div.text input {
 	float: left;
-	width: 190px;
 }
-#update-signup label,
+#subscriber select {
+	float: left;
+	width: auto;
+	position: relative;
+	top: 4px;
+	margin-left: 10px;
+}
+#subscriber label,
 .feedback label {
 	float: left;
 	width: 100px;
@@ -984,13 +1008,13 @@ display:block;
 	color: #777;
 	clear: left;
 }
-.update_signups-add label {
+.subscribers-add label {
 	margin-left: 45px;
 }
-.update_signups-add .submit {
+.subscribers-add .submit {
 	margin-bottom: 12px;
 }
-#update-signup label.form-error, form .error-message {
+#subscriber label.form-error, form .error-message {
 	text-align: left;
 	float: left;
 	padding: 0 0 0 32px;

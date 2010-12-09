@@ -33,8 +33,8 @@
 	Router::connect('/pages/*', array('controller' => 'contents', 'action' => 'view'));
 	
 	// Notifications for notifications
-	Router::connect('/notify', array('controller' => 'update_signups', 'action' => 'add'));
-	Router::connect('/notify/thanks', array('controller' => 'update_signups', 'action' => 'success'));
+	Router::connect('/notify', array('controller' => 'subscribers', 'action' => 'add'));
+	Router::connect('/notify/thanks', array('controller' => 'subscribers', 'action' => 'success'));
 	
 	// Report a problem
 	Router::connect('/report', array('controller' => 'problem_reports', 'action' => 'add'));
