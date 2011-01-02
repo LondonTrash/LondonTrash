@@ -100,8 +100,16 @@ class Subscriber extends AppModel {
 	
 	private function formatPhoneNumber($data) {
 		if (!empty($data)) {
-			return preg_replace('/[^0-9]+/', '', $data);
+			$data = preg_replace('/[^0-9]+/', '', $data);
+			
+			// remove 1 prefix
+			if (strpos($data, '1') == 0) {
+				$data = substr($data, 1);
+			}
+			
+			return $data;
 		}
+		
 		return false;
 	}
 	
@@ -116,7 +124,10 @@ class Subscriber extends AppModel {
 	
 	function checkPhone($field = array()) {
 		foreach ($field as $key => $value) {
-			if (empty($value) || is_numeric($this->formatPhoneNumber($value))) {
+			if (empty($value)) {
+				return true;
+			}
+			if (strlen($this->formatPhoneNumber($value)) == 10 && is_numeric($this->formatPhoneNumber($value))) {
 				return true;
 			}
 		}
