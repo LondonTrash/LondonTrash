@@ -32,9 +32,13 @@
  */
 	Router::connect('/pages/*', array('controller' => 'contents', 'action' => 'view'));
 	
-	// Notifications for notifications
+	// Notifications
 	Router::connect('/notify', array('controller' => 'subscribers', 'action' => 'add'));
 	Router::connect('/notify/thanks', array('controller' => 'subscribers', 'action' => 'success'));
+	
+	// Unsubscribe
+	Router::connect('/u/*', array('controller' => 'subscribers', 'action' => 'delete'));
+	Router::connect('/unsubscribed', array('controller' => 'subscribers', 'action' => 'delete_success'));
 	
 	// Report a problem
 	Router::connect('/report', array('controller' => 'problem_reports', 'action' => 'add'));
