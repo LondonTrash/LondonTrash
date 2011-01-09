@@ -974,10 +974,10 @@ display:block;
 	padding-left: 40px;
 }
 #subscriber #email input {
-	width: 240px;
+	width: 290px;
 }
 #subscriber #phone input {
-	width: 100px;
+	width: 150px;
 }
 #subscriber #andor {
 	text-align: center;
@@ -995,7 +995,7 @@ display:block;
 	float: left;
 	width: auto;
 	position: relative;
-	top: 4px;
+	top: 8px;
 	margin-left: 10px;
 }
 #subscriber label,
@@ -1007,6 +1007,20 @@ display:block;
 	padding-right: 1em;
 	color: #777;
 	clear: left;
+}
+#subscriber .error {
+	float: left;
+	width: 100%;
+	position: relative;
+	top: -10px;
+	height: 30px;
+}
+#subscriber .error .form-error {
+	width: 100%;
+	float: left;
+	text-align: left;
+	padding: 0;
+	line-height: 1.2;
 }
 .subscribers-add label {
 	margin-left: 45px;
