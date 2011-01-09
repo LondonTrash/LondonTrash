@@ -16,7 +16,8 @@ class SubscribersController extends AppController {
 					$this->redirect(array('action' => 'success'));
 				}
 			}
-			$this->Session->setFlash('Sorry, there was an error with your signup. Please try again.');	
+			$this->Session->setFlash('Sorry, there was an error with your signup. Please try again.');
+			$this->set('validationErrorList', $this->Subscriber->invalidFields());
 		}
 		$this->setProviders();
 	}

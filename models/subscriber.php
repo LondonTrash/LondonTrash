@@ -17,19 +17,23 @@ class Subscriber extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => 'customEmail',
-				'message' => 'Please enter a valid email address'
+				'message' => 'Please enter a valid email address or leave the field blank.'
 			)
 		),
 		'phone' => array(
 			'phone' => array(
 				'rule' => 'checkPhone',
-				'message' => 'Please enter a 10-digit phone number'
+				'message' => 'Please enter a 10-digit phone number or leave the field blank.'
 			)
 		),
 		'provider_id' => array(
 			'provider' => array(
 				'rule' => 'checkProvider',
-				'message' => 'Please choose your provider'
+				'message' => 'Please choose your provider from the dropdown.'
+			),
+			'requiredGroup' => array(
+				'rule' => 'requiredGroup',
+				'message' => 'Please enter either your email address or cell phone number and provider to continue.'
 			)
 		)
 	);
@@ -142,6 +146,13 @@ class Subscriber extends AppModel {
 			if (!empty($this->data['Subscriber']['phone']) && empty($value)) {
 				return false;
 			}
+		}
+		return true;
+	}
+	
+	function requiredGroup($field = array()) {
+		if (empty($this->data['Subscriber']['phone']) && empty($this->data['Subscriber']['email'])) {
+			return false;
 		}
 		return true;
 	}

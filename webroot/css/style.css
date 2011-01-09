@@ -1008,7 +1008,13 @@ display:block;
 	color: #777;
 	clear: left;
 }
-#subscriber .error {
+#subscriber .error ul {
+	text-align: left;
+	list-style-type: disc;
+	color: #900;
+	height: auto;
+}
+#colorbox #subscriber .error {
 	float: left;
 	width: 100%;
 	position: relative;
