@@ -11,7 +11,7 @@ JAVASCRIPT
 , array('inline' => false));
 ?>
 
-<?php echo $this->Form->create('Subscriber', array('id' => 'subscriber')); ?>
+<?php echo $this->Form->create('Subscriber', array('id' => 'subscriber', 'url' => $this->passedArgs)); ?>
 	<h3>Enter your email address and/or cell phone details. We&apos;ll send you a reminder the night before pickup so you don&apos;t forget to take out the garbage!</h3>
 	<div class="error">
 		<div class="label-container">
@@ -37,6 +37,6 @@ JAVASCRIPT
 		'error' => false
 	)); ?>
 	<?php echo $this->Form->input('provider_id', array('empty' => 'Choose Provider', 'label' => false, 'error' => false)); ?>
-	<?php echo $this->Form->hidden('zone_id', array('value' => $this->Session->read('zone_id'))); ?>
+	<?php echo $this->Form->hidden('zone_id', array('value' => $zone['Zone']['id'])); ?>
 <div class="clear"></div>
 <?php echo $this->Form->end('Let me know!'); ?>

@@ -7,7 +7,12 @@ class SubscribersController extends AppController {
 		$this->set('title_for_layout', 'Notifications');
 	}	
 	
-	function add() {
+	function add($zone = null) {
+		$this->Subscriber->Zone->contain();
+		if (!$zoneData = $this->Subscriber->Zone->findByTitle($zone)) {
+			$this->Session->setFlash('No zone found, please try again.');
+			$this->redirect('/');
+		}
 		if (!empty($this->data)) {
 			$this->Subscriber->set($this->data);
 			if ($this->Subscriber->validates(array('fieldList' => array('email', 'phone', 'provider_id')))) {
@@ -20,6 +25,7 @@ class SubscribersController extends AppController {
 			$this->set('validationErrorList', $this->Subscriber->invalidFields());
 		}
 		$this->setProviders();
+		$this->set('zone', $zoneData);
 	}
 	
 	function success() {

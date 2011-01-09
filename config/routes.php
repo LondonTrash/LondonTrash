@@ -33,8 +33,8 @@
 	Router::connect('/pages/*', array('controller' => 'contents', 'action' => 'view'));
 	
 	// Notifications
-	Router::connect('/notify', array('controller' => 'subscribers', 'action' => 'add'));
 	Router::connect('/notify/thanks', array('controller' => 'subscribers', 'action' => 'success'));
+	Router::connect('/notify/*', array('controller' => 'subscribers', 'action' => 'add'));
 	
 	// Unsubscribe
 	Router::connect('/u/*', array('controller' => 'subscribers', 'action' => 'delete'));

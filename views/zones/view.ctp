@@ -10,7 +10,8 @@
 <?php
 $notifyUrl = $this->Html->url(array(
 	'controller' => 'subscribers',
-	'action' => 'add'
+	'action' => 'add',
+	$this->params['pass'][0]
 ));
 $reportUrl = $this->Html->url(array(
 	'controller' => 'problem_reports',
