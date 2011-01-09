@@ -15,22 +15,11 @@ function notify_prepForm(){
 		return (phone.length == 10);
 	}, 'Please enter a 10-digit phone number or leave the field blank.');
 	
-	$.validator.addMethod("contactInfo", function() {
-		return ($("#SubscriberEmail").val() || $("#SubscriberPhone").val());
+	$.validator.addMethod('required_group', function(value, element) {
+		var $module = $(element).closest('form');
+		return $module.find('.required_group:filled').length;
 	}, 'Please enter either your email address or cell phone number to continue.');
-	
-	// Associate validation rules with CSS classes
-	$.validator.addClassRules({
-		email: {
-			email: true,
-			contactInfo: true
-		},
-		phone: {
-			phone: true,
-			contactInfo: true
-		}
-	});
-	
+		
 	// overwrite default messages
 	$.extend($.validator.messages, {
 		email: "Please enter a valid email address or leave the field blank."
@@ -54,10 +43,8 @@ function notify_prepForm(){
 		},
 		rules: {
 			'data[Subscriber][provider_id]': {
-				required: function(element) {
-					// don't try to check provider when phone is invalid or left blank
-					return $(element.form).validate().element("#SubscriberPhone");
-				}
+				// only try to check provider when phone is filled in
+				required: "#SubscriberPhone:filled"
 			}
 		},
 		messages: {

@@ -14,9 +14,9 @@ JAVASCRIPT
 <?php echo $this->Form->create('Subscriber', array('id' => 'subscriber')); ?>
 	<h3>Enter your email address and/or cell phone details. We&apos;ll send you a reminder the night before pickup so you don&apos;t forget to take out the garbage!</h3>
 	<div class="error"><div class="label-container"></div></div>
-	<?php echo $this->Form->input('email', array('class' => 'email', 'div' => array('id' => 'email'))); ?>
+	<?php echo $this->Form->input('email', array('class' => 'required_group email', 'div' => array('id' => 'email'))); ?>
 	<div id="andor">and/or</div>
-	<?php echo $this->Form->input('phone', array('class' => 'phone', 'div' => array('id' => 'phone'), 'label' => 'Cell Phone')); ?>
+	<?php echo $this->Form->input('phone', array('class' => 'required_group phone', 'div' => array('id' => 'phone'), 'label' => 'Cell Phone')); ?>
 	<?php echo $this->Form->input('provider_id', array('empty' => 'Choose Provider', 'label' => false)); ?>
 	<?php echo $this->Form->hidden('zone_id', array('value' => $this->Session->read('zone_id'))); ?>
 <div class="clear"></div>
