@@ -1,5 +1,8 @@
 function notify_prepForm(){
 	$.validator.addMethod("phone", function(value, element) {
+		// validate true if field is left empty
+		if (value.length == 0) { return true; }
+
 		// remove all non-numeric characters
 		var phone = value.replace(/[^0-9]+/g, '');
 		
@@ -8,9 +11,8 @@ function notify_prepForm(){
 			phone = phone.substr(1);
 		}
 		
-		// if element is optional and left blank, OR
 		// if cleaned-up phone number is 10 digits, validate true
-		return (this.optional(element) || phone.length == 10);
+		return (phone.length == 10);
 	}, 'Please enter a 10-digit phone number or leave the field blank.');
 	
 	$.validator.addMethod("contactInfo", function() {
@@ -54,7 +56,7 @@ function notify_prepForm(){
 			'data[Subscriber][provider_id]': {
 				required: function(element) {
 					// don't try to check provider when phone is invalid or left blank
-					return $(element.form).validate().element("#SubscriberPhone") && $("#SubscriberPhone").val().trim();
+					return $(element.form).validate().element("#SubscriberPhone");
 				}
 			}
 		},
