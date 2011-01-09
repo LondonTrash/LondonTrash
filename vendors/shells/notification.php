@@ -118,7 +118,7 @@ class NotificationShell extends Shell {
 	
 	function sendMail($subscriberData) {
 		$this->SwiftMailer->instance->sendAs = 'text';
-		$this->SwiftMailer->instance->from = 'noreply@londontrash.ca';
+		$this->SwiftMailer->instance->from = 'notifications@londontrash.ca';
 		$this->SwiftMailer->instance->fromName = 'LondonTrash.ca';
 		$this->SwiftMailer->instance->to = $subscriberData['Subscriber']['contact_email'];
 		
