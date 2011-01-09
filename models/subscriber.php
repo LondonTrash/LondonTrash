@@ -39,14 +39,6 @@ class Subscriber extends AppModel {
 		return $results;
 	}
 	
-	function beforeSave() {
-		// strip non-numeric characters from phone number
-		if (!empty($this->data['Subscriber']['phone'])) {
-			$this->data['Subscriber']['phone'] = $this->formatPhoneNumber($this->data['Subscriber']['phone']);
-		}
-		return true;		
-	}
-	
 	function saveSubscriber($data = null) {
 		if (empty($data)) {
 			return false;
@@ -69,7 +61,7 @@ class Subscriber extends AppModel {
 		if (!empty($data['Subscriber']['phone']) && !empty($data['Subscriber']['provider_id'])) {
 			$hasData = true;
 			
-			$subscriberData['Subscriber']['contact'] = $data['Subscriber']['phone'];
+			$subscriberData['Subscriber']['contact'] = $this->formatPhoneNumber($data['Subscriber']['phone']);
 			$subscriberData['Subscriber']['provider_id'] = $data['Subscriber']['provider_id'];
 			$subscriberData['Subscriber']['zone_id'] = $data['Subscriber']['zone_id'];
 
