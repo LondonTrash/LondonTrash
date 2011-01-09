@@ -39,6 +39,13 @@ class Subscriber extends AppModel {
 		return $results;
 	}
 	
+	function beforeValidate() {
+		// Trim whitespace from data
+		$whitespace = create_function('&$value, &$key', '$key = trim($key); $value = trim($value);');
+		array_walk_recursive($this->data, $whitespace);
+		return true;
+	}
+	
 	function saveSubscriber($data = null) {
 		if (empty($data)) {
 			return false;

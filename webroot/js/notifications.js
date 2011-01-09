@@ -53,7 +53,8 @@ function notify_prepForm(){
 		rules: {
 			'data[Subscriber][provider_id]': {
 				required: function(element) {
-					return $(element.form).validate().element("#SubscriberPhone");
+					// don't try to check provider when phone is invalid or left blank
+					return $(element.form).validate().element("#SubscriberPhone") && $("#SubscriberPhone").val().trim();
 				}
 			}
 		},
