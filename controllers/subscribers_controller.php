@@ -25,6 +25,26 @@ class SubscribersController extends AppController {
 		// nothing to do here, just render the view
 	}
 	
+	function delete($id = null) {
+		if (!empty($this->data)) {
+			// check that the provided email or phone number matches their record
+			if ($this->Subscriber->matchRecord($id, $this->data)) {
+				// delete the subscriber and notification records
+				if ($this->Subscriber->delete($id)) {
+					$this->Session->setFlash('You are now unsubscribed.', 'default', array('class' => 'success'));
+					$this->redirect(array('action' => 'delete_success'));
+				} else {
+					$this->Session->setFlash('Sorry, there was an error removing your subscription. Please try again.');
+				}
+			}
+			$this->Session->setFlash('We could not find a match. Please double-check your entry and your unsubscription link.');
+		}
+	}
+	
+	function delete_success() {
+		// just render the view
+	}
+	
 	private function setProviders() {
 		$this->loadModel('Provider');
 		$providers = $this->Provider->find('list', array(

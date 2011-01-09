@@ -7,7 +7,11 @@ class Subscriber extends AppModel {
 		'Zone'
 	);
 
-	var $hasMany = array('Notification');
+	var $hasMany = array(
+		'Notification' => array(
+			'dependent' => true
+		)
+	);
 	
 	var $validate = array(
 		'email' => array(
@@ -85,7 +89,7 @@ class Subscriber extends AppModel {
 	}
 	
 	private function formatContactEmail($data) {
-		if (!empty($data)) {
+		if (!empty($data) && isset($data['Provider'])) {
 			if ($data['Provider']['protocol_id'] == 1) {
 				// Email
 				return $data[$this->alias]['contact'];
@@ -140,6 +144,23 @@ class Subscriber extends AppModel {
 			}
 		}
 		return true;
+	}
+	
+	function matchRecord($id = null, $data = null) {
+		if (empty($id) || empty($data)) {
+			return false; 
+		}
+		// find record matching ID
+		$this->contain('Provider');
+		if (!$subscriber = $this->find('first', array('conditions' => array($this->alias . '.' . 'id' => $id)))) {
+			return false;
+		}
+		// format phone numbers before comparing
+		if ($subscriber['Provider']['protocol_id'] == 2) {
+			$data[$this->alias]['contact'] = $this->formatPhoneNumber($data[$this->alias]['contact']);
+		}
+
+		return $subscriber[$this->alias]['contact'] == $data[$this->alias]['contact'];
 	}
 
 }
