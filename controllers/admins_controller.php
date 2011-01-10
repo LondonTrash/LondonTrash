@@ -19,6 +19,10 @@ class AdminsController extends AppController {
 		$this->loadModel('UpdateSignup');
 		$updateSignups = $this->UpdateSignup->find('count');
 		$this->set('updateSignups', $updateSignups);
+		
+		$this->loadModel('Subscriber');
+		$subscribers = $this->Subscriber->find('count');
+		$this->set('subscribers', $subscribers);
 	}
 	
 	function admin_login() {
