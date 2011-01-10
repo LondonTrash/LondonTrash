@@ -51,6 +51,7 @@ class SubscribersController extends AppController {
 			}
 			$this->Session->setFlash('We could not find a match. Please double-check your entry and your unsubscription link.');
 		}
+		$this->set('title_for_layout', 'Unsubscribe');
 	}
 	
 	function delete_success() {
