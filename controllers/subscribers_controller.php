@@ -22,7 +22,6 @@ class SubscribersController extends AppController {
 			$this->Subscriber->set($this->data);
 			if ($this->Subscriber->validates(array('fieldList' => array('email', 'phone', 'provider_id')))) {
 				if ($this->Subscriber->saveSubscriber($this->data)) {
-					$this->Session->setFlash("You're signed up!", 'default', array('class' => 'success'));
 					$this->sendConfirmationEmail($this->Subscriber->findById($this->Subscriber->id));
 					$this->redirect(array('action' => 'success'));
 				}
