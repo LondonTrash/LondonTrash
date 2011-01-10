@@ -1,6 +1,8 @@
 <?php
 class SubscribersController extends AppController {
 	var $name = "Subscribers";
+	
+	var $components = array('SwiftMailer');
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -18,6 +20,7 @@ class SubscribersController extends AppController {
 			if ($this->Subscriber->validates(array('fieldList' => array('email', 'phone', 'provider_id')))) {
 				if ($this->Subscriber->saveSubscriber($this->data)) {
 					$this->Session->setFlash("You're signed up!", 'default', array('class' => 'success'));
+					$this->sendConfirmationEmail($this->Subscriber->findById($this->Subscriber->id));
 					$this->redirect(array('action' => 'success'));
 				}
 			}
@@ -50,6 +53,50 @@ class SubscribersController extends AppController {
 	
 	function delete_success() {
 		// just render the view
+	}
+	
+	private function sendConfirmationEmail($subscriber = null) {
+		if (empty($subscriber)) {
+			return false;
+		}
+		// SMTP configuration
+		if (file_exists(CONFIGS . 'smtp.php')) {
+			include(CONFIGS . 'smtp.php');
+
+			// pass SMTP configuration to SwiftMailer component
+			foreach (Configure::read('smtp.config') as $key => $value) {
+				$this->SwiftMailer->{'smtp' . ucfirst($key)} = $value;
+			}
+		} elseif (Configure::read('debug') > 0) {
+			$this->Session->setFlash("Please configure SMTP settings. See config/smtp.default.php.");
+		}
+		
+		// Setting email subject and template for email/SMS
+		if ($subscriber['Provider']['protocol_id'] == 1) {
+			// Email
+			$this->SwiftMailer->subject = 'LondonTrash.ca reminder created';
+			$this->SwiftMailer->template = 'confirm';
+		} else {
+			// SMS
+			$this->SwiftMailer->subject = null;
+			$this->SwiftMailer->template = 'confirm_sms';
+		}
+		
+		$this->set('subscriber', $subscriber);
+		
+		$this->SwiftMailer->sendAs = 'text'; 
+		$this->SwiftMailer->from = 'notifications@londontrash.ca'; 
+		$this->SwiftMailer->fromName = 'LondonTrash.ca'; 
+		$this->SwiftMailer->to = $subscriber['Subscriber']['contact_email']; 
+	 
+		try { 
+			if(!$this->SwiftMailer->send($this->SwiftMailer->template, $this->SwiftMailer->subject)) { 
+				$this->log("Error sending email"); 
+			} 
+		} 
+		catch(Exception $e) { 
+				$this->log("Failed to send email: " . $e->getMessage()); 
+		} 
 	}
 	
 	private function setProviders() {

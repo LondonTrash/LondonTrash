@@ -1,0 +1,1 @@
+You're now signed up to receive reminders from LondonTrash.ca. (<?php echo $subscriber['Zone']['formatted_title']; ?>) Unsubscribe anytime: http://londontrash.ca/u/<?php echo $subscriber['Subscriber']['id']; ?>
