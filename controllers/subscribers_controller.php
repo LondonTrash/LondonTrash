@@ -16,6 +16,9 @@ class SubscribersController extends AppController {
 			$this->redirect('/');
 		}
 		if (!empty($this->data)) {
+			// initialize SwiftMailer transport
+			$this->initializeMailer();
+
 			$this->Subscriber->set($this->data);
 			if ($this->Subscriber->validates(array('fieldList' => array('email', 'phone', 'provider_id')))) {
 				if ($this->Subscriber->saveSubscriber($this->data)) {
@@ -55,10 +58,7 @@ class SubscribersController extends AppController {
 		// just render the view
 	}
 	
-	private function sendConfirmationEmail($subscriber = null) {
-		if (empty($subscriber)) {
-			return false;
-		}
+	private function initializeMailer() {
 		// SMTP configuration
 		if (file_exists(CONFIGS . 'smtp.php')) {
 			include(CONFIGS . 'smtp.php');
@@ -71,6 +71,15 @@ class SubscribersController extends AppController {
 			$this->Session->setFlash("Please configure SMTP settings. See config/smtp.default.php.");
 		}
 		
+		// Set transport for later usage
+		$this->swiftTransport =& $this->SwiftMailer->init_swiftmail();
+	}
+	
+	private function sendConfirmationEmail($subscriber = null) {
+		if (empty($subscriber)) {
+			return false;
+		}
+
 		// Setting email subject and template for email/SMS
 		if ($subscriber['Provider']['protocol_id'] == 1) {
 			// Email
@@ -90,7 +99,7 @@ class SubscribersController extends AppController {
 		$this->SwiftMailer->to = $subscriber['Subscriber']['contact_email']; 
 	 
 		try { 
-			if(!$this->SwiftMailer->send($this->SwiftMailer->template, $this->SwiftMailer->subject)) { 
+			if(!$this->SwiftMailer->fastsend($this->SwiftMailer->template, $this->SwiftMailer->subject, $this->swiftTransport)) { 
 				$this->log("Error sending email"); 
 			} 
 		} 
