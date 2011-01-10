@@ -876,6 +876,7 @@ display:block;
 	background: -moz-linear-gradient(    left bottom,     rgba(256,256,256, .8) 58%,     rgba(250,250,250, .75) 35%,  rgba(250,250,250, 0.9) 72%,  rgba(250,250,250, .8) 96%)!important;
 	background: -webkit-gradient( linear,     left bottom,     right top, color-stop(0.32,   rgba(256,256,256, .9) ), color-stop(0.53, rgba(250,250,250, .85)), color-stop(0.86, rgba(250,250,250, 1)), color-stop(0.54, rgba(250,250,250, .9)) )!important;
 	background: -khtml-gradient( linear,     left bottom,     right top, color-stop(0.32,   rgba(256,256,256, .9) ), color-stop(0.53, rgba(250,250,250, .85)), color-stop(0.86, rgba(250,250,250, 1)), color-stop(0.54, rgba(250,250,250, .9)) )!important;
+	z-index: 9000 !important;
 }
 #cboxContent {
 	background: transparent !important;
@@ -887,6 +888,7 @@ display:block;
 	background: #000 !important;
 	opacity:.80 !important;
 	filter: Alpha(Opacity=80);
+	z-index: 8999 !important;
 }
 #cboxWrapper {
 	position: relative !important;

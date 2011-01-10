@@ -39,4 +39,4 @@ JAVASCRIPT
 	<?php echo $this->Form->input('provider_id', array('empty' => 'Choose Provider', 'label' => false, 'error' => false)); ?>
 	<?php echo $this->Form->hidden('zone_id', array('value' => $zone['Zone']['id'])); ?>
 <div class="clear"></div>
-<?php echo $this->Form->end('Let me know!'); ?>
+<?php echo $this->Form->end(array('label' => 'Let me know!', 'id' => 'SubscriberSubmit')); ?>

@@ -7,6 +7,8 @@
 <?php echo $this->Html->script('notifications', array('inline' => false)); ?>
 <?php echo $this->Html->script('report_problem', array('inline' => false)); ?>
 <?php echo $this->Html->script('calendar', array('inline' => false)); ?>
+<?php echo $this->Html->script('jquery.spinner', array('inline' => false)); ?>
+
 <?php
 $notifyUrl = $this->Html->url(array(
 	'controller' => 'subscribers',

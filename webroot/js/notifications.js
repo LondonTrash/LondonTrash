@@ -27,15 +27,29 @@ function notify_prepForm(){
 	
 	$("#colorbox #subscriber").validate({
 		submitHandler: function(form) {
-			$(form).ajaxSubmit({success: 
-				function(html){ 
-					$.fn.colorbox({
-						html: html,
-						open: true,
-						scrolling: false
-					});
-					$.fn.colorbox.resize({width: 400, height: 150});
-				}
+			$(form).ajaxSubmit({
+				beforeSubmit:
+					function(){
+						var opts = {
+							position: 'center',
+							hide: true,
+							img: '../img/spinner.gif',
+							height: 16,
+							width: 16,
+							zIndex: 9001
+						};
+						$("#SubscriberSubmit").spinner(opts);
+					},
+				success: 
+					function(html){ 
+						$("#SubscriberSubmit").spinner('remove');
+						$.fn.colorbox({
+							html: html,
+							open: true,
+							scrolling: false
+						});
+						$.fn.colorbox.resize({width: 400, height: 150});
+					}
 			});
 		},
 		groups: {
