@@ -101,7 +101,6 @@ class NotificationShell extends Shell {
 	function initializeMailer() {
 		// SMTP configuration
 		if (file_exists(CONFIGS . 'smtp.php')) {
-			$this->Email->delivery = 'smtp';
 			include(CONFIGS . 'smtp.php');
 
 			// pass SMTP configuration to SwiftMailer component
