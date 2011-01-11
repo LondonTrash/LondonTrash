@@ -4,8 +4,10 @@
 <?php echo $this->Html->script('validate/jquery.validate.pack', array('inline' => false)); ?>
 <?php echo $this->Html->script('jquery.form', array('inline' => false)); ?>
 
-<?php echo $this->Html->script('notifications', array('inline' => false)); ?>
-<?php echo $this->Html->script('report_problem', array('inline' => false)); ?>
+<?php if (!stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone')): ?>
+	<?php echo $this->Html->script('notifications', array('inline' => false)); ?>
+	<?php echo $this->Html->script('report_problem', array('inline' => false)); ?>
+<?php endif; ?>
 <?php echo $this->Html->script('calendar', array('inline' => false)); ?>
 <?php echo $this->Html->script('jquery.spinner', array('inline' => false)); ?>
 
@@ -21,6 +23,8 @@ $reportUrl = $this->Html->url(array(
 ));
 ?>
 <?php
+if (!stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone')) {
+
 echo $this->Html->scriptBlock(
 <<<JAVASCRIPT
 $(document).ready(function(){
@@ -41,6 +45,8 @@ $(document).ready(function(){
 });
 JAVASCRIPT
 , array('inline' => false));
+
+}
 ?>
 
 <div class="results mod">

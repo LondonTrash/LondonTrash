@@ -200,3 +200,35 @@ width:195px!important; font-size:0.85em;}
 	#flashMessage li a {
     font-size: 1.1em;
      }
+     
+#report-problem textarea {
+	width: 95%;
+}
+
+#subscriber div.text {
+	padding-left: 10px;
+}
+#subscriber #andor {
+	width: 90%;
+	margin-left: 1em;
+}
+#subscriber label {
+	width: 90%;
+	text-align: left;
+	margin: 0;
+}
+#subscriber #email input {
+	width: 90%;
+	clear: both;
+}
+#subscriber #phone input {
+	width: 90%;
+	clear: both;
+}
+#subscriber select {
+	margin-left: 10px;
+	position: static;
+}
+#subscriber #SubscriberSubmit {
+	margin-top: 30px;
+}
