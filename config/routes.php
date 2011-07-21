@@ -37,6 +37,7 @@
 	Router::connect('/notify/*', array('controller' => 'subscribers', 'action' => 'add'));
 	
 	// Unsubscribe
+	Router::connect('/unsubscribe', array('controller' => 'subscribers', 'action' => 'manual_delete'));
 	Router::connect('/u/*', array('controller' => 'subscribers', 'action' => 'delete'));
 	Router::connect('/unsubscribed', array('controller' => 'subscribers', 'action' => 'delete_success'));
 	

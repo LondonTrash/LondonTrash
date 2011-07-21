@@ -73,6 +73,7 @@ if (!empty($this->params['pass'][0])) {
 			</div>
 			
 			<ul id="lh-nav">
+				<li><?php echo $this->Html->link('Unsubscribe', array('controller' => 'subscribers', 'action' => 'manual_delete', 'admin' => false)); ?>
 				<li><?php echo $this->Html->link('About', array('controller' => 'contents', 'action' => 'view', 'about', 'admin' => false)); ?>
 				</li>
 				<li><?php echo $this->Html->link('Privacy Policy', array('controller' => 'contents', 'action' => 'view', 'privacy-policy', 'admin' => false)); ?>

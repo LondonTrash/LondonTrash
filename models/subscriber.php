@@ -26,6 +26,12 @@ class Subscriber extends AppModel {
 				'message' => 'Please enter a 10-digit phone number or leave the field blank.'
 			)
 		),
+		'unsubscribe_phone' => array(
+			'phone' => array(
+				'rule' => 'checkPhone',
+				'message' => 'Please enter a 10-digit phone number.'
+			)
+		),
 		'provider_id' => array(
 			'provider' => array(
 				'rule' => 'checkProvider',
@@ -172,6 +178,24 @@ class Subscriber extends AppModel {
 		}
 
 		return $subscriber[$this->alias]['contact'] == $data[$this->alias]['contact'];
+	}
+
+	function deletePhoneSubscribers($data = null) {
+		if (empty($data)) {
+			return false;
+		}
+		// format phone number
+		$phone = $this->formatPhoneNumber($data[$this->alias]['unsubscribe_phone']);
+
+		// first, find
+		$find = $this->find('all', array('conditions' => array($this->alias . '.' . 'contact' => $phone, 'provider_id' => 2)));
+
+		if (empty($find)) {
+			return false;
+		} else {
+			// delete matching records
+			return $this->deleteAll(array($this->alias . '.' . 'contact' => $phone, 'provider_id' => 2));
+		}
 	}
 
 }

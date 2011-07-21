@@ -53,6 +53,21 @@ class SubscribersController extends AppController {
 		}
 		$this->set('title_for_layout', 'Unsubscribe');
 	}
+
+	function manual_delete() {
+		if (!empty($this->data)) {
+			$this->Subscriber->set($this->data);
+			if ($this->Subscriber->validates()) {
+				// delete matching records
+				if ($this->Subscriber->deletePhoneSubscribers($this->data)) {
+					$this->Session->setFlash('You are now unsubscribed.', 'default', array('class' => 'success'));
+					$this->redirect(array('action' => 'delete_success'));
+				}
+			}
+			$this->Session->setFlash('Sorry, there was an error removing your subscription. Please try again.');
+		}
+		$this->set('title_for_layout', 'Unsubscribe');
+	}
 	
 	function delete_success() {
 		// just render the view
