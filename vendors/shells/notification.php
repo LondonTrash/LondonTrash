@@ -30,6 +30,9 @@ class NotificationShell extends Shell {
 		
 		// grab all our zone data
 		$zones = $this->Zone->find('all');
+
+		// output current time for log
+		$this->out("Current time: " . date('r', $currentTime));
 		
 		foreach ($zones as $zone) {			
 			// get the next scheduled regular pickup for this zone
@@ -53,7 +56,6 @@ class NotificationShell extends Shell {
 				$graceStart = $notification_time;
 				$graceEnd = $notification_time + $gracePeriod;
 				
-				$this->out("Current time: " . date('r', $currentTime));
 				$this->out("Grace period starts: " . date('r', $graceStart));
 				$this->out("Grace period ends: " . date('r', $graceEnd));
 			
