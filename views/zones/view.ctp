@@ -84,10 +84,12 @@ JAVASCRIPT
 			$next_pickup_details = "";
 		}
 	?>
+	<?php if ($pickup): ?>
 	<small>Your Next Regular Pickup is:</small>
 	<div class="clear"></div>
 	<h2><?php echo $next_pickup; ?></h2>
 	<span id='r-date'><?php echo $next_pickup_details; ?></span>
+	<?php endif; ?>
 </div>
 <div id="calendar" class="hidden">
 </div>
