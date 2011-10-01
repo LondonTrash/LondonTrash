@@ -6,7 +6,7 @@
 	url = git://github.com/cakephp/debug_kit.git
 [submodule "vendors/SG-iCalendar"]
 	path = vendors/SG-iCalendar
-	url = git://github.com/karolijn/SG-iCalendar.git
+	url = git://github.com/fangel/SG-iCalendar.git
 [submodule "plugins/syrup"]
 	path = plugins/syrup
 	url = git://github.com/mariano/syrup.git
