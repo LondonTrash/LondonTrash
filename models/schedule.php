@@ -33,8 +33,8 @@ class Schedule extends AppModel {
 					if (!$next or $count >= 1000) break;
 					$count++;
 					$start = $next;
-					$calEvent["start_date"] = $start;
-					$calEvent["end_date"] = $start + $event->getDuration()-1;
+					$calEvent['start_date'] = $start;
+					$calEvent['end_date'] = $start + $event->getDuration()-1;
 
 					$schedule[] = $calEvent;
 				}
