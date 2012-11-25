@@ -74,30 +74,29 @@ class Zone extends AppModel {
 						isset($data[$i]->address_components[5]->long_name) && $data[$i]->address_components[5]->long_name == "Ontario" &&
 						isset($data[$i]->address_components[6]->long_name) && $data[$i]->address_components[6]->long_name == "Canada" ) {
 				
-				$zone_name = $zone_lookup->get_zone_by_latlng($data[$i]->geometry->location->lat, $data[$i]->geometry->location->lng);
-				if( $zone_name ) {
-					$o = new stdClass;
-					$o->zone_name = (string) $zone_name;
-					$o->address = $address;
-					$o->formatted_address = $data[$i]->formatted_address;
-					
-					$this->zone_data[] = $o;
-					
-					// this is jedi aaron in action.
-					++$this->zone_data_size;
-					
-					$addy_cache_data = array(
-						'AddressCache' => array(
-							'address' => $address,
-							'formatted_address' => $data[$i]->formatted_address,
-							'zone' => $zone_name
-					));
-					
-					$this->AddressCache = new AddressCache();
-					$this->AddressCache->set($addy_cache_data);
-					$this->AddressCache->save();
-				}
-				
+					$zone_name = $zone_lookup->get_zone_by_latlng($data[$i]->geometry->location->lat, $data[$i]->geometry->location->lng);
+					if( $zone_name ) {
+						$o = new stdClass;
+						$o->zone_name = (string) $zone_name;
+						$o->address = $address;
+						$o->formatted_address = $data[$i]->formatted_address;
+						
+						$this->zone_data[] = $o;
+						
+						// this is jedi aaron in action.
+						++$this->zone_data_size;
+						
+						$addy_cache_data = array(
+							'AddressCache' => array(
+								'address' => $address,
+								'formatted_address' => $data[$i]->formatted_address,
+								'zone' => $zone_name
+						));
+						
+						$this->AddressCache = new AddressCache();
+						$this->AddressCache->set($addy_cache_data);
+						$this->AddressCache->save();
+					}
 				}
 			}
 			
