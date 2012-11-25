@@ -70,10 +70,31 @@ class Zone extends AppModel {
 			
 			for( $i = 0; $i < $data_size; ++$i ) {
 				// test to assure that resolved addresses are actually in London Ontario
-				if( isset($data[$i]->address_components[3]->long_name) && $data[$i]->address_components[3]->long_name == "London" &&
-						isset($data[$i]->address_components[5]->long_name) && $data[$i]->address_components[5]->long_name == "Ontario" &&
-						isset($data[$i]->address_components[6]->long_name) && $data[$i]->address_components[6]->long_name == "Canada" ) {
-				
+				$match = FALSE;
+				// Loop through address components and pull out country, province, and
+				// city.
+				foreach ($data[$i]->address_components as $address_component) {
+					// Check that the country is Canada, otherwise skip to the next item.
+					if (in_array('country', $address_component->types) && $address_component->long_name != 'Canada') {
+						continue;
+					}
+					// Check that the province is Ontario, otherwise skip to the next
+					// item.
+					if (in_array('administrative_area_level_1', $address_component->types) && $address_component->long_name != 'Ontario') {
+						continue;
+					}
+					// Check that the city is London, otherwise skip to the next item.
+					if (in_array('locality', $address_component->types)) {
+						if ($address_component->long_name == 'London') {
+							// Country, province, and city match.
+							$match = TRUE;
+						} else {
+							continue;
+						}
+					}
+				}
+
+				if ($match == TRUE) {
 					$zone_name = $zone_lookup->get_zone_by_latlng($data[$i]->geometry->location->lat, $data[$i]->geometry->location->lng);
 					if( $zone_name ) {
 						$o = new stdClass;
