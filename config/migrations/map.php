@@ -46,5 +46,7 @@ $map = array(
 		'023_preset_providers_and_protocols' => 'M4ca7f61c0fbc49e5998772b33201ca43'),
 	23 => array(
 		'024_updating_dte_dtw_calendars' => 'M4e87e56622c84cf0a8357a753201ca43'),
+	24 => array(
+		'025_updating_dte_dtw_calendars_again' => 'M50b295f732244ceba02382103201ca43'),
 );
 ?>
